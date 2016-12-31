@@ -1,1 +1,12 @@
 # Add any directories, files, or patterns you don't want to be tracked by version control
+
+### Java template
+*.class
+# Package Files #
+*.jar
+*.war
+
+### JetBrains
+# User-specific stuff:
+.idea/
+
