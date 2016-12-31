@@ -1,0 +1,7 @@
+apply plugin: 'java'
+
+apply from: "$rootDir/gradle-conf/liquibase.gradle"
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.2.1'
+}

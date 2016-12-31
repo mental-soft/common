@@ -1,0 +1,215 @@
+apply plugin: 'java'
+
+ext {
+    resourceDir = "${sourceSets.main.resources.srcDirs.toArray()[0]}"
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    runtime 'org.codehaus.groovy:groovy:2.4.1'
+    runtime 'org.codehaus.groovy:groovy-sql:2.4.1'
+    runtime 'org.liquibase:liquibase-core:3.4.2'
+}
+
+class Database {
+    def url
+    def username
+    def password
+    def changeLogFile
+    def driver
+}
+
+
+task generateChangeLog << {
+    runLiquibase('generateChangeLog')
+}
+
+task changeLogSync << {
+    runLiquibase('changeLogSync')
+}
+
+task update << {
+    liquibaseUpdate(false)
+}
+
+task updateSQL << {
+    liquibaseUpdate(true)
+}
+
+task rollback << {
+    liquibaseRollback(false)
+}
+
+task rollbackSQL << {
+    liquibaseRollback(true)
+}
+
+task futureRollbackSQL << {
+    runLiquibase('futureRollbackSQL')
+}
+
+task updateTestingRollback << {
+    runLiquibase('updateTestingRollback')
+}
+
+task status << {
+    runLiquibase('status')
+}
+
+task validate << {
+    runLiquibase('validate')
+}
+
+task changelogSync << {
+    runLiquibase('changelogSync')
+}
+
+task changelogSyncSQL << {
+    runLiquibase('changelogSyncSQL')
+}
+
+task listLocks << {
+    runLiquibase('listLocks')
+}
+
+task releaseLocks << {
+    runLiquibase('releaseLocks')
+}
+
+task markNextChangesetRan << {
+    runLiquibase('markNextChangesetRan')
+}
+
+task markNextChangesetRanSQL << {
+    runLiquibase('markNextChangesetRanSQL')
+}
+
+task dropAll << {
+    runLiquibase('dropAll')
+}
+
+task clearChecksums << {
+    runLiquibase('clearChecksums')
+}
+
+task diff << {
+    runLiquibase(["--referenceUrl=${System.properties['referenceUrl']}", "--referenceUsername=${System.properties['referenceUsername']}", "--referencePassword=${System.properties['referencePassword']}", 'diff'])
+}
+
+task tag << {
+    runLiquibase(['tag', "${System.properties('tag')}"])
+}
+
+task dbDoc << {
+    runLiquibase(['dbDoc', System.properties['doc.dir'] ?: "${buildDir.absolutePath}/database/docs"])
+}
+
+def liquibaseRollback(dryRun) {
+    def argList = []
+    def tag = System.properties['tag']
+    def count = System.properties['count']
+    def date = System.properties['date']
+
+    def suffix = ''
+    def param = ''
+    if (count) {
+        suffix = 'rollbackCount'
+        param = count
+    } else if (date) {
+        suffix = 'rollbackToDate'
+        param = date
+    } else {
+        suffix = 'rollback'
+        param = tag
+    }
+
+    if (dryRun) {
+        suffix = suffix + 'SQL'
+    }
+
+    argList << suffix
+    argList << param
+
+    runLiquibase(argList)
+}
+
+
+def liquibaseUpdate(dryRun) {
+    def suffix = ''
+    def count = System.properties['count']
+    if (count) {
+        suffix = 'Count'
+    }
+    if (dryRun) {
+        suffix = suffix + 'SQL'
+    }
+
+    def argList = ["update${suffix}"]
+
+    if (count) {
+        argList << count
+    }
+
+    runLiquibase(argList)
+}
+
+
+def runLiquibase(String command) {
+    runLiquibase([command])
+}
+
+def runLiquibase(List argList) {
+
+    def database = new Database()
+
+    def properties = new Properties()
+
+    println "${sourceSets.main.resources.srcDirs[0]}"
+
+    def contexts;
+
+    File propsDbFile
+    if (env == envQa) {
+        propsDbFile = new File(resourceDir + "/" + envQaFileName)
+        contexts = 'qa';
+    } else if (env == envProduct) {
+        propsDbFile = new File(resourceDir + "/" + envProductFileName)
+        contexts = 'product';
+    } else {
+        propsDbFile = new File(resourceDir + "/" + envDevFileName)
+    }
+
+    properties.load(new FileInputStream(propsDbFile))
+
+    database.url = properties['db.url']
+    database.username = properties['db.username']
+    database.password = properties['db.password']
+    database.changeLogFile = properties['db.changelog.file']
+    database.driver = properties['db.driverClassName']
+
+    //def contexts = System.properties['contexts']
+
+    println "Username -------- " + properties['db.username']
+
+    def stdArgs = ["--url=" + database.url, "--username=" + database.username, "--password=" + database.password]
+
+    if (database.changeLogFile) {
+        stdArgs << "--changeLogFile=${this.rootDir}/${database.changeLogFile}"
+    }
+    if (database.driver) {
+        stdArgs << "--driver=${database.driver}"
+    }
+
+    if (contexts) {
+        stdArgs << "--contexts=${contexts}"
+    }
+
+    javaexec {
+        main = 'liquibase.integration.commandline.Main'
+        classpath = sourceSets.main.runtimeClasspath
+        args = stdArgs + argList
+    }
+}

@@ -10,3 +10,6 @@
 # User-specific stuff:
 .idea/
 
+.gradle/
+
+!gradle-wrapper.jar
