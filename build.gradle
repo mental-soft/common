@@ -11,5 +11,5 @@ repositories {
 }
 
 dependencies {
-    compile group: 'oracle', name: 'ojdbc6', version: '11.2.0.3'
+    compile files('src/main/resources/lib/ojdbc6.jar')
 }
