@@ -5,3 +5,11 @@ apply from: "$rootDir/gradle-conf/liquibase.gradle"
 task wrapper(type: Wrapper) {
     gradleVersion = '3.2.1'
 }
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'ojdbc', name: 'ojdbc', version: '14'
+}
