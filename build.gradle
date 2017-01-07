@@ -11,5 +11,5 @@ repositories {
 }
 
 dependencies {
-    compile group: 'ojdbc', name: 'ojdbc', version: '14'
+    compile group: 'oracle', name: 'ojdbc6', version: '11.2.0.3'
 }
