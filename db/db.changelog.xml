@@ -30,7 +30,7 @@
         <createTable tableName="UNIVERSITY_DEPARTMENT">
             <column name="ID" type="BIGINT"/>
             <column name="NAME" type="NVARCHAR(250)"/>
-            <column name="MODIFIED_DATE" type="DATETIME "/>
+            <column name="MODIFIED_DATE" type="DATETIME"/>
             <column name="CREATED_DATE" type="DATETIME"/>
 
         </createTable>
