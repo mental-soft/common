@@ -47,4 +47,15 @@
         </createTable>
     </changeSet>
 
+    <changeSet id="1" author="coskun.deniz">
+        <createTable tableName="UNIVERSITY">
+            <column name="ID" type="NUMBER"/>
+            <column name="NAME" type="NVARCHAR(250)"/>
+            <column name="IS_ACTIVE" type="NUMBER(1)"/>
+            <column name="IS_DELETED" type="NUMBER(1)"/>
+            <column name="MODIFIED_DATE" type="TIMESTAMP"/>
+            <column name="CREATED_DATE" type="TIMESTAMP"/>
+        </createTable>
+    </changeSet>
+
 </databaseChangeLog>
