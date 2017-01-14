@@ -5,5 +5,5 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-    <include file="db/changes/2017.01.14_create_tables_bloodgroup_title.xml"/>
+    <include file="db/changes/2017.01.14_create_tables_bloodgroup_and_title.xml"/>
 </databaseChangeLog>
