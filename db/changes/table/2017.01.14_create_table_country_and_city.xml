@@ -7,10 +7,7 @@
 
     <changeSet id="1" author="coskun.deniz">
         <createTable tableName="COUNTRY">
-            <column name="ID" type="NUMBER">
-                <constraints primaryKey="true"
-                             primaryKeyName="PK_COUNTRY_ID"/>
-            </column>
+            <column name="ID" type="NUMBER"/>
             <column name="NAME" type="NVARCHAR(250)"/>
             <column name="CODE" type="NVARCHAR(10)"/>
             <column name="EN_NAME" type="NVARCHAR(250)"/>
@@ -19,6 +16,10 @@
             <column name="MODIFIED_DATE" type="TIMESTAMP"/>
             <column name="CREATED_DATE" type="TIMESTAMP"/>
         </createTable>
+    </changeSet>
+
+    <changeSet id="1" author="demirtasokan">
+        <addPrimaryKey tableName="COUNTRY" columnNames="ID" constraintName="PK_COUNTRY_ID"/>
     </changeSet>
 
     <changeSet id="2" author="coskun.deniz">

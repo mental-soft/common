@@ -4,6 +4,7 @@
         xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
     <changeSet id="1" author="demirtasokan">
         <addPrimaryKey tableName="CITY" columnNames="ID" constraintName="PK_CITY_ID"/>
     </changeSet>
@@ -11,7 +12,6 @@
     <changeSet id="2" author="demirtasokan">
         <createTable tableName="DISTRICT">
             <column name="ID" type="NUMBER">
-                <constraints primaryKey="true" primaryKeyName="PK_DISTRICT_ID"/>
             </column>
             <column name="CITY_ID" type="NUMBER">
                 <constraints foreignKeyName="FK_DISTRICT_CITY"
@@ -25,4 +25,19 @@
             <column name="CREATED_DATE" type="TIMESTAMP"/>
         </createTable>
     </changeSet>
+
+    <changeSet id="3" author="demirtasokan">
+        <addPrimaryKey tableName="DISTRICT" columnNames="ID" constraintName="PK_DISTRICT_ID"/>
+    </changeSet>
+
+    <changeSet id="4" author="demirtasokan">
+        <addPrimaryKey tableName="UNIVERSITY_EDUCATION_LEVEL" columnNames="ID" constraintName="PK_UNI_EDU_LEVEL_ID"/>
+        <addPrimaryKey tableName="EDUCATION_TYPE" columnNames="ID" constraintName="PK_EDUCATION_TYPE_ID"/>
+        <addPrimaryKey tableName="UNIVERSITY_DEPARTMENT" columnNames="ID" constraintName="PK_UNIVERSITY_DEPARTMENT_ID"/>
+        <addPrimaryKey tableName="JOB" columnNames="ID" constraintName="PK_JOB_ID"/>
+        <addPrimaryKey tableName="UNIVERSITY" columnNames="ID" constraintName="PK_UNIVERSITY_ID"/>
+        <addPrimaryKey tableName="BLOOD_GROUP" columnNames="ID" constraintName="PK_BLOOD_GROUP_ID"/>
+        <addPrimaryKey tableName="TITLE" columnNames="ID" constraintName="PK_TITLE_ID"/>
+    </changeSet>
+
 </databaseChangeLog>
