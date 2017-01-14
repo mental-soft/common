@@ -1,0 +1,28 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <changeSet id="1" author="demirtasokan">
+        <addPrimaryKey tableName="CITY" columnNames="ID" constraintName="PK_CITY_ID"/>
+    </changeSet>
+
+    <changeSet id="2" author="demirtasokan">
+        <createTable tableName="DISTRICT">
+            <column name="ID" type="NUMBER">
+                <constraints primaryKey="true" primaryKeyName="PK_DISTRICT_ID"/>
+            </column>
+            <column name="CITY_ID" type="NUMBER">
+                <constraints foreignKeyName="FK_DISTRICT_CITY"
+                             referencedTableName="CITY"
+                             referencedColumnNames="ID"/>
+            </column>
+            <column name="NAME" type="NVARCHAR(250)"/>
+            <column name="IS_ACTIVE" type="NUMBER(1)"/>
+            <column name="IS_DELETED" type="NUMBER(1)"/>
+            <column name="MODIFIED_DATE" type="TIMESTAMP"/>
+            <column name="CREATED_DATE" type="TIMESTAMP"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
