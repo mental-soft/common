@@ -27,7 +27,7 @@
         </createTable>
     </changeSet>
 
-    <changeSet id="2" author="demirtasokan">
+    <changeSet id="1" author="demirtasokan">
         <createTable tableName="UNIVERSITY_DEPARTMENT">
             <column name="ID" type="NUMBER"/>
             <column name="NAME" type="NVARCHAR(250)"/>
