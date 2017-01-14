@@ -1,0 +1,36 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+
+
+    <changeSet id="1" author="demirtasokan">
+        <createTable tableName="BLOOD_GROUP">
+            <column name="ID" type="NUMBER"/>
+            <column name="NAME" type="NVARCHAR(250)"/>
+            <column name="IS_ACTIVE" type="NUMBER(1)"/>
+            <column name="IS_DELETED" type="NUMBER(1)"/>
+            <column name="MODIFIED_DATE" type="TIMESTAMP"/>
+            <column name="CREATED_DATE" type="TIMESTAMP"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2" author="demirtasokan">
+        <createTable tableName="TITLE">
+            <column name="ID" type="NUMBER"/>
+            <column name="NAME" type="NVARCHAR(250)"/>
+            <column name="IS_ACTIVE" type="NUMBER(1)"/>
+            <column name="IS_DELETED" type="NUMBER(1)"/>
+            <column name="MODIFIED_DATE" type="TIMESTAMP"/>
+            <column name="CREATED_DATE" type="TIMESTAMP"/>
+        </createTable>
+    </changeSet>
+
+
+
+
+
+</databaseChangeLog>
