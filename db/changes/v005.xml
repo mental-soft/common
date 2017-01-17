@@ -6,4 +6,5 @@
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
     <include file="db/changes/table/2017.01.17_delete_column_is_deleted.xml"/>
+
 </databaseChangeLog>

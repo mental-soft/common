@@ -16,4 +16,5 @@
         <dropColumn tableName="UNIVERSITY" columnName="IS_DELETED"></dropColumn>
         <dropColumn tableName="UNIVERSITY_EDUCATION_LEVEL" columnName="IS_DELETED"></dropColumn>
     </changeSet>
+
 </databaseChangeLog>
