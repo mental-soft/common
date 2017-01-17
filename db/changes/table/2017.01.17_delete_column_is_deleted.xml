@@ -1,0 +1,19 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    
+    <changeSet id="1" author="niyazi.motor">
+        <dropColumn tableName="BLOOD_GROUP" columnName="IS_DELETED"></dropColumn>
+        <dropColumn tableName="CITY" columnName="IS_DELETED"></dropColumn>
+        <dropColumn tableName="COUNTRY" columnName="IS_DELETED"></dropColumn>
+        <dropColumn tableName="DISTRICT" columnName="IS_DELETED"></dropColumn>
+        <dropColumn tableName="EDUCATION_TYPE" columnName="IS_DELETED"></dropColumn>
+        <dropColumn tableName="JOB" columnName="IS_DELETED"></dropColumn>
+        <dropColumn tableName="TITLE" columnName="IS_DELETED"></dropColumn>
+        <dropColumn tableName="UNIVERSITY" columnName="IS_DELETED"></dropColumn>
+        <dropColumn tableName="UNIVERSITY_EDUCATION_LEVEL" columnName="IS_DELETED"></dropColumn>
+    </changeSet>
+</databaseChangeLog>

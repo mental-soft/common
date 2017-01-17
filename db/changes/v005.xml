@@ -5,10 +5,5 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-    <include file="db/changes/v001.xml"/>
-    <include file="db/changes/v002.xml"/>
-    <include file="db/changes/v003.xml"/>
-    <include file="db/changes/v004.xml"/>
-    <include file="db/changes/v005.xml"/>
-
+    <include file="db/changes/table/2017.01.17_delete_column_is_deleted.xml"/>
 </databaseChangeLog>
