@@ -30,6 +30,7 @@
                              referencedTableName="COUNTRY"
                              referencedColumnNames="ID"/>
             </column>
+            <column name="CODE" type="NVARCHAR(10)"/>
             <column name="NAME" type="NVARCHAR(250)"/>
             <column name="IS_BIG" type="NUMBER(1)"/>
             <column name="IS_ACTIVE" type="NUMBER(1)"/>
