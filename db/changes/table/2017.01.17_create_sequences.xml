@@ -1,0 +1,20 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="1" author="sefa.aras">
+        <createSequence sequenceName="SEQ_UNIVERSITY_EDUCATION_LEVEL_ID" startValue="1" incrementBy="1" />
+        <createSequence sequenceName="SEQ_EDUCATION_TYPE_ID" startValue="1" incrementBy="1" />
+        <createSequence sequenceName="SEQ_UNIVERSITY_DEPARTMENT_ID" startValue="1" incrementBy="1" />
+        <createSequence sequenceName="SEQ_JOB_ID" startValue="1" incrementBy="1" />
+        <createSequence sequenceName="SEQ_UNIVERSITY_ID" startValue="1" incrementBy="1" />
+        <createSequence sequenceName="SEQ_COUNTRY_ID" startValue="1" incrementBy="1" />
+        <createSequence sequenceName="SEQ_CITY_ID" startValue="1" incrementBy="1" />
+        <createSequence sequenceName="SEQ_BLOOD_GROUP_ID" startValue="1" incrementBy="1" />
+        <createSequence sequenceName="SEQ_TITLE_ID" startValue="1" incrementBy="1" />
+    </changeSet>
+    
+</databaseChangeLog>
