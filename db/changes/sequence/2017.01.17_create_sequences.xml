@@ -13,6 +13,7 @@
         <createSequence sequenceName="SEQ_UNIVERSITY_ID" startValue="1" incrementBy="1" />
         <createSequence sequenceName="SEQ_COUNTRY_ID" startValue="1" incrementBy="1" />
         <createSequence sequenceName="SEQ_CITY_ID" startValue="1" incrementBy="1" />
+        <createSequence sequenceName="SEQ_DISTRICT_ID" startValue="1" incrementBy="1" />
         <createSequence sequenceName="SEQ_BLOOD_GROUP_ID" startValue="1" incrementBy="1" />
         <createSequence sequenceName="SEQ_TITLE_ID" startValue="1" incrementBy="1" />
     </changeSet>

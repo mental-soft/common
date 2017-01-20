@@ -5,6 +5,6 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-    <include file="db/changes/table/2017.01.17_add_unique_and_constraint_to_tables.xml"/>
+    <include file="db/changes/constraint/2017.01.17_add_unique_and_constraint_to_tables.xml"/>
 
 </databaseChangeLog>
