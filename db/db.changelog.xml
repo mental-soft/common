@@ -12,4 +12,5 @@
     <include file="db/changes/v005.xml"/>
     <include file="db/changes/v006.xml"/>
     <include file="db/changes/v007.xml"/>
+
 </databaseChangeLog>
