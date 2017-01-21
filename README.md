@@ -10,8 +10,8 @@ grant connect, resource to common;
 
 Test ortamı için:
 ```
-create user common identified by common_qa;
-grant connect, resource to common_qa;
+create user common_qa identified by common_qa;
+grant common_qa, resource to common_qa;
 ```
 
 
