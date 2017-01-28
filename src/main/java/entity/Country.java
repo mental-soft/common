@@ -9,7 +9,7 @@ import javax.persistence.Table;
  * Created by Coşkun on 21.1.2017.
  */
 @Entity
-@Table(name = "COUNTRY", schema = "COMMON")
+@Table(name = "COUNTRY")
 public class Country {
 
     @Id
