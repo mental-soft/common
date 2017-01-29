@@ -5,10 +5,15 @@ import java.sql.Timestamp;
 import java.util.Date;
 
 /**
+ * Job tablosu ile map edildi.
+ * Bu entity bir mesleğin özelliklerini gösterir.
  * Created by Coşkun on 21.1.2017.
  */
 @Entity
 @Table(name = "JOB")
+@SequenceGenerator(name = "ID_SEQ",
+        sequenceName = "SEQ_JOB_ID",
+        allocationSize = 1)
 public class Job {
 
     @Id
@@ -18,14 +23,14 @@ public class Job {
     @Column(name = "NAME", columnDefinition = "NVARCHAR2")
     private String name;
 
+    @Column(name = "IS_ACTIVE", columnDefinition = "NUMBER")
+    private Boolean isActive;
+
     @Column(name = "CREATED_DATE", columnDefinition = "TIMESTAMP")
     private Date createdDate;
 
     @Column(name = "MODIFIED_DATE", columnDefinition = "TIMESTAMP")
     private Date modifiedDate;
-
-    @Column(name = "IS_ACTIVE", columnDefinition = "NUMBER")
-    private Boolean isActive;
 
     public Integer getId() {
         return id;
@@ -37,6 +42,14 @@ public class Job {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
     }
 
     public Date getCreatedDate() {
@@ -55,11 +68,4 @@ public class Job {
         this.modifiedDate = modifiedDate;
     }
 
-    public Boolean getActive() {
-        return isActive;
-    }
-
-    public void setActive(Boolean active) {
-        isActive = active;
-    }
 }
