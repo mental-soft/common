@@ -1,6 +1,8 @@
 package jpa;
 
 import config.PersistenceContext;
+import entity.City;
+import entity.Country;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,6 +32,13 @@ public class CityRepositoryTest {
     public void count_EntrySizeFound() {
         long size = cityRepository.count();
         Assert.assertEquals(5, size);
+    }
+
+    @Test
+    public void findOne_RelationEntryFound() {
+        City city = cityRepository.findOne(1);
+        Assert.assertNotNull(city.getCountry());
+        Assert.assertEquals("TURKEY", city.getCountry().getEnName());
     }
 
 }
