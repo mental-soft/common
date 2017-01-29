@@ -56,6 +56,13 @@
             <column name="MODIFIED_DATE" valueDate="${currentdatefunction}"/>
             <column name="CREATED_DATE" valueDate="${currentdatefunction}"/>
         </insert>
+        <sql>
+            select SEQ_COUNTRY_ID.nextval from dual;
+            select SEQ_COUNTRY_ID.nextval from dual;
+            select SEQ_COUNTRY_ID.nextval from dual;
+            select SEQ_COUNTRY_ID.nextval from dual;
+            select SEQ_COUNTRY_ID.nextval from dual;
+        </sql>
     </changeSet>
     
     <changeSet id="2" author="erhan.karakaya" context="!qa and !prod">
@@ -112,6 +119,13 @@
             <column name="MODIFIED_DATE" valueDate="${currentdatefunction}"/>
             <column name="CREATED_DATE" valueDate="${currentdatefunction}"/>
         </insert>
+        <sql>
+            select SEQ_CITY_ID.nextval from dual;
+            select SEQ_CITY_ID.nextval from dual;
+            select SEQ_CITY_ID.nextval from dual;
+            select SEQ_CITY_ID.nextval from dual;
+            select SEQ_CITY_ID.nextval from dual;
+        </sql>
     </changeSet>
 
     <changeSet id="3" author="erhan.karakaya" context="!qa and !prod">
@@ -158,6 +172,13 @@
             <column name="MODIFIED_DATE" valueDate="${currentdatefunction}"/>
             <column name="CREATED_DATE" valueDate="${currentdatefunction}"/>
         </insert>
+        <sql>
+            select SEQ_DISTRICT_ID.nextval from dual;
+            select SEQ_DISTRICT_ID.nextval from dual;
+            select SEQ_DISTRICT_ID.nextval from dual;
+            select SEQ_DISTRICT_ID.nextval from dual;
+            select SEQ_DISTRICT_ID.nextval from dual;
+        </sql>
     </changeSet>
     
     <changeSet id="4" author="erhan.karakaya" context="!qa and !prod">
@@ -199,6 +220,13 @@
             <column name="MODIFIED_DATE" valueDate="${currentdatefunction}"/>
             <column name="CREATED_DATE" valueDate="${currentdatefunction}"/>
         </insert>
+        <sql>
+            select SEQ_UNI_EDU_LEVEL_ID.nextval from dual;
+            select SEQ_UNI_EDU_LEVEL_ID.nextval from dual;
+            select SEQ_UNI_EDU_LEVEL_ID.nextval from dual;
+            select SEQ_UNI_EDU_LEVEL_ID.nextval from dual;
+            select SEQ_UNI_EDU_LEVEL_ID.nextval from dual;
+        </sql>
     </changeSet>
 
     <changeSet id="5" author="erhan.karakaya" context="!qa and !prod">
@@ -240,6 +268,13 @@
             <column name="MODIFIED_DATE" valueDate="${currentdatefunction}"/>
             <column name="CREATED_DATE" valueDate="${currentdatefunction}"/>
         </insert>
+        <sql>
+            select SEQ_UNIVERSITY_DEPARTMENT_ID.nextval from dual;
+            select SEQ_UNIVERSITY_DEPARTMENT_ID.nextval from dual;
+            select SEQ_UNIVERSITY_DEPARTMENT_ID.nextval from dual;
+            select SEQ_UNIVERSITY_DEPARTMENT_ID.nextval from dual;
+            select SEQ_UNIVERSITY_DEPARTMENT_ID.nextval from dual;
+        </sql>
     </changeSet>
 
     <changeSet id="6" author="erhan.karakaya" context="!qa and !prod">
@@ -282,6 +317,13 @@
             <column name="MODIFIED_DATE" valueDate="${currentdatefunction}"/>
             <column name="CREATED_DATE" valueDate="${currentdatefunction}"/>
         </insert>
+        <sql>
+            select SEQ_EDUCATION_TYPE_ID.nextval from dual;
+            select SEQ_EDUCATION_TYPE_ID.nextval from dual;
+            select SEQ_EDUCATION_TYPE_ID.nextval from dual;
+            select SEQ_EDUCATION_TYPE_ID.nextval from dual;
+            select SEQ_EDUCATION_TYPE_ID.nextval from dual;
+        </sql>
     </changeSet>
 
     <changeSet id="7" author="erhan.karakaya" context="!qa and !prod">
@@ -323,6 +365,13 @@
             <column name="MODIFIED_DATE" valueDate="${currentdatefunction}"/>
             <column name="CREATED_DATE" valueDate="${currentdatefunction}"/>
         </insert>
+        <sql>
+            select SEQ_JOB_ID.nextval from dual;
+            select SEQ_JOB_ID.nextval from dual;
+            select SEQ_JOB_ID.nextval from dual;
+            select SEQ_JOB_ID.nextval from dual;
+            select SEQ_JOB_ID.nextval from dual;
+        </sql>
     </changeSet>
 
     <changeSet id="8" author="erhan.karakaya" context="!qa and !prod">
@@ -364,6 +413,13 @@
             <column name="MODIFIED_DATE" valueDate="${currentdatefunction}"/>
             <column name="CREATED_DATE" valueDate="${currentdatefunction}"/>
         </insert>
+        <sql>
+            select SEQ_UNIVERSITY_ID.nextval from dual;
+            select SEQ_UNIVERSITY_ID.nextval from dual;
+            select SEQ_UNIVERSITY_ID.nextval from dual;
+            select SEQ_UNIVERSITY_ID.nextval from dual;
+            select SEQ_UNIVERSITY_ID.nextval from dual;
+        </sql>
     </changeSet>
 
     <changeSet id="9" author="erhan.karakaya" context="!qa and !prod">
@@ -405,6 +461,13 @@
             <column name="MODIFIED_DATE" valueDate="${currentdatefunction}"/>
             <column name="CREATED_DATE" valueDate="${currentdatefunction}"/>
         </insert>
+        <sql>
+            select SEQ_BLOOD_GROUP_ID.nextval from dual;
+            select SEQ_BLOOD_GROUP_ID.nextval from dual;
+            select SEQ_BLOOD_GROUP_ID.nextval from dual;
+            select SEQ_BLOOD_GROUP_ID.nextval from dual;
+            select SEQ_BLOOD_GROUP_ID.nextval from dual;
+        </sql>
     </changeSet>
 
     <changeSet id="10" author="erhan.karakaya" context="!qa and !prod">
@@ -446,6 +509,13 @@
             <column name="MODIFIED_DATE" valueDate="${currentdatefunction}"/>
             <column name="CREATED_DATE" valueDate="${currentdatefunction}"/>
         </insert>
+        <sql>
+            select SEQ_TITLE_ID.nextval from dual;
+            select SEQ_TITLE_ID.nextval from dual;
+            select SEQ_TITLE_ID.nextval from dual;
+            select SEQ_TITLE_ID.nextval from dual;
+            select SEQ_TITLE_ID.nextval from dual;
+        </sql>
     </changeSet>
 
 </databaseChangeLog>
