@@ -29,3 +29,15 @@ Test ortamında çalışmak için örnek script:
 gradlew update -Penv=qa
 
 ```
+
+#Test 
+
+Bütün testleri çalıştır
+```
+gradlew test
+```
+
+Sadece bir testi çalıştırma
+```
+gradlew test --tests jpa.CountryRepositoryTest.count_EntrySizeFound
+```
