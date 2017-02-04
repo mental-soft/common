@@ -14,6 +14,7 @@ import org.springframework.context.annotation.PropertySources;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resources;
 
@@ -28,6 +29,9 @@ public class CountryRepositoryTest {
 
     @Autowired
     public CountryRepository countryRepository;
+
+    @Autowired
+    public CityRepository cityRepository;
 
     @Test
     public void countryRepository_IsNotNull() {
@@ -46,14 +50,79 @@ public class CountryRepositoryTest {
         Assert.assertEquals("TURKEY", country.getEnName());
     }
 
-    @Test
+    @Transactional
     public void insert_Entry() {
         Country country = new Country();
-        country.setName("Test2");
-        country.setCode("T2");
+        country.setName("Test556");
+        country.setCode("T556");
         country.setActive(true);
 
         country = countryRepository.save(country);
+
+        City newCity = new City();
+        newCity.setName("123");
+        newCity.setCountry(country);
+
+        cityRepository.save(newCity);
+
+        newCity = new City();
+        newCity.setName("sd33afsd");
+        newCity.setCountry(country);
+
+        cityRepository.save(newCity);
+
+        newCity = new City();
+        newCity.setName("sd444afsd");
+        newCity.setCountry(country);
+
+        cityRepository.save(newCity);
+    }
+
+    @Test
+    public void testInsertEntry() {
+        try {
+            insert_Entry();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void insert_EntryTest() {
+        Country country = new Country();
+        country.setName("Test233333");
+        country.setCode("T2333333");
+        country.setActive(true);
+
+        City newCity = new City();
+        newCity.setName("asdfsdf");
+        newCity.setCode("22");
+        newCity.setCountry(country);
+        newCity.setActive(true);
+        newCity.setBig(true);
+
+        country.getCities().add(newCity);
+
+        newCity = new City();
+        newCity.setName("333");
+        newCity.setCode("33");
+        newCity.setCountry(country);
+        newCity.setActive(true);
+        newCity.setBig(true);
+
+        country.getCities().add(newCity);
+        newCity = new City();
+        newCity.setName("4444");
+        newCity.setCode("44");
+        newCity.setCountry(country);
+        newCity.setActive(true);
+        newCity.setBig(true);
+
+        country.getCities().add(newCity);
+
+
+        countryRepository.save(country);
+
     }
 
 }

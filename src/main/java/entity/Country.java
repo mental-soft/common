@@ -4,6 +4,7 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -42,8 +43,12 @@ public class Country {
     @Column(name = "MODIFIED_DATE", columnDefinition = "TIMESTAMP")
     private Date modifiedDate;
 
-    @OneToMany(mappedBy = "country")
+    @OneToMany(mappedBy = "country",cascade = CascadeType.ALL)
     private List<City> cities;
+
+    public Country() {
+        cities = new ArrayList<>();
+    }
 
     public Integer getId() {
         return id;
