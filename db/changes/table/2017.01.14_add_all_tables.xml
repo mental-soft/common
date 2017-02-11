@@ -6,6 +6,9 @@
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
     <changeSet id="1" author="erhan.karakaya">
+        <comment>
+            UNIVERSITY_EDUCATION_LEVEL tablosu olusturuldu.
+        </comment>
         <createTable tableName="UNIVERSITY_EDUCATION_LEVEL">
             <column name="ID" type="NUMBER"/>
             <column name="NAME" type="NVARCHAR(250)"/>
@@ -17,6 +20,9 @@
     </changeSet>
 
     <changeSet id="1" author="niyazi.motor">
+        <comment>
+            EDUCATION_TYPE tablosu olusturuldu.
+        </comment>
         <createTable tableName="EDUCATION_TYPE">
             <column name="ID" type="NUMBER"/>
             <column name="NAME" type="NVARCHAR(250)"/>
@@ -28,6 +34,9 @@
     </changeSet>
 
     <changeSet id="1" author="demirtasokan">
+        <comment>
+            UNIVERSITY_DEPARTMENT tablosu olusturuldu.
+        </comment>
         <createTable tableName="UNIVERSITY_DEPARTMENT">
             <column name="ID" type="NUMBER"/>
             <column name="IS_ACTIVE" type="NUMBER(1)"/>
@@ -38,6 +47,9 @@
     </changeSet>
 
     <changeSet id="1" author="sefa.aras">
+        <comment>
+            JOB tablosu olusturuldu.
+        </comment>
         <createTable tableName="JOB">
             <column name="ID" type="NUMBER"/>
             <column name="NAME" type="NVARCHAR(250)"/>
@@ -49,6 +61,9 @@
     </changeSet>
 
     <changeSet id="1" author="coskun.deniz">
+        <comment>
+            UNIVERSITY tablosu olusturuldu.
+        </comment>
         <createTable tableName="UNIVERSITY">
             <column name="ID" type="NUMBER"/>
             <column name="NAME" type="NVARCHAR(250)"/>
