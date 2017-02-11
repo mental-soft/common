@@ -39,12 +39,6 @@ public class CountryRepositoryTest {
     }
 
     @Test
-    public void count_EntrySizeFound() {
-        long size = countryRepository.count();
-        Assert.assertEquals(5, size);
-    }
-
-    @Test
     public void findOne_EntryFound() {
         Country country = countryRepository.findOne(1);
         Assert.assertEquals("TURKEY", country.getEnName());

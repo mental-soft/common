@@ -28,11 +28,6 @@ public class CityRepositoryTest {
         Assert.assertNotNull(cityRepository);
     }
 
-    @Test
-    public void count_EntrySizeFound() {
-        long size = cityRepository.count();
-        Assert.assertEquals(5, size);
-    }
 
     @Test
     public void findOne_RelationEntryFound() {
