@@ -31,11 +31,7 @@
     </changeSet>
 
     <changeSet id="4" author="demirtasokan">
-        <addPrimaryKey tableName="UNIVERSITY_EDUCATION_LEVEL" columnNames="ID" constraintName="PK_UNI_EDU_LEVEL_ID"/>
-        <addPrimaryKey tableName="EDUCATION_TYPE" columnNames="ID" constraintName="PK_EDUCATION_TYPE_ID"/>
-        <addPrimaryKey tableName="UNIVERSITY_DEPARTMENT" columnNames="ID" constraintName="PK_UNIVERSITY_DEPARTMENT_ID"/>
         <addPrimaryKey tableName="JOB" columnNames="ID" constraintName="PK_JOB_ID"/>
-        <addPrimaryKey tableName="UNIVERSITY" columnNames="ID" constraintName="PK_UNIVERSITY_ID"/>
         <addPrimaryKey tableName="BLOOD_GROUP" columnNames="ID" constraintName="PK_BLOOD_GROUP_ID"/>
         <addPrimaryKey tableName="TITLE" columnNames="ID" constraintName="PK_TITLE_ID"/>
     </changeSet>

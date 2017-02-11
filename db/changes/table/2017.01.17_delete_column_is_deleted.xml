@@ -10,11 +10,8 @@
         <dropColumn tableName="CITY" columnName="IS_DELETED"/>
         <dropColumn tableName="COUNTRY" columnName="IS_DELETED"/>
         <dropColumn tableName="DISTRICT" columnName="IS_DELETED"/>
-        <dropColumn tableName="EDUCATION_TYPE" columnName="IS_DELETED"/>
         <dropColumn tableName="JOB" columnName="IS_DELETED"/>
         <dropColumn tableName="TITLE" columnName="IS_DELETED"/>
-        <dropColumn tableName="UNIVERSITY" columnName="IS_DELETED"/>
-        <dropColumn tableName="UNIVERSITY_EDUCATION_LEVEL" columnName="IS_DELETED"/>
     </changeSet>
 
 </databaseChangeLog>
