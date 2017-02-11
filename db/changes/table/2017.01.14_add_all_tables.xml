@@ -5,51 +5,8 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-    <changeSet id="1" author="erhan.karakaya">
-        <createTable tableName="UNIVERSITY_EDUCATION_LEVEL">
-            <column name="ID" type="NUMBER"/>
-            <column name="NAME" type="NVARCHAR(250)"/>
-            <column name="IS_ACTIVE" type="NUMBER(1)"/>
-            <column name="IS_DELETED" type="NUMBER(1)"/>
-            <column name="MODIFIED_DATE" type="TIMESTAMP"/>
-            <column name="CREATED_DATE" type="TIMESTAMP"/>
-        </createTable>
-    </changeSet>
-
-    <changeSet id="1" author="niyazi.motor">
-        <createTable tableName="EDUCATION_TYPE">
-            <column name="ID" type="NUMBER"/>
-            <column name="NAME" type="NVARCHAR(250)"/>
-            <column name="IS_ACTIVE" type="NUMBER(1)"/>
-            <column name="IS_DELETED" type="NUMBER(1)"/>
-            <column name="MODIFIED_DATE" type="TIMESTAMP"/>
-            <column name="CREATED_DATE" type="TIMESTAMP"/>
-        </createTable>
-    </changeSet>
-
-    <changeSet id="1" author="demirtasokan">
-        <createTable tableName="UNIVERSITY_DEPARTMENT">
-            <column name="ID" type="NUMBER"/>
-            <column name="IS_ACTIVE" type="NUMBER(1)"/>
-            <column name="NAME" type="NVARCHAR(250)"/>
-            <column name="MODIFIED_DATE" type="TIMESTAMP"/>
-            <column name="CREATED_DATE" type="TIMESTAMP"/>
-        </createTable>
-    </changeSet>
-
     <changeSet id="1" author="sefa.aras">
         <createTable tableName="JOB">
-            <column name="ID" type="NUMBER"/>
-            <column name="NAME" type="NVARCHAR(250)"/>
-            <column name="IS_ACTIVE" type="NUMBER(1)"/>
-            <column name="IS_DELETED" type="NUMBER(1)"/>
-            <column name="MODIFIED_DATE" type="TIMESTAMP"/>
-            <column name="CREATED_DATE" type="TIMESTAMP"/>
-        </createTable>
-    </changeSet>
-
-    <changeSet id="1" author="coskun.deniz">
-        <createTable tableName="UNIVERSITY">
             <column name="ID" type="NUMBER"/>
             <column name="NAME" type="NVARCHAR(250)"/>
             <column name="IS_ACTIVE" type="NUMBER(1)"/>
