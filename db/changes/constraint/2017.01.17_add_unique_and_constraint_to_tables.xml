@@ -136,7 +136,7 @@
             CHECK (IS_ACTIVE in (0,1));
 
             ALTER TABLE CITY
-            ADD CONSTRAINT CHK_CITY_IS_ACTIVE
+            ADD CONSTRAINT CHK_CITY_IS_BIG
             CHECK (IS_BIG in (0,1));
 
             ALTER TABLE DISTRICT
