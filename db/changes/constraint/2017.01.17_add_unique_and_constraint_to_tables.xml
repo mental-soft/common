@@ -129,6 +129,34 @@
         </sql>
     </changeSet>
 
+    <changeSet id="4" author="Coşkun Deniz">
+        <sql>
+            ALTER TABLE CITY
+            ADD CONSTRAINT CHK_CITY_IS_ACTIVE
+            CHECK (IS_ACTIVE in (0,1));
+
+            ALTER TABLE CITY
+            ADD CONSTRAINT CHK_CITY_IS_ACTIVE
+            CHECK (IS_BIG in (0,1));
+
+            ALTER TABLE DISTRICT
+            ADD CONSTRAINT CHK_DISTRICT_IS_ACTIVE
+            CHECK (IS_ACTIVE in (0,1));
+
+            ALTER TABLE JOB
+            ADD CONSTRAINT CHK_JOB_IS_ACTIVE
+            CHECK (IS_ACTIVE in (0,1));
+
+            ALTER TABLE BLOOD_GROUP
+            ADD CONSTRAINT CHK_BLOOD_GROUP_IS_ACTIVE
+            CHECK (IS_ACTIVE in (0,1));
+
+            ALTER TABLE TITLE
+            ADD CONSTRAINT CHK_TITLE_IS_ACTIVE
+            CHECK (IS_ACTIVE in (0,1));
+        </sql>
+    </changeSet>
+
 </databaseChangeLog>
 
 
