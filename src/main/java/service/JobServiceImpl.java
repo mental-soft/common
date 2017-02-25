@@ -16,6 +16,8 @@ import java.util.List;
 @Service
 public class JobServiceImpl implements JobService {
 
+    public static final String NOT_FOUND_MESSAGE = "Meslek kaydı bulunamadı.";
+
     @Autowired
     JobRepository jobRepository;
 
@@ -26,8 +28,13 @@ public class JobServiceImpl implements JobService {
     }
 
     @Override
-    public JobListDto getByID(int jobID) {
+    public JobListDto getByID(int jobID) throws Exception {
         Job entity = jobRepository.getOne(jobID);
+
+        if(entity == null) {
+            throw new Exception(NOT_FOUND_MESSAGE);
+        }
+
         return JobListDtoMapper.mapEntityToDto(entity);
     }
 
