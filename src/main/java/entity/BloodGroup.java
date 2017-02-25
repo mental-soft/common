@@ -1,20 +1,19 @@
 package entity;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
 import java.util.Date;
 
 /**
- * Job tablosu ile map edildi.
- * Bu entity bir mesleğin özelliklerini gösterir.
- * Created by Coşkun on 21.1.2017.
+ * BLOOD_GROUP tablosu ile map edildi.
+ * Bu entity bir kan grubunun özelliklerini gösterir.
+ * Created by Nyomoto on 11.2.2017.
  */
 @Entity
-@Table(name = "JOB")
+@Table(name = "BLOOD_GROUP")
 @SequenceGenerator(name = "ID_SEQ",
-        sequenceName = "SEQ_JOB_ID",
+        sequenceName = "SEQ_BLOOD_GROUP_ID",
         allocationSize = 1)
-public class Job {
+public class BloodGroup {
 
     @Id
     @Column(name = "ID")
@@ -36,7 +35,7 @@ public class Job {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -72,37 +71,38 @@ public class Job {
         this.modifiedDate = modifiedDate;
     }
 
-    public static JobBuilder getBuilder() {
-        return new JobBuilder();
+    public static BloodGroupBuilder getBuilder() {
+        return new BloodGroupBuilder();
     }
 
-    public static class JobBuilder {
+    public static class BloodGroupBuilder {
 
-        private Job entity;
+        private BloodGroup entity;
 
-        public JobBuilder() {
-            entity = new Job();
+        public BloodGroupBuilder() {
+            entity = new BloodGroup();
         }
 
 
-        public JobBuilder id(int id) {
+        public BloodGroupBuilder id(int id) {
             this.entity.setId(id);
             return this;
         }
 
-        public JobBuilder name(String name) {
+        public BloodGroupBuilder name(String name) {
             this.entity.setName(name);
             return this;
         }
 
-        public JobBuilder active(boolean active) {
+        public BloodGroupBuilder active(boolean active) {
             this.entity.setActive(active);
             return this;
         }
 
-        public Job build() {
+        public BloodGroup build() {
             return entity;
         }
 
     }
+
 }

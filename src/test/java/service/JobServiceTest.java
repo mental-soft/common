@@ -1,47 +1,46 @@
 package service;
 
-import config.PersistenceContext;
 import config.PersistenceContextTest;
 import config.ServiceContext;
-import jpa.CountryRepository;
+import jpa.JobRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.mockito.Mockito.when;
 
 /**
- * Created by Coşkun on 4.2.2017.
+ * Created by Nyomoto on 11.2.2017.
  */
+
 //@RunWith(SpringJUnit4ClassRunner.class)
 //@ContextConfiguration(classes = {PersistenceContextTest.class, ServiceContext.class})
-public class CountryServiceTest {
-
-    /*
+public class JobServiceTest {
+/*
     @Autowired
-    CountryRepository countryRepository;
+    JobRepository jobRepository;
 
     @Autowired
-    CountryService countryService;
+    JobService jobService;
 
     @Before
     public void setUp() {
-        when(countryRepository.count()).thenReturn(10L);
+        when(jobRepository.count()).thenReturn(5L);
     }
 
     @Test
-    public void countryService_IsNotNull() {
-        assertNotNull(countryService);
+    public void jobService_IsNotNull() {
+        assertNotNull(jobService);
     }
 
     @Test
-    public void countryActiveCount_ShouldReturn10() {
-        assertEquals(10, countryService.countryActiveCount());
+    public void jobActiveCount_ShouldReturn5() {
+        assertEquals(5, jobService.jobCount());
     }
 */
 }
