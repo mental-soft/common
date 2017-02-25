@@ -20,11 +20,6 @@ public class TitleServiceImpl implements TitleService {
     TitleRepository titleRepository;
 
     @Override
-    public long titleCount() {
-        return titleRepository.count();
-    }
-
-    @Override
     public List<TitleListDto> getAll() {
         List<Title> list = titleRepository.findAll();
         return TitleListDtoMapper.mapEntitiesToDtos(list);
@@ -42,9 +37,10 @@ public class TitleServiceImpl implements TitleService {
     }
 
     @Override
-    public void saveOrUpdate(TitleListDto dto) {
+    public int saveOrUpdate(TitleListDto dto) {
         Title entity = TitleEntityMapper.mapDtoToEntity(dto);
-        titleRepository.save(entity);
+        entity = titleRepository.save(entity);
+        return  entity.getId();
     }
 
 }

@@ -8,7 +8,6 @@ import java.util.List;
  * Created by Nyomoto on 11.2.2017.
  */
 public interface JobService {
-    long jobCount();
 
     List<JobListDto> getAll();
 
@@ -16,5 +15,6 @@ public interface JobService {
 
     void deleteByID(int jobID);
 
-    void saveOrUpdate(JobListDto dto);
+    int saveOrUpdate(JobListDto dto);
+
 }

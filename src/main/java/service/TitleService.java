@@ -8,7 +8,6 @@ import java.util.List;
  * Created by Nyomoto on 18.2.2017.
  */
 public interface TitleService {
-    long titleCount();
 
     List<TitleListDto> getAll();
 
@@ -16,5 +15,6 @@ public interface TitleService {
 
     void deleteByID(int titleID);
 
-    void saveOrUpdate(TitleListDto dto);
+    int saveOrUpdate(TitleListDto dto);
+
 }

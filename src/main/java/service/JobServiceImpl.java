@@ -20,11 +20,6 @@ public class JobServiceImpl implements JobService {
     JobRepository jobRepository;
 
     @Override
-    public long jobCount() {
-        return jobRepository.count();
-    }
-
-    @Override
     public List<JobListDto> getAll() {
         List<Job> list = jobRepository.findAll();
         return JobListDtoMapper.mapEntitiesToDtos(list);
@@ -42,9 +37,11 @@ public class JobServiceImpl implements JobService {
     }
 
     @Override
-    public void saveOrUpdate(JobListDto dto) {
+    public int saveOrUpdate(JobListDto dto) {
         Job entity = JobEntityMapper.mapDtoToEntity(dto);
-        jobRepository.save(entity);
+        entity = jobRepository.save(entity);
+
+        return entity.getId();
     }
 
 }

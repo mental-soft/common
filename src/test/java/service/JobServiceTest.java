@@ -28,19 +28,9 @@ public class JobServiceTest {
     @Autowired
     JobService jobService;
 
-    @Before
-    public void setUp() {
-        when(jobRepository.count()).thenReturn(5L);
-    }
-
     @Test
     public void jobService_IsNotNull() {
         assertNotNull(jobService);
-    }
-
-    @Test
-    public void jobActiveCount_ShouldReturn5() {
-        assertEquals(5, jobService.jobCount());
     }
 */
 }

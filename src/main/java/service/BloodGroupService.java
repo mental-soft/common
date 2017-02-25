@@ -9,13 +9,12 @@ import java.util.List;
  */
 public interface BloodGroupService {
 
-    long bloodGroupCount();
-
     List<BloodGroupListDto> getAll();
 
     BloodGroupListDto getByID(int bloodGroupID);
 
     void deleteByID(int bloodGroupID);
 
-    void saveOrUpdate(BloodGroupListDto dto);
+    int saveOrUpdate(BloodGroupListDto dto);
+
 }

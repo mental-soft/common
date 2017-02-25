@@ -31,6 +31,16 @@ public class Title {
     @Column(name = "MODIFIED_DATE", columnDefinition = "TIMESTAMP")
     private Date modifiedDate;
 
+    @PreUpdate
+    public void preUpdate(){
+        modifiedDate = new Date();
+    }
+
+    @PrePersist
+    public void prePersist(){
+        createdDate = new Date();
+    }
+
     public Integer getId() {
         return id;
     }

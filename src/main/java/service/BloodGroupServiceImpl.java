@@ -20,11 +20,6 @@ public class BloodGroupServiceImpl implements BloodGroupService {
     BloodGroupRepository bloodGroupRepository;
 
     @Override
-    public long bloodGroupCount() {
-        return bloodGroupRepository.count();
-    }
-
-    @Override
     public List<BloodGroupListDto> getAll() {
         List<BloodGroup> list = bloodGroupRepository.findAll();
         return BloodGroupListDtoMapper.mapEntitiesToDtos(list);
@@ -42,8 +37,11 @@ public class BloodGroupServiceImpl implements BloodGroupService {
     }
 
     @Override
-    public void saveOrUpdate(BloodGroupListDto dto) {
+    public int saveOrUpdate(BloodGroupListDto dto) {
         BloodGroup entity = BloodGroupEntityMapper.mapDtoToEntity(dto);
-        bloodGroupRepository.save(entity);
+        entity = bloodGroupRepository.save(entity);
+
+        return  entity.getId();
     }
+
 }
