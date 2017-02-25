@@ -15,6 +15,6 @@ public interface JobService {
 
     void deleteByID(int jobID);
 
-    int saveOrUpdate(JobListDto dto);
+    int saveOrUpdate(JobListDto dto) throws Exception;
 
 }

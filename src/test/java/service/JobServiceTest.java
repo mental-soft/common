@@ -20,6 +20,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.doAnswer;
@@ -180,5 +181,50 @@ public class JobServiceTest {
     }
     //endregion
 
+    //region saveOrUpdate()
+    @Test
+    public void saveOrUpdate_WhenDtoEmpty_ShouldReturnException() {
+        try {
+            service.saveOrUpdate(null);
+            Assert.fail();
+        } catch (Exception e) {
+            assertEquals(JobServiceImpl.PARAMETERS_MUST_BE_NOT_NULL, e.getMessage());
+        }
+    }
 
+    @Test
+    public void saveOrUpdate_WhenDtoNameEmpty_ShouldReturnException() {
+        try {
+            service.saveOrUpdate(JobListDto.getBuilder().build());
+            Assert.fail();
+        } catch (Exception e) {
+            assertEquals(JobServiceImpl.JOB_NAME_MUST_BE_NOT_NULL, e.getMessage());
+        }
+    }
+
+    @Test
+    public void saveOrUpdate_WhenDtoFull_ShouldReturnEntityID() {
+        Job entity = new Job();
+        entity = Job.getBuilder()
+                .id(1)
+                .name("A")
+                .active(true)
+                .build();
+
+        given(repository.save(any(Job.class))).willReturn(entity);
+
+        try {
+            JobListDto dto = JobListDto.getBuilder()
+                    .id(1)
+                    .name("A")
+                    .active(true)
+                    .build();
+
+            int entityID = service.saveOrUpdate(dto);
+            assertEquals(1, entityID);
+        } catch (Exception e) {
+            Assert.fail();;
+        }
+    }
+    //endregion
 }

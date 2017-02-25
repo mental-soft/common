@@ -16,7 +16,11 @@ import java.util.List;
 @Service
 public class JobServiceImpl implements JobService {
 
+    //region Messages
     public static final String NOT_FOUND_MESSAGE = "Meslek kaydı bulunamadı.";
+    public static final String PARAMETERS_MUST_BE_NOT_NULL = "Parametre girilmesi gerekmektedir.";
+    public static final String JOB_NAME_MUST_BE_NOT_NULL = "Meslek Adı girilmesi gerekmektedir.";
+    //endregion
 
     @Autowired
     JobRepository jobRepository;
@@ -44,7 +48,15 @@ public class JobServiceImpl implements JobService {
     }
 
     @Override
-    public int saveOrUpdate(JobListDto dto) {
+    public int saveOrUpdate(JobListDto dto) throws Exception {
+        if(dto == null) {
+            throw new Exception(PARAMETERS_MUST_BE_NOT_NULL);
+        }
+
+        if(dto.getName() == null || dto.getName().isEmpty()) {
+            throw new Exception(JOB_NAME_MUST_BE_NOT_NULL);
+        }
+
         Job entity = JobEntityMapper.mapDtoToEntity(dto);
         entity = jobRepository.save(entity);
 
