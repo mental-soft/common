@@ -11,10 +11,10 @@ public interface TitleService {
 
     List<TitleListDto> getAll();
 
-    TitleListDto getByID(int titleID);
+    TitleListDto getByID(int titleID) throws Exception;
 
     void deleteByID(int titleID);
 
-    int saveOrUpdate(TitleListDto dto);
+    int saveOrUpdate(TitleListDto dto) throws Exception;
 
 }
