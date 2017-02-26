@@ -11,10 +11,10 @@ public interface BloodGroupService {
 
     List<BloodGroupListDto> getAll();
 
-    BloodGroupListDto getByID(int bloodGroupID);
+    BloodGroupListDto getByID(int bloodGroupID) throws Exception;
 
     void deleteByID(int bloodGroupID);
 
-    int saveOrUpdate(BloodGroupListDto dto);
+    int saveOrUpdate(BloodGroupListDto dto) throws Exception;
 
 }

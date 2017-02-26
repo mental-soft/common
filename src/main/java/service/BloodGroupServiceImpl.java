@@ -16,6 +16,12 @@ import java.util.List;
 @Service
 public class BloodGroupServiceImpl implements BloodGroupService {
 
+    //region Messages
+    public static final String NOT_FOUND_MESSAGE = "Kan grubu kaydı bulunamadı.";
+    public static final String PARAMETERS_MUST_BE_NOT_NULL = "Parametre girilmesi gerekmektedir.";
+    public static final String BLOODGROUP_NAME_MUST_BE_NOT_NULL = "Kan grubu adı girilmesi gerekmektedir.";
+    //endregion
+
     @Autowired
     BloodGroupRepository bloodGroupRepository;
 
@@ -26,8 +32,13 @@ public class BloodGroupServiceImpl implements BloodGroupService {
     }
 
     @Override
-    public BloodGroupListDto getByID(int bloodGroupID) {
+    public BloodGroupListDto getByID(int bloodGroupID) throws Exception {
         BloodGroup entity = bloodGroupRepository.getOne(bloodGroupID);
+
+        if(entity == null) {
+            throw new Exception(NOT_FOUND_MESSAGE);
+        }
+
         return BloodGroupListDtoMapper.mapEntityToDto(entity);
     }
 
@@ -37,11 +48,19 @@ public class BloodGroupServiceImpl implements BloodGroupService {
     }
 
     @Override
-    public int saveOrUpdate(BloodGroupListDto dto) {
+    public int saveOrUpdate(BloodGroupListDto dto) throws Exception {
+        if(dto == null) {
+            throw new Exception(PARAMETERS_MUST_BE_NOT_NULL);
+        }
+
+        if(dto.getName() == null || dto.getName().isEmpty()) {
+            throw new Exception(BLOODGROUP_NAME_MUST_BE_NOT_NULL);
+        }
+
         BloodGroup entity = BloodGroupEntityMapper.mapDtoToEntity(dto);
         entity = bloodGroupRepository.save(entity);
 
-        return  entity.getId();
+        return entity.getId();
     }
 
 }
