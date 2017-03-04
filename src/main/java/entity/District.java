@@ -1,5 +1,6 @@
 package entity;
 
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -32,8 +33,16 @@ public class District {
     @Column(name = "MODIFIED_DATE", columnDefinition = "TIMESTAMP")
     private Date modifiedDate;
 
+    @ManyToOne
+    @JoinColumn(name = "CITY_ID", referencedColumnName = "ID")
+    private City city;
+
     public Integer getId() {
         return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -66,6 +75,61 @@ public class District {
 
     public void setModifiedDate(Date modifiedDate) {
         this.modifiedDate = modifiedDate;
+    }
+
+    public City getCity() {
+        return city;
+    }
+
+    public void setCity(City city) {
+        this.city = city;
+    }
+
+    public static DistrictBuilder getBuilder(){
+        return  new DistrictBuilder();
+    }
+
+    public static class DistrictBuilder {
+
+        private District district;
+
+        public DistrictBuilder() {
+            district = new District();
+        }
+
+        public DistrictBuilder id(Integer id) {
+            this.district.setId(id);
+            return this;
+        }
+
+        public DistrictBuilder name(String name) {
+            this.district.setName(name);
+            return this;
+        }
+
+        public DistrictBuilder modifiedDate(Date modifiedDate) {
+            this.district.setModifiedDate(modifiedDate);
+            return this;
+        }
+
+        public DistrictBuilder createdDate(Date createdDate) {
+            this.district.setCreatedDate(createdDate);
+            return this;
+        }
+
+        public DistrictBuilder active(Boolean active) {
+            this.district.setActive(active);
+            return this;
+        }
+
+        public DistrictBuilder city(City city) {
+            this.district.setCity(city);
+            return this;
+        }
+        public District build() {
+            return district;
+        }
+
     }
 
 }

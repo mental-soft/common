@@ -1,6 +1,6 @@
 package mapper;
 
-import dto.CountryListDto;
+import dto.CountryDto;
 import entity.Country;
 
 import java.util.List;
@@ -11,15 +11,20 @@ import java.util.stream.Collectors;
  */
 public class CountryListDtoMapper {
 
-    public static List<CountryListDto> mapEntitiesToDtos(List<Country> entities) {
+    public static List<CountryDto> mapEntitiesToDtos(List<Country> entities) {
         return entities.stream().map(CountryListDtoMapper::mapEntityToDto).collect(Collectors.toList());
     }
 
-    public static CountryListDto mapEntityToDto(Country entity) {
-        return CountryListDto.getBuilder()
+    public static CountryDto mapEntityToDto(Country entity) {
+        return CountryDto.getBuilder()
                 .id(entity.getId())
                 .name(entity.getName())
+                .code(entity.getCode())
+                .enName(entity.getEnName())
                 .active(entity.getActive())
+                .modifiedDate(entity.getModifiedDate())
+                .createdDate(entity.getCreatedDate())
                 .build();
     }
+
 }

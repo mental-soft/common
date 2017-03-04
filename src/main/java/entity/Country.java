@@ -55,6 +55,10 @@ public class Country {
         return id;
     }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }
@@ -109,6 +113,58 @@ public class Country {
 
     public void setCities(List<City> cities) {
         this.cities = cities;
+    }
+
+    public static CountryBuilder getBuilder() {
+        return new CountryBuilder();
+    }
+
+    public static class CountryBuilder {
+
+        private Country country;
+
+        public CountryBuilder() {
+            country = new Country();
+        }
+
+        public CountryBuilder id(Integer id) {
+            this.country.setId(id);
+            return this;
+        }
+
+        public CountryBuilder name(String name) {
+            this.country.setName(name);
+            return this;
+        }
+
+        public CountryBuilder enName(String enName) {
+            this.country.setEnName(enName);
+            return this;
+        }
+
+        public CountryBuilder code(String code) {
+            this.country.setCode(code);
+            return this;
+        }
+
+        public CountryBuilder modifiedDate(Date modifiedDate) {
+            this.country.setModifiedDate(modifiedDate);
+            return this;
+        }
+
+        public CountryBuilder createdDate(Date createdDate) {
+            this.country.setCreatedDate(createdDate);
+            return this;
+        }
+
+        public CountryBuilder active(Boolean active) {
+            this.country.setActive(active);
+            return this;
+        }
+        public Country build() {
+            return country;
+        }
+
     }
 
 }
