@@ -6,10 +6,16 @@
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
     <changeSet id="1" author="demirtasokan">
+        <comment>
+            CITY tablosunun ID kolonu PrimaryKey olarak ayarlandi.
+        </comment>
         <addPrimaryKey tableName="CITY" columnNames="ID" constraintName="PK_CITY_ID"/>
     </changeSet>
 
     <changeSet id="2" author="demirtasokan">
+        <comment>
+            DISTRICT tablosu olusturuldu.
+        </comment>
         <createTable tableName="DISTRICT">
             <column name="ID" type="NUMBER">
             </column>
@@ -27,10 +33,16 @@
     </changeSet>
 
     <changeSet id="3" author="demirtasokan">
+        <comment>
+            DISTRICT tablosunun ID kolonu PrimaryKey olarak ayarlandi.
+        </comment>
         <addPrimaryKey tableName="DISTRICT" columnNames="ID" constraintName="PK_DISTRICT_ID"/>
     </changeSet>
 
     <changeSet id="4" author="demirtasokan">
+        <comment>
+            UNIVERSITY_EDUCATION_LEVEL, EDUCATION_TYPE, UNIVERSITY_DEPARTMENT, JOB, UNIVERSITY, BLOOD_GROUP ve TITLE tablolarindaki ID kolonlari PrimaryKey olarak ayarlandi.
+        </comment>
         <addPrimaryKey tableName="UNIVERSITY_EDUCATION_LEVEL" columnNames="ID" constraintName="PK_UNI_EDU_LEVEL_ID"/>
         <addPrimaryKey tableName="EDUCATION_TYPE" columnNames="ID" constraintName="PK_EDUCATION_TYPE_ID"/>
         <addPrimaryKey tableName="UNIVERSITY_DEPARTMENT" columnNames="ID" constraintName="PK_UNIVERSITY_DEPARTMENT_ID"/>
