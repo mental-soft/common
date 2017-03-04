@@ -11,6 +11,10 @@ repositories {
     mavenCentral()
 }
 
+war {
+    archiveName = 'common.war'
+}
+
 dependencies {
 
     compile files('src/main/resources/lib/ojdbc6.jar')
