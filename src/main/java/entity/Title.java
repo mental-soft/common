@@ -1,20 +1,19 @@
 package entity;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
 import java.util.Date;
 
 /**
- * Job tablosu ile map edildi.
- * Bu entity bir mesleğin özelliklerini gösterir.
- * Created by Coşkun on 21.1.2017.
+ * TITLE tablosu ile map edildi.
+ * Bu entity bir ünvanın özelliklerini gösterir.
+ * Created by Nyomoto on 11.2.2017.
  */
 @Entity
-@Table(name = "JOB")
+@Table(name = "TITLE")
 @SequenceGenerator(name = "ID_SEQ",
-        sequenceName = "SEQ_JOB_ID",
+        sequenceName = "SEQ_TITLE_ID",
         allocationSize = 1)
-public class Job {
+public class Title {
 
     @Id
     @Column(name = "ID")
@@ -82,35 +81,35 @@ public class Job {
         this.modifiedDate = modifiedDate;
     }
 
-    public static JobBuilder getBuilder() {
-        return new JobBuilder();
+    public static TitleBuilder getBuilder() {
+        return new TitleBuilder();
     }
 
-    public static class JobBuilder {
+    public static class TitleBuilder {
 
-        private Job entity;
+        private Title entity;
 
-        public JobBuilder() {
-            entity = new Job();
+        public TitleBuilder() {
+            entity = new Title();
         }
 
 
-        public JobBuilder id(int id) {
+        public TitleBuilder id(int id) {
             this.entity.setId(id);
             return this;
         }
 
-        public JobBuilder name(String name) {
+        public TitleBuilder name(String name) {
             this.entity.setName(name);
             return this;
         }
 
-        public JobBuilder active(boolean active) {
+        public TitleBuilder active(boolean active) {
             this.entity.setActive(active);
             return this;
         }
 
-        public Job build() {
+        public Title build() {
             return entity;
         }
 

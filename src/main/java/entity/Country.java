@@ -115,11 +115,14 @@ public class Country {
         this.cities = cities;
     }
 
+
     public static CountryBuilder getBuilder() {
         return new CountryBuilder();
+
     }
 
     public static class CountryBuilder {
+
 
         private Country country;
 
@@ -163,6 +166,7 @@ public class Country {
         }
         public Country build() {
             return country;
+
         }
 
     }

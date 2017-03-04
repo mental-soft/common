@@ -1,4 +1,4 @@
-package mapper;
+package mapper.dto;
 
 import dto.CountryDto;
 import entity.Country;

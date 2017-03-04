@@ -28,14 +28,14 @@ import static org.mockito.Mockito.*;
 /**
  * Created by Coşkun on 4.2.2017.
  */
-
-@TestPropertySource({"classpath:application.properties",
-        "classpath:environment/developer.properties"})
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {PersistenceContextTest.class, ServiceContext.class})
+//@TestPropertySource({"classpath:application.properties",
+//        "classpath:environment/developer.properties"})
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@ContextConfiguration(classes = {PersistenceContextTest.class, ServiceContext.class})
 
 public class CountryServiceTest {
 
+    /*
     @Autowired
     CountryRepository countryRepository;
 
@@ -243,4 +243,5 @@ public class CountryServiceTest {
 //        countryRepository.save(country);
 
     }
-
+*/
+}

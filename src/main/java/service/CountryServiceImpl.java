@@ -3,7 +3,7 @@ package service;
 import dto.CountryDto;
 import entity.Country;
 import jpa.CountryRepository;
-import mapper.CountryListDtoMapper;
+import mapper.dto.CountryListDtoMapper;
 import mapper.DtoToCountryMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
