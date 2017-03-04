@@ -6,6 +6,10 @@
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
     <changeSet id="1" author="demirtasokan">
+        <comment>
+            COUNTRY.NAME, COUNTRY.CODE, UNIVERSITY_EDUCATION_LEVEL.NAME, UNIVERSITY_DEPARTMENT.NAME, EDUCATION_TYPE.NAME,
+            JOB.NAME, UNIVERSITY.NAME, BLOOD_GROUP.NAME ve TITLE.NAME kolonlarina UNIQUE constrainti eklendi.
+        </comment>
             <addUniqueConstraint tableName="COUNTRY" columnNames="NAME" constraintName="UNQ_COUNTRY_NAME"/>
             <addUniqueConstraint tableName="COUNTRY" columnNames="CODE" constraintName="UNQ_COUNTRY_CODE"/>
             <addUniqueConstraint tableName="UNIVERSITY_EDUCATION_LEVEL" columnNames="NAME" constraintName="UNQ_UNI_EDU_LEVEL_NAME"/>
@@ -18,6 +22,9 @@
     </changeSet>
 
     <changeSet id="2" author="demirtasokan">
+        <comment>
+            NOT NULL constraintleri eklendi.
+        </comment>
         <sql>
             ALTER TABLE COUNTRY
             ADD CONSTRAINT NN_COUNTRY_NAME
@@ -122,6 +129,9 @@
     </changeSet>
 
     <changeSet id="3" author="demirtasokan">
+        <comment>
+            COUNTRY.IS_ACTIVE alanina CHECK constraint eklendi. IS_ACTIVE alani (0,1) araliginda olmali.
+        </comment>
         <sql>
             ALTER TABLE COUNTRY
             ADD CONSTRAINT CHK_COUNTRY_IS_ACTIVE
