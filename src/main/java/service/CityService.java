@@ -8,16 +8,18 @@ import java.util.List;
  */
 public interface CityService {
 
-    List<CityDto> getAllCity();
+    List<CityDto> getAllCityByCountry(Integer countryID) ;
 
-    List<CityDto> getAllCityByCountry(Integer Country_Id) ;
+    Boolean existCityByCountry(Integer countryID);
 
-    CityDto getCity(CityDto citydto);
+    List<CityDto> getAll();
 
-    void insertCity(CityDto citydto);
+    CityDto getByID(Integer cityID) throws Exception;
 
-    void updateCity(CityDto citydto);
+    void deleteByID(Integer cityID) throws Exception;
 
-    void deleteCity(CityDto citydto);
+    int saveOrUpdate(CityDto dto) throws Exception;
+
+
 
 }

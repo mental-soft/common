@@ -1,6 +1,7 @@
 package dto;
 
 import entity.Country;
+import mapper.dto.CountryListDtoMapper;
 
 import java.util.Date;
 
@@ -16,7 +17,7 @@ public class CityDto {
     private Boolean isActive;
     private Date modifiedDate;
     private Date createdDate;
-    private Country country;
+    private CountryDto countryDto;
 
     public Integer getId() {
         return id;
@@ -78,13 +79,14 @@ public class CityDto {
         return new CityDtoBuilder();
     }
 
-    public Country getCountry() {
-        return country;
+    public CountryDto getCountryDto() {
+        return countryDto;
     }
 
-    public void setCountry(Country country) {
-        this.country = country;
+    public void setCountryDto(CountryDto countryDto) {
+        this.countryDto = countryDto;
     }
+
 
     public static class CityDtoBuilder {
 
@@ -129,13 +131,13 @@ public class CityDto {
             return this;
         }
 
-        public CityDtoBuilder country(Country country) {
-            this.cityDto.setCountry(country);
-            return this;
-        }
-
         public CityDto build() {
             return cityDto;
+        }
+
+        public CityDtoBuilder countryDto(CountryDto countryDto) {
+            this.cityDto.setCountryDto(countryDto);
+            return this;
         }
     }
 

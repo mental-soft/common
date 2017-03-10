@@ -13,5 +13,8 @@ import java.util.List;
 @Repository
 public interface CityRepository extends JpaRepository<City, Integer> {
 
-    List<City> findByCountry_Id(Integer Country_Id) ;
+    List<City> findByCountry_Id(Integer countryId) ;
+
+    Integer countByCountry_Id(Integer countryId);
+
 }

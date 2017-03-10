@@ -1,6 +1,7 @@
-package mapper;
+package mapper.dto;
 
 import dto.CityDto;
+import dto.CountryDto;
 import entity.City;
 
 
@@ -19,7 +20,7 @@ public class CityListDtoMapper {
     public static CityDto mapEntityToDto(City entity) {
         return CityDto.getBuilder()
                 .id(entity.getId())
-                .country(entity.getCountry())
+                .countryDto(CountryListDtoMapper.mapEntityToDto(entity.getCountry()))
                 .name(entity.getName())
                 .code(entity.getCode())
                 .big((entity.getBig()))

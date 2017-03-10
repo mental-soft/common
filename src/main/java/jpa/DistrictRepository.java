@@ -13,4 +13,7 @@ import java.util.List;
 public interface DistrictRepository extends JpaRepository<District, Integer> {
 
     List<District> findByCity_Id(Integer City_Id) ;
+
+    Integer countByCity_Id(Integer CityID);
+
 }

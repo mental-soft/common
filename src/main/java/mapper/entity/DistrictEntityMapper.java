@@ -1,4 +1,4 @@
-package mapper;
+package mapper.entity;
 
 import dto.DistrictDto;
 import entity.District;
@@ -6,7 +6,7 @@ import entity.District;
 /**
  * Created by okan on 15.02.2017.
  */
-public class DtoToDistrictMapper {
+public class DistrictEntityMapper {
 
     public static District mapDtoToEntity(DistrictDto districtDto) {
 

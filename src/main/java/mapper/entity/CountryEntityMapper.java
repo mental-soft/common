@@ -1,6 +1,6 @@
 package mapper.entity;
 
-import dto.CountryListDto;
+import dto.CountryDto;
 import entity.Country;
 
 import java.util.List;
@@ -11,15 +11,19 @@ import java.util.stream.Collectors;
  */
 public class CountryEntityMapper {
 
-    public static List<Country> mapDtosToEntities(List<CountryListDto> dtos) {
-        return dtos.stream().map(CountryEntityMapper::mapDtoToEntity).collect(Collectors.toList());
-    }
+//    public static List<Country> mapDtosToEntities(List<CountryListDto> dtos) {
+//        return dtos.stream().map(CountryEntityMapper::mapDtoToEntity).collect(Collectors.toList());
+//    }
 
-    public static Country mapDtoToEntity(CountryListDto dto) {
+    public static Country mapDtoToEntity(CountryDto countryDto) {
         return Country.getBuilder()
-                .id(dto.getId())
-                .name(dto.getName())
-                .active(dto.getActive())
+                .id(countryDto.getId())
+                .name(countryDto.getName())
+                .code(countryDto.getCode())
+                .enName(countryDto.getEnName())
+                .active(countryDto.getActive())
+                .modifiedDate(countryDto.getModifiedDate())
+                .createdDate(countryDto.getCreatedDate())
                 .build();
     }
 

@@ -1,5 +1,9 @@
 package entity;
 
+import dto.CountryDto;
+import mapper.entity.CityEntityMapper;
+import mapper.entity.CountryEntityMapper;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -155,6 +159,7 @@ public class City {
         }
 
         public CityBuilder country(Country country) {
+            //this.city.setCountry(CountryEntityMapper.mapDtoToEntity(countryDto));
             this.city.setCountry(country);
             return this;
         }

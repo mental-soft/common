@@ -8,16 +8,17 @@ import java.util.List;
  */
 public interface DistrictService {
 
-    List<DistrictDto> getAllDistrict();
+    List<DistrictDto> getAllDistrictByCity(Integer cityID) ;
 
-    List<DistrictDto> getAllDistrictByCity(Integer City_Id) ;
+    List<DistrictDto> getAll();
 
-    DistrictDto getDistrict(DistrictDto districtdto);
+    Boolean existDistrictByCity(Integer cityID);
 
-    void insertDistrict(DistrictDto districtdto);
+    DistrictDto getByID(int districtID) throws Exception;
 
-    void updateDistrict(DistrictDto districtdto);
+    void deleteByID(int districtID) throws Exception;
 
-    void deleteDistrict(DistrictDto districtdto);
+    int saveOrUpdate(DistrictDto dto) throws Exception;
+
 
 }
