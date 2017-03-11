@@ -19,7 +19,7 @@ public class DistrictServiceImpl implements DistrictService {
     //region Messages
     public static final String NOT_FOUND_MESSAGE = "Ülke kaydı bulunamadı.";
     public static final String PARAMETERS_MUST_BE_NOT_NULL = "Parametre girilmesi gerekmektedir.";
-    public static final String DISTRICT_NAME_MUST_BE_NOT_NULL = "Ülke Adı girilmesi gerekmektedir.";
+    public static final String DISTRICT_NAME_MUST_BE_NOT_NULL = "İlçe Adı girilmesi gerekmektedir.";
     //endregion
 
     @Autowired
