@@ -55,7 +55,7 @@ public class Country {
         return id;
     }
 
-    public void setId(Integer Id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -115,36 +115,58 @@ public class Country {
         this.cities = cities;
     }
 
-    public static Country.CountryBuilder getBuilder() {
-        return new Country.CountryBuilder();
+
+    public static CountryBuilder getBuilder() {
+        return new CountryBuilder();
+
     }
 
     public static class CountryBuilder {
 
-        private Country entity;
+
+        private Country country;
 
         public CountryBuilder() {
-            entity = new Country();
+            country = new Country();
         }
 
-
-        public Country.CountryBuilder id(int id) {
-            this.entity.setId(id);
+        public CountryBuilder id(Integer id) {
+            this.country.setId(id);
             return this;
         }
 
-        public Country.CountryBuilder name(String name) {
-            this.entity.setName(name);
+        public CountryBuilder name(String name) {
+            this.country.setName(name);
             return this;
         }
 
-        public Country.CountryBuilder active(boolean active) {
-            this.entity.setActive(active);
+        public CountryBuilder enName(String enName) {
+            this.country.setEnName(enName);
             return this;
         }
 
+        public CountryBuilder code(String code) {
+            this.country.setCode(code);
+            return this;
+        }
+
+        public CountryBuilder modifiedDate(Date modifiedDate) {
+            this.country.setModifiedDate(modifiedDate);
+            return this;
+        }
+
+        public CountryBuilder createdDate(Date createdDate) {
+            this.country.setCreatedDate(createdDate);
+            return this;
+        }
+
+        public CountryBuilder active(Boolean active) {
+            this.country.setActive(active);
+            return this;
+        }
         public Country build() {
-            return entity;
+            return country;
+
         }
 
     }

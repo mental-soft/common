@@ -1,10 +1,9 @@
 package service;
 
-import config.CountryServiceTestConfig;
-import dto.CountryDto;
-import entity.Country;
-import jpa.CityRepository;
-import jpa.CountryRepository;
+import config.DistrictServiceTestConfig;
+import dto.DistrictDto;
+import entity.District;
+import jpa.DistrictRepository;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -30,26 +29,20 @@ import static org.mockito.Mockito.reset;
  */
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {CountryServiceTestConfig.class})
-public class CountryServiceTest {
+@ContextConfiguration(classes = {DistrictServiceTestConfig.class})
+public class DistrictServiceTest {
 
     //TODO Tecnical Depth1: Tekrar eden kodlar düzenlenecek.
 
     @Autowired
-    CountryRepository countryRepository;
+    DistrictRepository repository;
 
     @Autowired
-    CountryService service;
-
-    @Autowired
-    CityService cityservice;
-
-    @Autowired
-    CityRepository cityRepository;
+    DistrictService service;
 
     @Before
     public  void before() {
-        reset(countryRepository);
+        reset(repository);
     }
 
     @Test
@@ -60,69 +53,69 @@ public class CountryServiceTest {
     //region getAll()
     @Test
     public void getAll_WhenEmpty_ShouldReturnSize() {
-        given(countryRepository.findAll()).willReturn(new ArrayList<>());
+        given(repository.findAll()).willReturn(new ArrayList<>());
         //when(repository.findAll()).thenReturn(new ArrayList<>());
 
-        List<CountryDto> list = service.getAll();
+        List<DistrictDto> list = service.getAll();
 
         assertEquals(0, list.size());
     }
 
     @Test
     public void getAll_WhenFull_ShouldReturnSize() {
-        List<Country> entityList = new ArrayList<>();
-        entityList.add(Country.getBuilder()
+        List<District> entityList = new ArrayList<>();
+        entityList.add(District.getBuilder()
                 .id(1)
                 .name("China")
                 .active(true)
                 .build());
 
-        entityList.add(Country.getBuilder()
+        entityList.add(District.getBuilder()
                 .id(2)
                 .name("Korea")
                 .active(true)
                 .build());
 
-        entityList.add(Country.getBuilder()
+        entityList.add(District.getBuilder()
                 .id(3)
                 .name("Australia")
                 .active(true)
                 .build());
 
-        given(countryRepository.findAll()).willReturn(entityList);
+        given(repository.findAll()).willReturn(entityList);
 
-        List<CountryDto> list = service.getAll();
+        List<DistrictDto> list = service.getAll();
 
         assertEquals(3, list.size());
     }
 
     @Test
     public void getAll_WhenFull_ShouldReturnInfo() {
-        List<Country> entityList = new ArrayList<>();
-        entityList.add(Country.getBuilder()
+        List<District> entityList = new ArrayList<>();
+        entityList.add(District.getBuilder()
                 .id(1)
-                .name("China")
+                .name("A")
                 .active(true)
                 .build());
 
-        entityList.add(Country.getBuilder()
+        entityList.add(District.getBuilder()
                 .id(2)
-                .name("Korea")
+                .name("B")
                 .active(true)
                 .build());
 
-        entityList.add(Country.getBuilder()
+        entityList.add(District.getBuilder()
                 .id(3)
-                .name("Australia")
+                .name("C")
                 .active(true)
                 .build());
 
-        given(countryRepository.findAll()).willReturn(entityList);
+        given(repository.findAll()).willReturn(entityList);
 
-        CountryDto dto = service.getAll().get(0);
+        DistrictDto dto = service.getAll().get(0);
         int id = dto.getId();
         assertEquals(1, id);
-        assertEquals("China", dto.getName());
+        assertEquals("A", dto.getName());
         assertEquals(true, dto.getActive());
     }
     //endregion()
@@ -130,33 +123,33 @@ public class CountryServiceTest {
     //region getByID()
     @Test
     public void getByID_WhenEmpty_ShouldReturnException() {
-        given(countryRepository.getOne(anyInt())).willReturn(null);
+        given(repository.getOne(anyInt())).willReturn(null);
 
         try {
             service.getByID(anyInt());
             Assert.fail();
         } catch (Exception e) {
-            assertEquals(CountryServiceImpl.NOT_FOUND_MESSAGE, e.getMessage());
+            assertEquals(DistrictServiceImpl.NOT_FOUND_MESSAGE, e.getMessage());
         }
     }
 
     @Test
     public void getByID_WhenFull_ShouldReturnInfo() {
-        Country entity = new Country();
-        entity = Country.getBuilder()
+        District entity = new District();
+        entity = District.getBuilder()
                 .id(1)
-                .name("China")
+                .name("A")
                 .active(true)
                 .build();
 
-        given(countryRepository.getOne(anyInt())).willReturn(entity);
+        given(repository.getOne(anyInt())).willReturn(entity);
 
         try {
-            CountryDto dto = service.getByID(anyInt());
+            DistrictDto dto = service.getByID(anyInt());
 
             int id = dto.getId();
             assertEquals(1, id);
-            assertEquals("China", dto.getName());
+            assertEquals("A", dto.getName());
             assertEquals(true, dto.getActive());
         } catch (Exception e) {
             Assert.fail();
@@ -167,25 +160,13 @@ public class CountryServiceTest {
     //region deleteByID()
     @Test
     public void deleteByID_WhenEmpty_ShouldReturnException() {
-        doThrow(EmptyResultDataAccessException.class).when(countryRepository).delete(anyInt());
+        doThrow(EmptyResultDataAccessException.class).when(repository).delete(anyInt());
 
         try {
             service.deleteByID(anyInt());
             Assert.fail();
         } catch (Exception e) {
             assertEquals(EmptyResultDataAccessException.class, e.getClass());
-        }
-    }
-
-    @Test
-    public void deleteByID_WhenExistCity_ShouldReturnException() {
-        given(cityRepository.countByCountry_Id(anyInt())).willReturn(10);
-
-        try {
-            service.deleteByID(anyInt());
-            Assert.fail();
-        } catch (Exception e) {
-            assertEquals(CountryServiceImpl.COUNTRY_SHOULD_NOT_HAVE_CITY, e.getMessage());
         }
     }
 
@@ -206,33 +187,33 @@ public class CountryServiceTest {
             service.saveOrUpdate(null);
             Assert.fail();
         } catch (Exception e) {
-            assertEquals(CountryServiceImpl.PARAMETERS_MUST_BE_NOT_NULL, e.getMessage());
+            assertEquals(DistrictServiceImpl.PARAMETERS_MUST_BE_NOT_NULL, e.getMessage());
         }
     }
 
     @Test
     public void saveOrUpdate_WhenDtoNameEmpty_ShouldReturnException() {
         try {
-            service.saveOrUpdate(CountryDto.getBuilder().build());
+            service.saveOrUpdate(DistrictDto.getBuilder().build());
             Assert.fail();
         } catch (Exception e) {
-            assertEquals(CountryServiceImpl.COUNTRY_NAME_MUST_BE_NOT_NULL, e.getMessage());
+            assertEquals(DistrictServiceImpl.DISTRICT_NAME_MUST_BE_NOT_NULL, e.getMessage());
         }
     }
 
     @Test
     public void saveOrUpdate_WhenDtoFull_ShouldReturnEntityID() {
-        Country entity = new Country();
-        entity = Country.getBuilder()
+        District entity = new District();
+        entity = District.getBuilder()
                 .id(1)
                 .name("A")
                 .active(true)
                 .build();
 
-        given(countryRepository.save(any(Country.class))).willReturn(entity);
+        given(repository.save(any(District.class))).willReturn(entity);
 
         try {
-            CountryDto dto = CountryDto.getBuilder()
+            DistrictDto dto = DistrictDto.getBuilder()
                     .id(1)
                     .name("A")
                     .active(true)
