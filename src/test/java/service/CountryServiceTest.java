@@ -123,7 +123,7 @@ public class CountryServiceTest {
         int id = dto.getId();
         assertEquals(1, id);
         assertEquals("China", dto.getName());
-        assertEquals(true, dto.getActive());
+        assertEquals(true, dto.getIsActive());
     }
     //endregion()
 
@@ -157,7 +157,7 @@ public class CountryServiceTest {
             int id = dto.getId();
             assertEquals(1, id);
             assertEquals("China", dto.getName());
-            assertEquals(true, dto.getActive());
+            assertEquals(true, dto.getIsActive());
         } catch (Exception e) {
             Assert.fail();
         }

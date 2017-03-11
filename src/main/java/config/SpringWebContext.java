@@ -10,23 +10,40 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.http.MediaType;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.StringHttpMessageConverter;
+import org.springframework.http.converter.json.GsonHttpMessageConverter;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.util.StringUtils;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.lang.reflect.Type;
+import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = {"controller"})
 @Import(value = {WebMvcResolverConfig.class})
 public class SpringWebContext extends WebMvcConfigurerAdapter {
+
+  /**
+   * Utf8.
+   */
+  private static final String UTF8 = "UTF-8";
+
+  /**
+   * Define charset utf8.
+   */
+  private static final Charset CHARSET_UTF8 = Charset.forName(UTF8);
 
   private static final String MESSAGE_SOURCE_BASE_NAME =
       MessagesFile.MESSAGES + "/" + MessagesFile.MESSAGES;
@@ -90,6 +107,37 @@ public class SpringWebContext extends WebMvcConfigurerAdapter {
     SessionLocaleResolver sessionLocaleResolver = new SessionLocaleResolver();
     sessionLocaleResolver.setDefaultLocale(StringUtils.parseLocaleString("tr"));
     return sessionLocaleResolver;
+  }
+
+
+  /**
+   * For Negotiation.
+   * @param configurer config
+   */
+  @Override
+  public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
+    configurer.favorPathExtension(true)
+            .ignoreAcceptHeader(true)
+            .useJaf(false)
+            .defaultContentType(MediaType.TEXT_HTML)
+            .mediaType("html", MediaType.TEXT_HTML)
+            .mediaType("json", MediaType.APPLICATION_JSON_UTF8);
+  }
+
+  /**
+   * Configure message converters.
+   * @param converters HttpMessageConverter
+   */
+  @Override
+  public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+    StringHttpMessageConverter stringConverter = new StringHttpMessageConverter();
+    List<MediaType> mediaTypelist = new ArrayList<>();
+    mediaTypelist.add(new MediaType("text", "html", CHARSET_UTF8));
+    mediaTypelist.add(new MediaType("application", "json", CHARSET_UTF8));
+    stringConverter.setSupportedMediaTypes(mediaTypelist);
+    converters.add(stringConverter);
+    converters.add(new MappingJackson2HttpMessageConverter());
+    super.configureMessageConverters(converters);
   }
 
 }

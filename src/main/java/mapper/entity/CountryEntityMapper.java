@@ -3,9 +3,6 @@ package mapper.entity;
 import dto.CountryDto;
 import entity.Country;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 /**
  * Created by Coşkun on 4.2.2017.
  */
@@ -21,7 +18,7 @@ public class CountryEntityMapper {
                 .name(countryDto.getName())
                 .code(countryDto.getCode())
                 .enName(countryDto.getEnName())
-                .active(countryDto.getActive())
+                .active(countryDto.getIsActive())
                 .modifiedDate(countryDto.getModifiedDate())
                 .createdDate(countryDto.getCreatedDate())
                 .build();

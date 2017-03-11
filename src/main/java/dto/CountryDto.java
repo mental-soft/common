@@ -50,12 +50,12 @@ public class CountryDto {
         this.code = code;
     }
 
-    public Boolean getActive() {
+    public Boolean getIsActive() {
         return isActive;
     }
 
-    public void setActive(Boolean active) {
-        this.isActive = active;
+    public void setIsActive(Boolean active) {
+        isActive = active;
     }
 
     public Date getModifiedDate() {
@@ -117,7 +117,7 @@ public class CountryDto {
         }
 
         public CountryDtoBuilder active(Boolean active) {
-            this.countryDto.setActive(active);
+            this.countryDto.setIsActive(active);
             return this;
         }
 

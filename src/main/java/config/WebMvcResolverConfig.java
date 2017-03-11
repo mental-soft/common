@@ -3,10 +3,15 @@ package config;
 import constant.Encoding;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.accept.ContentNegotiationManager;
 import org.springframework.web.servlet.ViewResolver;
+import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Configuration
 public class WebMvcResolverConfig {
@@ -53,5 +58,32 @@ public class WebMvcResolverConfig {
     return engine;
   }
 
+  /**
+   * Configure View resolver to provide JSON output using JACKSON.
+   * @return JsonViewResolver
+   */
+  @Bean
+  public ViewResolver jsonViewResolver() {
+    return new JsonViewResolver();
+  }
 
+  /**
+   * Configure ContentNegotiatingViewResolver.
+   * @param manager ContentNegotiationManager
+   * @return All ViewResolver
+   */
+  @Bean
+  public ViewResolver contentNegotiatingViewResolver(ContentNegotiationManager manager) {
+    ContentNegotiatingViewResolver resolver = new ContentNegotiatingViewResolver();
+    resolver.setContentNegotiationManager(manager);
+
+    // Define all possible view resolvers
+    List<ViewResolver> resolvers = new ArrayList<>();
+
+    resolvers.add(thymeleafViewResolver());
+    resolvers.add(jsonViewResolver());
+
+    resolver.setViewResolvers(resolvers);
+    return resolver;
+  }
 }

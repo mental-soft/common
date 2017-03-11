@@ -15,6 +15,11 @@ war {
     archiveName = 'common.war'
 }
 
+ext {
+    jacksonMapperVersion = '1.9.13'
+    jacksonCoreVersion = '2.7.3'
+}
+
 dependencies {
 
     compile files('src/main/resources/lib/ojdbc6.jar')
@@ -30,6 +35,11 @@ dependencies {
 
     //Thymeleaf
     compile 'org.thymeleaf:thymeleaf-spring4:2.1.4.RELEASE'
+
+    //Json
+    compile "com.fasterxml.jackson.core:jackson-databind:$jacksonCoreVersion"
+    compile "com.fasterxml.jackson.core:jackson-core:$jacksonCoreVersion"
+    compile "org.codehaus.jackson:jackson-mapper-asl:$jacksonMapperVersion"
 
     testCompile group: 'org.springframework', name: 'spring-test', version: '4.3.5.RELEASE'
     testCompile group: 'org.mockito', name: 'mockito-core', version: '2.7.1'
