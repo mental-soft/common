@@ -19,7 +19,7 @@ public class DistrictListDtoMapper {
     public static DistrictDto mapEntityToDto(District entity) {
         return DistrictDto.getBuilder()
                 .id(entity.getId())
-                .city(entity.getCity())
+                .cityDto(CityListDtoMapper.mapEntityToDto(entity.getCity()))
                 .name(entity.getName())
                 .active(entity.getActive())
                 .modifiedDate(entity.getModifiedDate())

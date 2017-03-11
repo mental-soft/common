@@ -14,7 +14,7 @@ public class DistrictDto {
     private Boolean isActive;
     private Date modifiedDate;
     private Date createdDate;
-    private City city;
+    private CityDto cityDto;
 
     public Integer getId() {
         return id;
@@ -60,12 +60,12 @@ public class DistrictDto {
         return new DistrictDtoBuilder();
     }
 
-    public City getCity() {
-        return city;
+    public CityDto getCityDto() {
+        return cityDto;
     }
 
-    public void setCity(City city) {
-        this.city = city;
+    public void setCityDto(CityDto cityDto) {
+        this.cityDto = cityDto;
     }
 
     public static class DistrictDtoBuilder {
@@ -102,14 +102,16 @@ public class DistrictDto {
             return this;
         }
 
-        public DistrictDtoBuilder city(City city) {
-            this.districtDto.setCity(city);
+        public DistrictDtoBuilder cityDto(CityDto cityDto) {
+            this.districtDto.setCityDto(cityDto);
             return this;
         }
 
         public DistrictDto build() {
             return districtDto;
         }
+
+
     }
 
 }

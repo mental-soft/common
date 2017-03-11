@@ -47,6 +47,16 @@ public class City {
     @JoinColumn(name = "COUNTRY_ID", referencedColumnName = "ID")
     private Country country;
 
+    @PreUpdate
+    public void preUpdate(){
+        modifiedDate = new Date();
+    }
+
+    @PrePersist
+    public void prePersist(){
+        createdDate = new Date();
+    }
+
     public Integer getId() {
         return id;
     }

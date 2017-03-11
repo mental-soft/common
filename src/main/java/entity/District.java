@@ -37,6 +37,16 @@ public class District {
     @JoinColumn(name = "CITY_ID", referencedColumnName = "ID")
     private City city;
 
+    @PreUpdate
+    public void preUpdate(){
+        modifiedDate = new Date();
+    }
+
+    @PrePersist
+    public void prePersist(){
+        createdDate = new Date();
+    }
+
     public Integer getId() {
         return id;
     }

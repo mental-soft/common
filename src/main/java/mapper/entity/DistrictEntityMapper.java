@@ -1,6 +1,7 @@
 package mapper.entity;
 
 import dto.DistrictDto;
+import entity.City;
 import entity.District;
 
 /**
@@ -16,7 +17,7 @@ public class DistrictEntityMapper {
                 .active(districtDto.getActive())
                 .modifiedDate(districtDto.getModifiedDate())
                 .createdDate(districtDto.getCreatedDate())
-                .city((districtDto.getCity()))
+                .city( CityEntityMapper.mapDtoToEntity(districtDto.getCityDto()))
                 .build();
 
     }

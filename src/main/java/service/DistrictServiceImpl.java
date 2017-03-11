@@ -45,7 +45,7 @@ public class DistrictServiceImpl implements DistrictService {
 
     @Override
     public DistrictDto getByID(int districtID) throws Exception {
-        District entity = districtRepository.getOne(districtID);
+        District entity = districtRepository.findOne(districtID);
 
         if(entity == null) {
             throw new Exception(NOT_FOUND_MESSAGE);

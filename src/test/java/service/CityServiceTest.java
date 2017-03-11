@@ -173,7 +173,7 @@ public class CityServiceTest {
     //region getByID()
     @Test
     public void getByID_WhenEmpty_ShouldReturnException() {
-        given(cityRepository.getOne(anyInt())).willReturn(null);
+        given(cityRepository.findOne(anyInt())).willReturn(null);
 
         try {
             cityService.getByID(anyInt());
@@ -199,7 +199,7 @@ public class CityServiceTest {
                 .country(country)
                 .build();
 
-        given(cityRepository.getOne(anyInt())).willReturn(entity);
+        given(cityRepository.findOne(anyInt())).willReturn(entity);
 
         try {
             CityDto dto = cityService.getByID(anyInt());
@@ -273,6 +273,7 @@ public class CityServiceTest {
     @Test
     public void saveOrUpdate_WhenDtoFull_ShouldReturnEntityID() {
         City entity = new City();
+
         Country country = Country.getBuilder()
                 .id(1)
                 .name("China")

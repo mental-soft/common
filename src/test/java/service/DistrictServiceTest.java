@@ -1,7 +1,11 @@
 package service;
 
 import config.DistrictServiceTestConfig;
+import dto.CityDto;
+import dto.CountryDto;
 import dto.DistrictDto;
+import entity.City;
+import entity.Country;
 import entity.District;
 import jpa.DistrictRepository;
 import org.junit.Assert;
@@ -64,22 +68,39 @@ public class DistrictServiceTest {
     @Test
     public void getAll_WhenFull_ShouldReturnSize() {
         List<District> entityList = new ArrayList<>();
+
+        Country country = Country.getBuilder()
+                .id(1)
+                .name("Türkiye")
+                .active(true)
+                .build();
+
+        City city = City.getBuilder()
+                .id(1)
+                .name("Ankara")
+                .active(true)
+                .country(country)
+                .build();
+
         entityList.add(District.getBuilder()
                 .id(1)
-                .name("China")
+                .name("Yenimahalle")
                 .active(true)
+                .city(city)
                 .build());
 
         entityList.add(District.getBuilder()
                 .id(2)
-                .name("Korea")
+                .name("Cankaya")
                 .active(true)
+                .city(city)
                 .build());
 
         entityList.add(District.getBuilder()
                 .id(3)
-                .name("Australia")
+                .name("Altındağ")
                 .active(true)
+                .city(city)
                 .build());
 
         given(repository.findAll()).willReturn(entityList);
@@ -92,22 +113,39 @@ public class DistrictServiceTest {
     @Test
     public void getAll_WhenFull_ShouldReturnInfo() {
         List<District> entityList = new ArrayList<>();
+
+        Country country = Country.getBuilder()
+                .id(1)
+                .name("Türkiye")
+                .active(true)
+                .build();
+
+        City city = City.getBuilder()
+                .id(1)
+                .name("Ankara")
+                .active(true)
+                .country(country)
+                .build();
+
         entityList.add(District.getBuilder()
                 .id(1)
                 .name("A")
                 .active(true)
+                .city(city)
                 .build());
 
         entityList.add(District.getBuilder()
                 .id(2)
                 .name("B")
                 .active(true)
+                .city(city)
                 .build());
 
         entityList.add(District.getBuilder()
                 .id(3)
                 .name("C")
                 .active(true)
+                .city(city)
                 .build());
 
         given(repository.findAll()).willReturn(entityList);
@@ -123,7 +161,7 @@ public class DistrictServiceTest {
     //region getByID()
     @Test
     public void getByID_WhenEmpty_ShouldReturnException() {
-        given(repository.getOne(anyInt())).willReturn(null);
+        given(repository.findOne(anyInt())).willReturn(null);
 
         try {
             service.getByID(anyInt());
@@ -136,13 +174,28 @@ public class DistrictServiceTest {
     @Test
     public void getByID_WhenFull_ShouldReturnInfo() {
         District entity = new District();
+
+        Country country = Country.getBuilder()
+                .id(1)
+                .name("Türkiye")
+                .active(true)
+                .build();
+
+        City city = City.getBuilder()
+                .id(1)
+                .name("Ankara")
+                .active(true)
+                .country(country)
+                .build();
+
         entity = District.getBuilder()
                 .id(1)
                 .name("A")
                 .active(true)
+                .city(city)
                 .build();
 
-        given(repository.getOne(anyInt())).willReturn(entity);
+        given(repository.findOne(anyInt())).willReturn(entity);
 
         try {
             DistrictDto dto = service.getByID(anyInt());
@@ -204,19 +257,49 @@ public class DistrictServiceTest {
     @Test
     public void saveOrUpdate_WhenDtoFull_ShouldReturnEntityID() {
         District entity = new District();
+
+        Country country = Country.getBuilder()
+                .id(1)
+                .name("Türkiye")
+                .active(true)
+                .build();
+
+        City  city = City.getBuilder()
+                .id(1)
+                .name("Ankara")
+                .active(true)
+                .country(country)
+                .build();
+
         entity = District.getBuilder()
                 .id(1)
                 .name("A")
                 .active(true)
+                .city(city)
                 .build();
 
         given(repository.save(any(District.class))).willReturn(entity);
 
         try {
+
+            CountryDto countryDto =CountryDto.getBuilder()
+                    .id(1)
+                    .name("Türkiye")
+                    .active(true)
+                    .build();
+
+            CityDto cityDto = CityDto.getBuilder()
+                    .id(1)
+                    .name("Ankara")
+                    .active(true)
+                    .countryDto(countryDto)
+                    .build();
+
             DistrictDto dto = DistrictDto.getBuilder()
                     .id(1)
                     .name("A")
                     .active(true)
+                    .cityDto(cityDto)
                     .build();
 
             int entityID = service.saveOrUpdate(dto);
