@@ -4,6 +4,7 @@ import dto.CountryDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import service.CountryService;
@@ -26,6 +27,21 @@ public class CountryController {
 
         return "country/countries";
     }
+
+
+    @RequestMapping(value = "/country/{id}", method = RequestMethod.GET)
+    public String countryDetail(@PathVariable(value = "id") Integer id, Model model) {
+        CountryDto result = null;
+        try {
+            result = countryService.getByID(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        model.addAttribute("country", result);
+
+        return "country/detail";
+    }
+
 
 
 

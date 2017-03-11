@@ -37,7 +37,7 @@ public class CountryServiceImpl implements CountryService {
 
     @Override
     public CountryDto getByID(int countryID) throws Exception {
-        Country entity = countryRepository.getOne(countryID);
+        Country entity = countryRepository.findOne(countryID);
 
         if(entity == null) {
             throw new Exception(NOT_FOUND_MESSAGE);

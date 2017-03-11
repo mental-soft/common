@@ -149,7 +149,7 @@ public class CountryServiceTest {
                 .active(true)
                 .build();
 
-        given(countryRepository.getOne(anyInt())).willReturn(entity);
+        given(countryRepository.findOne(anyInt())).willReturn(entity);
 
         try {
             CountryDto dto = service.getByID(anyInt());
