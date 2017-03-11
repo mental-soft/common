@@ -1,9 +1,11 @@
 package controller;
 
 import dto.CountryDto;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -42,7 +44,61 @@ public class CountryController {
         return "country/detail";
     }
 
+    @RequestMapping(value = "/country", method = RequestMethod.GET)
+    public String countryAdd(Model model) {
+        CountryDto countryDto = new CountryDto();
+        model.addAttribute("countryDto", countryDto);
+        return "country/add";
+    }
+
+    @RequestMapping(value = "/country", method = RequestMethod.POST)
+    public String countryPost(Model model,
+                              CountryDto countryDto) {
+        int id = 0;
+        try {
+            id = countryService.saveOrUpdate(countryDto);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return "redirect:/country/" + id;
+    }
 
 
+    @RequestMapping(value = "/country/{id}/edit", method = RequestMethod.GET)
+    public String countryEdit(@PathVariable(value = "id") Integer id, Model model) {
+        CountryDto result = null;
+        try {
+            result = countryService.getByID(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        model.addAttribute("countryDto", result);
 
+        return "country/edit";
+    }
+
+    @RequestMapping(value = "/country/{id}/delete", method = RequestMethod.GET)
+    public String countryDelete(@PathVariable(value = "id") Integer id, Model model) {
+        CountryDto result = null;
+        try {
+            result = countryService.getByID(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        model.addAttribute("countryDto", result);
+
+        return "country/delete";
+    }
+
+    @RequestMapping(value = "/country/delete", method = RequestMethod.POST)
+    public String countryDeletePost(Integer id, Model model) {
+        try {
+            countryService.deleteByID(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return "redirect:/countries";
+    }
 }

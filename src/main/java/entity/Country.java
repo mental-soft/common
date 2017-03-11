@@ -47,6 +47,16 @@ public class Country {
     @OneToMany(mappedBy = "country",cascade = CascadeType.ALL)
     private List<City> cities;
 
+    @PreUpdate
+    public void preUpdate(){
+        modifiedDate = new Date();
+    }
+
+    @PrePersist
+    public void prePersist(){
+        createdDate = new Date();
+    }
+
     public Country() {
         cities = new ArrayList<>();
     }
