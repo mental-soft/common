@@ -19,8 +19,8 @@
         <td data-th-text="${city.CountryDto.name}"></td>
         <td data-th-text="${city.name}"></td>
         <td data-th-text="${city.code}"></td>
-        <td data-th-text="${city.Active}? 'Evet' : 'Hayır' "></td>
         <td data-th-text="${city.Big}? 'Evet' : 'Hayır' "></td>
+        <td data-th-text="${city.Active}? 'Evet' : 'Hayır' "></td>
         <td><a href="#" data-th-href="@{'/city/{id}'(id=${city.id})}"> Detay </a>
             <a href="#" data-th-href="@{'/city/{id}/edit'(id=${city.id})}"> Güncelle</a>
             <a href="#" data-th-href="@{'/city/{id}/delete'(id=${city.id})}"> Sil</a>

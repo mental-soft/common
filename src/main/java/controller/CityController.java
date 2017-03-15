@@ -64,8 +64,6 @@ public class CityController {
         model.addAttribute("countries", result);
         model.addAttribute("cityDto",cityDto);
 
-
-
         return "city/add";
     }
 
@@ -75,6 +73,7 @@ public class CityController {
         try{
             CountryDto countryDto =  countryService.getByID(countryID);
             cityDto.setCountryDto(countryDto);
+
             id=cityService.saveOrUpdate(cityDto);
         }catch (Exception e){
             e.printStackTrace();
@@ -85,11 +84,14 @@ public class CityController {
     @RequestMapping(value="/city/{id}/edit", method=RequestMethod.GET)
     public String cityEdit(@PathVariable(value="id") Integer id, Model model){
         CityDto result = null;
+        List<CountryDto> countryDtoList = countryService.getAll();
+
         try {
             result = cityService.getByID(id);
         }catch (Exception e){
             e.printStackTrace();
         }
+        model.addAttribute("countries", countryDtoList);
         model.addAttribute("cityDto",result);
 
         return "city/edit";
