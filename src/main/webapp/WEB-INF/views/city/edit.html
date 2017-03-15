@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+
+Şehirs Güncelle
+<form method="post" data-th-action="@{/city}" data-th-object="${cityDto}">
+    <input data-th-field="*{id}" type="hidden"/>
+    <table>
+        <tr>
+            <td>Şehir Adı</td>
+            <td><input data-th-field="*{name}" type="text"/></td>
+        </tr>
+        <tr>
+            <td>Şehir Kodu</td>
+            <td>
+                <input data-th-field="*{code}" type="text"/></td>
+        </tr>
+
+        <tr>
+            <td>Büyükşehir mi?</td>
+            <td><input data-th-field="*{Big}" type="checkbox"/></td>
+        </tr>
+        <tr>
+            <td>Aktif Mi?</td>
+            <td><input data-th-field="*{Active}" type="checkbox"/></td>
+        </tr>
+    </table>
+
+    <button type="submit">Güncelle</button>
+</form>
+
+</body>
+</html>

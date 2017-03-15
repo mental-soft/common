@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+
+İlçe Ekle
+<form method="post" data-th-action="@{/district}" data-th-object="${districtDto}">
+    <table>
+
+        <tr>
+            <td>Şehir Adı</td>
+            <td><input data-th-field="*{name}" type="text"/></td>
+        </tr>
+        <tr>
+            <td>İlçe Adı</td>
+            <td><input data-th-field="*{name}" type="text"/></td>
+        </tr>
+        <tr>
+            <td>Aktif Mi?</td>
+            <td><input data-th-field="*{Active}" type="checkbox"/></td>
+        </tr>
+    </table>
+
+    <button type="submit">Ekle</button>
+</form>
+
+</body>
+</html>

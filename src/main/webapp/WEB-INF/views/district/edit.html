@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+
+İlçe Güncelle
+<form method="post" data-th-action="@{/district}" data-th-object="${districtDto}">
+    <input data-th-field="*{id}" type="hidden"/>
+    <table>
+        <tr>
+            <td>Şehir Adı</td>
+            <td><input data-th-field="*{name}" type="text"/></td>
+        </tr>
+        <tr>
+            <td>Aktif Mi?</td>
+            <td><input data-th-field="*{Active}" type="checkbox"/></td>
+        </tr>
+    </table>
+
+    <button type="submit">Güncelle</button>
+</form>
+
+</body>
+</html>
