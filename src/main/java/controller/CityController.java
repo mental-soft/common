@@ -1,13 +1,17 @@
 package controller;
 
 import dto.CityDto;
+import dto.CountryDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import service.BloodGroupServiceImpl;
 import service.CityService;
+import service.CountryService;
 
 import java.util.List;
 
@@ -19,6 +23,9 @@ public class CityController {
 
     @Autowired
     CityService cityService;
+
+    @Autowired
+    CountryService countryService;
 
     @RequestMapping(value="/cities", method= RequestMethod.GET)
     public String cityList(Model model) {
@@ -52,15 +59,22 @@ public class CityController {
     @RequestMapping(value = "/city",method=RequestMethod.GET)
     public String cityAdd(Model model){
         CityDto cityDto = new CityDto();
+        List<CountryDto> result = countryService.getAll();
+
+        model.addAttribute("countries", result);
         model.addAttribute("cityDto",cityDto);
+
+
 
         return "city/add";
     }
 
     @RequestMapping(value="/city", method=RequestMethod.POST)
-    public String cityPost(Model model, CityDto cityDto){
+    public String cityPost(Model model, CityDto cityDto, @RequestParam Integer countryID){
         int id=0;
         try{
+            CountryDto countryDto =  countryService.getByID(countryID);
+            cityDto.setCountryDto(countryDto);
             id=cityService.saveOrUpdate(cityDto);
         }catch (Exception e){
             e.printStackTrace();

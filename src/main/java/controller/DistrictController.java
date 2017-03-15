@@ -1,5 +1,6 @@
 package controller;
 
+import dto.CityDto;
 import dto.DistrictDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -7,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import service.CityService;
 import service.DistrictService;
 
 import java.util.List;
@@ -19,6 +22,9 @@ import java.util.concurrent.ExecutionException;
 public class DistrictController {
     @Autowired
     DistrictService districtService;
+
+    @Autowired
+    CityService cityService;
 
    @RequestMapping(value="/districts",method= RequestMethod.GET)
     public String districtList(Model model){
@@ -51,15 +57,20 @@ public class DistrictController {
     @RequestMapping(value="/district",method = RequestMethod.GET)
     public String districtAdd(Model model){
         DistrictDto districtDto = new DistrictDto();
+        List<CityDto> result = cityService.getAll();
+
+        model.addAttribute("cities", result);
         model.addAttribute("districtDto",districtDto);
 
         return "district/add";
     }
 
     @RequestMapping(value="/district",method = RequestMethod.POST)
-    public String districtPost(Model model,DistrictDto districtDto) {
+    public String districtPost(Model model,DistrictDto districtDto, @RequestParam Integer cityID){
         int id = 0;
         try {
+            CityDto cityDto =  cityService.getByID(cityID);
+            districtDto.setCityDto(cityDto);
             id=districtService.saveOrUpdate(districtDto);
         }catch (Exception ex){
             ex.printStackTrace();
