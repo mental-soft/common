@@ -11,6 +11,18 @@
     <input data-th-field="*{id}" type="hidden"/>
     <table>
         <tr>
+            <td>Ülke Adı</td>
+            <td>
+                <select class="form-control" id="cityID" name="cityID">
+                    <option value="">Ülke Seçiniz.</option>
+                    <option data-th-each="city : ${cities}"
+                            data-th-value="${city.id}"
+                            data-th-selected="(${city.id} == *{cityDto.id})"
+                            data-th-text="${city.name}+' : '+${city.code}"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
             <td>Şehir Adı</td>
             <td><input data-th-field="*{name}" type="text"/></td>
         </tr>

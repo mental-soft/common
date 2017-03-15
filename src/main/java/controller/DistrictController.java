@@ -81,12 +81,15 @@ public class DistrictController {
     @RequestMapping(value="/district/{id}/edit",method=RequestMethod.GET)
     public String districtEdit(@PathVariable(value="id") Integer id, Model model){
         DistrictDto result = null;
+        List<CityDto> cityDtoList = cityService.getAll();
+
         try {
             result = districtService.getByID(id);
 
         }catch (Exception ex){
             ex.printStackTrace();
         }
+        model.addAttribute("cities", cityDtoList);
         model.addAttribute("districtDto",result);
 
         return "district/edit";
