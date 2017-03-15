@@ -3,6 +3,8 @@ apply plugin: 'war'
 
 apply from: "$rootDir/gradle-conf/liquibase.gradle"
 
+apply from: "$rootDir/gradle-conf/checkstyle.gradle"
+
 task wrapper(type: Wrapper) {
     gradleVersion = '3.2.1'
 }
