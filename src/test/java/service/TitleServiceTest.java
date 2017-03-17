@@ -120,13 +120,13 @@ public class TitleServiceTest {
     }
     //endregion()
 
-    //region getByID()
+    //region getById()
     @Test
-    public void getByID_WhenEmpty_ShouldReturnException() {
+    public void getById_WhenEmpty_ShouldReturnException() {
         given(repository.getOne(anyInt())).willReturn(null);
 
         try {
-            service.getByID(anyInt());
+            service.getById(anyInt());
             Assert.fail();
         } catch (Exception e) {
             assertEquals(TitleServiceImpl.NOT_FOUND_MESSAGE, e.getMessage());
@@ -134,7 +134,7 @@ public class TitleServiceTest {
     }
 
     @Test
-    public void getByID_WhenFull_ShouldReturnInfo() {
+    public void getById_WhenFull_ShouldReturnInfo() {
         Title entity = new Title();
         entity = Title.getBuilder()
                 .id(1)
@@ -145,7 +145,7 @@ public class TitleServiceTest {
         given(repository.getOne(anyInt())).willReturn(entity);
 
         try {
-            TitleListDto dto = service.getByID(anyInt());
+            TitleListDto dto = service.getById(anyInt());
             assertEquals(1, dto.getId());
             assertEquals("A", dto.getName());
             assertEquals(true, dto.getActive());
@@ -155,13 +155,13 @@ public class TitleServiceTest {
     }
     //endregion
 
-    //region deleteByID()
+    //region deleteById()
     @Test
-    public void deleteByID_WhenEmpty_ShouldReturnException() {
+    public void deleteById_WhenEmpty_ShouldReturnException() {
         doThrow(EmptyResultDataAccessException.class).when(repository).delete(anyInt());
 
         try {
-            service.deleteByID(anyInt());
+            service.deleteById(anyInt());
             Assert.fail();
         } catch (Exception e) {
             assertEquals(EmptyResultDataAccessException.class, e.getClass());
@@ -169,9 +169,9 @@ public class TitleServiceTest {
     }
 
     @Test
-    public void deleteByID_WhenFull_ShouldDeleteSuccess() {
+    public void deleteById_WhenFull_ShouldDeleteSuccess() {
         try {
-            service.deleteByID(anyInt());
+            service.deleteById(anyInt());
         } catch (Exception e) {
             Assert.fail();
         }
@@ -200,7 +200,7 @@ public class TitleServiceTest {
     }
 
     @Test
-    public void saveOrUpdate_WhenDtoFull_ShouldReturnEntityID() {
+    public void saveOrUpdate_WhenDtoFull_ShouldReturnEntityId() {
         Title entity = new Title();
         entity = Title.getBuilder()
                 .id(1)
@@ -217,8 +217,8 @@ public class TitleServiceTest {
                     .active(true)
                     .build();
 
-            int entityID = service.saveOrUpdate(dto);
-            assertEquals(1, entityID);
+            int entityId = service.saveOrUpdate(dto);
+            assertEquals(1, entityId);
         } catch (Exception e) {
             Assert.fail();;
         }

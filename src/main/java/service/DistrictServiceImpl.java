@@ -2,13 +2,14 @@ package service;
 
 import dto.DistrictDto;
 import entity.District;
+
+import java.util.List;
+
 import jpa.DistrictRepository;
 import mapper.dto.DistrictListDtoMapper;
 import mapper.entity.DistrictEntityMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 /**
  * Created by okan on 15.02.2017.

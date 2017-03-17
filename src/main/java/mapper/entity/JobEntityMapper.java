@@ -11,22 +11,20 @@ import java.util.stream.Collectors;
  */
 public class JobEntityMapper {
 
-  public static List<JobListDto> mapEntitiesToDtos(List<Job> entities) {
-    return entities.stream().map(JobEntityMapper::mapEntityToDto).collect(Collectors.toList());
-  }
-
-  public static JobListDto mapEntityToDto(Job entity) {
-    return JobListDto.getBuilder()
-        .id(entity.getId())
-        .name(entity.getName())
-        .active(entity.getActive())
-        .build();
-  }
-
+  /**
+   * JobListDto listesini Job entity listesine çevirir.
+   * @param dtos JobListDto listesi
+   * @return Job entity listesi
+   */
   public static List<Job> mapDtosToEntities(List<JobListDto> dtos) {
     return dtos.stream().map(JobEntityMapper::mapDtoToEntity).collect(Collectors.toList());
   }
 
+  /**
+   * JobListDtosunu Job a çevirir.
+   * @param dto JobListDto
+   * @return Job entitysi
+   */
   public static Job mapDtoToEntity(JobListDto dto) {
     return Job.getBuilder()
         .id(dto.getId())

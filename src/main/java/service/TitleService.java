@@ -11,9 +11,9 @@ public interface TitleService {
 
   List<TitleListDto> getAll();
 
-  TitleListDto getByID(int titleID) throws Exception;
+  TitleListDto getById(int titleId) throws Exception;
 
-  void deleteByID(int titleID);
+  void deleteById(int titleId);
 
   int saveOrUpdate(TitleListDto dto) throws Exception;
 

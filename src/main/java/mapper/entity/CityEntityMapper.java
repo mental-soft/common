@@ -9,8 +9,12 @@ import entity.City;
  */
 public class CityEntityMapper {
 
+  /**
+   * CityDtosunu City e çevirir.
+   * @param cityDto CityDto
+   * @return City entitysi
+   */
   public static City mapDtoToEntity(CityDto cityDto) {
-
     return City.getBuilder()
         .id(cityDto.getId())
         .name(cityDto.getName())
@@ -21,8 +25,8 @@ public class CityEntityMapper {
         .createdDate(cityDto.getCreatedDate())
         .country(CountryEntityMapper.mapDtoToEntity(cityDto.getCountryDto()))
         .build();
-
   }
+
 }
 
 

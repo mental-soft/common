@@ -1,6 +1,10 @@
 package config;
 
 import constant.Encoding;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.accept.ContentNegotiationManager;
@@ -9,9 +13,6 @@ import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Configuration
 public class WebMvcResolverConfig {

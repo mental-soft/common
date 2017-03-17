@@ -2,13 +2,14 @@ package service;
 
 import dto.CityDto;
 import entity.City;
+
+import java.util.List;
+
 import jpa.CityRepository;
 import mapper.dto.CityListDtoMapper;
 import mapper.entity.CityEntityMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 /**
  * Created by okan on 12.02.2017.

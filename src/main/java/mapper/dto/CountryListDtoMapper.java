@@ -11,10 +11,20 @@ import java.util.stream.Collectors;
  */
 public class CountryListDtoMapper {
 
+  /**
+   * Country entity listesini CountryDto listesine çevirir.
+   * @param entities Country entity listesi
+   * @return CountryDto listesi
+   */
   public static List<CountryDto> mapEntitiesToDtos(List<Country> entities) {
     return entities.stream().map(CountryListDtoMapper::mapEntityToDto).collect(Collectors.toList());
   }
 
+  /**
+   * Country entity sini CountryDto ya çevirir.
+   * @param entity Country entitysi
+   * @return CountryDto
+   */
   public static CountryDto mapEntityToDto(Country entity) {
     return CountryDto.getBuilder()
         .id(entity.getId())

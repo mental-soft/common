@@ -11,10 +11,20 @@ import java.util.stream.Collectors;
  */
 public class BloodGroupEntityMapper {
 
+  /**
+   * BloodGroupListDto listesini BloodGroup entity listesine çevirir.
+   * @param dtos BloodGroupListDto listesi
+   * @return BloodGroup entity listesi
+   */
   public static List<BloodGroup> mapDtosToEntities(List<BloodGroupListDto> dtos) {
     return dtos.stream().map(BloodGroupEntityMapper::mapDtoToEntity).collect(Collectors.toList());
   }
 
+  /**
+   * BloodGroupListDtosunu BloodGroup a çevirir.
+   * @param dto BloodGroupListDto
+   * @return BloodGroup entitysi
+   */
   public static BloodGroup mapDtoToEntity(BloodGroupListDto dto) {
     return BloodGroup.getBuilder()
         .id(dto.getId())

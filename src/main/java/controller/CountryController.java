@@ -24,7 +24,7 @@ public class CountryController {
   /**
    * Ülkeler listesini getirir.
    * @param model 'countries' değeri olan session modeli
-   * @return 'country/countries' sayfası veya List<CountryDto> json listesi
+   * @return 'country/countries' sayfası veya CountryDto json listesi
    */
   @RequestMapping(value = "/countries", method = RequestMethod.GET)
   public String countryList(Model model) {
@@ -44,7 +44,7 @@ public class CountryController {
   public String countryDetail(@PathVariable(value = "id") Integer id, Model model) {
     CountryDto result = null;
     try {
-      result = countryService.getByID(id);
+      result = countryService.getById(id);
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -92,7 +92,7 @@ public class CountryController {
   public String countryEdit(@PathVariable(value = "id") Integer id, Model model) {
     CountryDto result = null;
     try {
-      result = countryService.getByID(id);
+      result = countryService.getById(id);
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -111,7 +111,7 @@ public class CountryController {
   public String countryDelete(@PathVariable(value = "id") Integer id, Model model) {
     CountryDto result = null;
     try {
-      result = countryService.getByID(id);
+      result = countryService.getById(id);
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -128,7 +128,7 @@ public class CountryController {
   @RequestMapping(value = "/country/delete", method = RequestMethod.POST)
   public String countryDeletePost(Integer id) {
     try {
-      countryService.deleteByID(id);
+      countryService.deleteById(id);
     } catch (Exception e) {
       e.printStackTrace();
     }

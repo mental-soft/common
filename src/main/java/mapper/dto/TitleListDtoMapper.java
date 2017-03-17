@@ -11,10 +11,20 @@ import java.util.stream.Collectors;
  */
 public class TitleListDtoMapper {
 
+  /**
+   * Title entity listesini TitleListDto listesine çevirir.
+   * @param entities Title entity listesi
+   * @return TitleListDto listesi
+   */
   public static List<TitleListDto> mapEntitiesToDtos(List<Title> entities) {
     return entities.stream().map(TitleListDtoMapper::mapEntityToDto).collect(Collectors.toList());
   }
 
+  /**
+   * Title entity sini TitleListDto ya çevirir.
+   * @param entity Title entitysi
+   * @return TitleListDto
+   */
   public static TitleListDto mapEntityToDto(Title entity) {
     return TitleListDto.getBuilder()
         .id(entity.getId())

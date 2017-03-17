@@ -2,13 +2,14 @@ package service;
 
 import dto.CountryDto;
 import entity.Country;
+
+import java.util.List;
+
 import jpa.CountryRepository;
 import mapper.dto.CountryListDtoMapper;
 import mapper.entity.CountryEntityMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 /**
  * Created by Coşkun on 4.2.2017.
@@ -37,8 +38,8 @@ public class CountryServiceImpl implements CountryService {
   }
 
   @Override
-  public CountryDto getByID(int countryID) throws Exception {
-    Country entity = countryRepository.findOne(countryID);
+  public CountryDto getById(int countryId) throws Exception {
+    Country entity = countryRepository.findOne(countryId);
 
     if (entity == null) {
       throw new Exception(NOT_FOUND_MESSAGE);
@@ -48,12 +49,12 @@ public class CountryServiceImpl implements CountryService {
   }
 
   @Override
-  public void deleteByID(int countryID) throws Exception {
+  public void deleteById(int countryId) throws Exception {
     //city varsa kontrol yapılacak.
-    if (cityservice.existCityByCountry(countryID)) {
+    if (cityservice.existCityByCountry(countryId)) {
       throw new Exception(COUNTRY_SHOULD_NOT_HAVE_CITY);
     }
-    countryRepository.delete(countryID);
+    countryRepository.delete(countryId);
   }
 
   @Override

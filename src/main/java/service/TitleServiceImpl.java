@@ -2,13 +2,14 @@ package service;
 
 import dto.TitleListDto;
 import entity.Title;
+
+import java.util.List;
+
 import jpa.TitleRepository;
 import mapper.dto.TitleListDtoMapper;
 import mapper.entity.TitleEntityMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 /**
  * Created by Nyomoto on 18.2.2017.
@@ -32,8 +33,8 @@ public class TitleServiceImpl implements TitleService {
   }
 
   @Override
-  public TitleListDto getByID(int titleID) throws Exception {
-    Title entity = titleRepository.getOne(titleID);
+  public TitleListDto getById(int titleId) throws Exception {
+    Title entity = titleRepository.getOne(titleId);
 
     if (entity == null) {
       throw new Exception(NOT_FOUND_MESSAGE);
@@ -43,8 +44,8 @@ public class TitleServiceImpl implements TitleService {
   }
 
   @Override
-  public void deleteByID(int titleID) {
-    titleRepository.delete(titleID);
+  public void deleteById(int titleId) {
+    titleRepository.delete(titleId);
   }
 
   @Override

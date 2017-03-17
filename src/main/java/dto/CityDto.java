@@ -1,8 +1,5 @@
 package dto;
 
-import entity.Country;
-import mapper.dto.CountryListDtoMapper;
-
 import java.util.Date;
 
 /**

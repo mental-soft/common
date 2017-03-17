@@ -8,10 +8,11 @@ import entity.Country;
  */
 public class CountryEntityMapper {
 
-  //    public static List<Country> mapDtosToEntities(List<CountryListDto> dtos) {
-  //        return dtos.stream().map(CountryEntityMapper::mapDtoToEntity).collect(Collectors.toList());
-  //    }
-
+  /**
+   * CountryDtosunu Country e çevirir.
+   * @param countryDto CountryDto
+   * @return Country entitysi
+   */
   public static Country mapDtoToEntity(CountryDto countryDto) {
     return Country.getBuilder()
         .id(countryDto.getId())

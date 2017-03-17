@@ -1,9 +1,7 @@
 package mapper.dto;
 
 import dto.CityDto;
-import dto.CountryDto;
 import entity.City;
-
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,10 +11,20 @@ import java.util.stream.Collectors;
  */
 public class CityListDtoMapper {
 
+  /**
+   * City entity listesini CityDto listesine çevirir.
+   * @param entities City entity listesi
+   * @return CityDto listesi
+   */
   public static List<CityDto> mapEntitiesToDtos(List<City> entities) {
     return entities.stream().map(CityListDtoMapper::mapEntityToDto).collect(Collectors.toList());
   }
 
+  /**
+   * City entity sini CityDto ya çevirir.
+   * @param entity City entitysi
+   * @return CityDto
+   */
   public static CityDto mapEntityToDto(City entity) {
     return CityDto.getBuilder()
         .id(entity.getId())

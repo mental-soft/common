@@ -2,14 +2,14 @@ package service;
 
 import dto.BloodGroupListDto;
 import entity.BloodGroup;
+
+import java.util.List;
+
 import jpa.BloodGroupRepository;
 import mapper.dto.BloodGroupListDtoMapper;
 import mapper.entity.BloodGroupEntityMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-
 
 /**
  * Created by Nyomoto on 18.2.2017.

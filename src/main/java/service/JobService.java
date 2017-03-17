@@ -11,9 +11,9 @@ public interface JobService {
 
   List<JobListDto> getAll();
 
-  JobListDto getByID(int jobID) throws Exception;
+  JobListDto getById(int jobId) throws Exception;
 
-  void deleteByID(int jobID);
+  void deleteById(int jobId);
 
   int saveOrUpdate(JobListDto dto) throws Exception;
 

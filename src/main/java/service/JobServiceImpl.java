@@ -2,13 +2,14 @@ package service;
 
 import dto.JobListDto;
 import entity.Job;
+
+import java.util.List;
+
 import jpa.JobRepository;
 import mapper.dto.JobListDtoMapper;
 import mapper.entity.JobEntityMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 /**
  * Created by Nyomoto on 11.2.2017.
@@ -32,8 +33,8 @@ public class JobServiceImpl implements JobService {
   }
 
   @Override
-  public JobListDto getByID(int jobID) throws Exception {
-    Job entity = jobRepository.getOne(jobID);
+  public JobListDto getById(int jobId) throws Exception {
+    Job entity = jobRepository.getOne(jobId);
 
     if (entity == null) {
       throw new Exception(NOT_FOUND_MESSAGE);
@@ -43,8 +44,8 @@ public class JobServiceImpl implements JobService {
   }
 
   @Override
-  public void deleteByID(int jobID) {
-    jobRepository.delete(jobID);
+  public void deleteById(int jobId) {
+    jobRepository.delete(jobId);
   }
 
   @Override

@@ -78,7 +78,6 @@ public class DistrictDto {
 
     public DistrictDtoBuilder id(Integer id) {
       this.districtDto.setId(id);
-
       return this;
     }
 

@@ -11,9 +11,9 @@ public interface CountryService {
 
   List<CountryDto> getAll();
 
-  CountryDto getByID(int countryID) throws Exception;
+  CountryDto getById(int countryId) throws Exception;
 
-  void deleteByID(int countryID) throws Exception;
+  void deleteById(int countryId) throws Exception;
 
   int saveOrUpdate(CountryDto dto) throws Exception;
 

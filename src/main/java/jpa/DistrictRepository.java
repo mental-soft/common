@@ -1,10 +1,11 @@
 package jpa;
 
 import entity.District;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 /**
  * Created by Coşkun on 21.1.2017.
@@ -12,8 +13,8 @@ import java.util.List;
 @Repository
 public interface DistrictRepository extends JpaRepository<District, Integer> {
 
-  List<District> findByCity_Id(Integer City_Id);
+  List<District> findByCity_Id(Integer cityId);
 
-  Integer countByCity_Id(Integer CityID);
+  Integer countByCity_Id(Integer cityId);
 
 }
