@@ -9,12 +9,12 @@ import java.util.List;
  */
 public interface TitleService {
 
-    List<TitleListDto> getAll();
+  List<TitleListDto> getAll();
 
-    TitleListDto getByID(int titleID) throws Exception;
+  TitleListDto getByID(int titleID) throws Exception;
 
-    void deleteByID(int titleID);
+  void deleteByID(int titleID);
 
-    int saveOrUpdate(TitleListDto dto) throws Exception;
+  int saveOrUpdate(TitleListDto dto) throws Exception;
 
 }

@@ -11,16 +11,16 @@ import java.util.stream.Collectors;
  */
 public class JobListDtoMapper {
 
-    public static List<JobListDto> mapEntitiesToDtos(List<Job> entities) {
-        return entities.stream().map(JobListDtoMapper::mapEntityToDto).collect(Collectors.toList());
-    }
+  public static List<JobListDto> mapEntitiesToDtos(List<Job> entities) {
+    return entities.stream().map(JobListDtoMapper::mapEntityToDto).collect(Collectors.toList());
+  }
 
-    public static JobListDto mapEntityToDto(Job entity) {
-        return JobListDto.getBuilder()
-                .id(entity.getId())
-                .name(entity.getName())
-                .active(entity.getActive())
-                .build();
-    }
+  public static JobListDto mapEntityToDto(Job entity) {
+    return JobListDto.getBuilder()
+        .id(entity.getId())
+        .name(entity.getName())
+        .active(entity.getActive())
+        .build();
+  }
 
 }

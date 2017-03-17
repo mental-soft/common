@@ -14,37 +14,37 @@ import org.springframework.context.annotation.PropertySource;
 @Import({PersistenceContext.class, ServiceContext.class})
 public class ApplicationContext {
 
-    /**
-     * Developer (local) makine icin yapilan ayar.
-     */
-    @Configuration
-    @Profile({"default", "dev"})
-    @PropertySource({PropertySourceFile.APPLICATION_SOURCE,
-            PropertySourceFile.DEVELOPER_SOURCE})
-    static class Dev {
-        //Extra bean tanimlanabilir.
-    }
+  /**
+   * Developer (local) makine icin yapilan ayar.
+   */
+  @Configuration
+  @Profile({"default", "dev"})
+  @PropertySource({PropertySourceFile.APPLICATION_SOURCE,
+      PropertySourceFile.DEVELOPER_SOURCE})
+  static class Dev {
+    //Extra bean tanimlanabilir.
+  }
 
-    /**
-     * QA (test) makine icin yapilan ayar.
-     */
-    @Configuration
-    @Profile({"qa"})
-    @PropertySource({PropertySourceFile.APPLICATION_SOURCE,
-            PropertySourceFile.QUALITY_ASSURANCE_SOURCE})
-    static class Qa {
-        //Extra bean tanimlanabilir.
-    }
+  /**
+   * QA (test) makine icin yapilan ayar.
+   */
+  @Configuration
+  @Profile({"qa"})
+  @PropertySource({PropertySourceFile.APPLICATION_SOURCE,
+      PropertySourceFile.QUALITY_ASSURANCE_SOURCE})
+  static class Qa {
+    //Extra bean tanimlanabilir.
+  }
 
-    /**
-     * Prod (prod) makine icin yapilan ayar.
-     */
-    @Configuration
-    @Profile({"prod"})
-    @PropertySource({PropertySourceFile.APPLICATION_SOURCE,
-            PropertySourceFile.PRODUCT_SOURCE})
-    static class Product {
-        //Extra bean tanimlanabilir.
-    }
+  /**
+   * Prod (prod) makine icin yapilan ayar.
+   */
+  @Configuration
+  @Profile({"prod"})
+  @PropertySource({PropertySourceFile.APPLICATION_SOURCE,
+      PropertySourceFile.PRODUCT_SOURCE})
+  static class Product {
+    //Extra bean tanimlanabilir.
+  }
 
 }

@@ -8,92 +8,94 @@ package dto;
  */
 public class CountryListDto {
 
-    private int id;
-    private String name;
-    private String enName;
-    private String code;
-    private boolean isActive;
+  private int id;
+  private String name;
+  private String enName;
+  private String code;
+  private boolean isActive;
 
-    public int getId() {
-        return id;
+  public int getId() {
+    return id;
+  }
+
+  public void setId(Integer id) {
+    this.id = id;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public String getEnName() {
+    return enName;
+  }
+
+  public void setEnName(String enName) {
+    this.enName = enName;
+  }
+
+  public String getCode() {
+    return code;
+  }
+
+  public void setCode(String code) {
+    this.code = code;
+  }
+
+  public boolean getActive() {
+    return isActive;
+  }
+
+  public void setActive(boolean active) {
+    isActive = active;
+  }
+
+  public static CountryListDtoBuilder getBuilder() {
+    return new CountryListDtoBuilder();
+  }
+
+  public static class CountryListDtoBuilder {
+
+    private CountryListDto countryListDto;
+
+    public CountryListDtoBuilder() {
+      countryListDto = new CountryListDto();
     }
 
-    public void setId(Integer id) { this.id = id; }
 
-    public String getName() {
-        return name;
+    public CountryListDtoBuilder id(int id) {
+      this.countryListDto.setId(id);
+      return this;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public CountryListDtoBuilder name(String name) {
+      this.countryListDto.setName(name);
+      return this;
     }
 
-    public String getEnName() {
-        return enName;
+    public CountryListDtoBuilder enName(String enName) {
+      this.countryListDto.setEnName(enName);
+      return this;
     }
 
-    public void setEnName(String enName) {
-        this.enName = enName;
+    public CountryListDtoBuilder code(String code) {
+      this.countryListDto.setCode(code);
+      return this;
     }
 
-    public String getCode() {
-        return code;
+    public CountryListDtoBuilder active(boolean active) {
+      this.countryListDto.setActive(active);
+      return this;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public CountryListDto build() {
+      return countryListDto;
     }
 
-    public boolean getActive() {
-        return isActive;
-    }
-
-    public void setActive(boolean active) {
-        isActive = active;
-    }
-
-    public static CountryListDtoBuilder getBuilder() {
-        return new CountryListDtoBuilder();
-    }
-
-    public static class CountryListDtoBuilder {
-
-        private CountryListDto countryListDto;
-
-        public CountryListDtoBuilder() {
-            countryListDto = new CountryListDto();
-        }
-
-
-        public CountryListDtoBuilder id(int id) {
-            this.countryListDto.setId(id);
-            return this;
-        }
-
-        public CountryListDtoBuilder name(String name) {
-            this.countryListDto.setName(name);
-            return this;
-        }
-
-        public CountryListDtoBuilder enName(String enName) {
-            this.countryListDto.setEnName(enName);
-            return this;
-        }
-
-        public CountryListDtoBuilder code(String code) {
-            this.countryListDto.setCode(code);
-            return this;
-        }
-
-        public CountryListDtoBuilder active(boolean active) {
-            this.countryListDto.setActive(active);
-            return this;
-        }
-
-        public CountryListDto build() {
-            return countryListDto;
-        }
-
-    }
+  }
 
 }

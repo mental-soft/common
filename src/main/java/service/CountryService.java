@@ -9,12 +9,12 @@ import java.util.List;
  */
 public interface CountryService {
 
-    List<CountryDto> getAll();
+  List<CountryDto> getAll();
 
-    CountryDto getByID(int countryID) throws Exception;
+  CountryDto getByID(int countryID) throws Exception;
 
-    void deleteByID(int countryID) throws Exception;
+  void deleteByID(int countryID) throws Exception;
 
-    int saveOrUpdate(CountryDto dto) throws Exception;
+  int saveOrUpdate(CountryDto dto) throws Exception;
 
 }

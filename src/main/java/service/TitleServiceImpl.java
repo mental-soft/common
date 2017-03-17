@@ -16,51 +16,51 @@ import java.util.List;
 @Service
 public class TitleServiceImpl implements TitleService {
 
-    //region Messages
-    public static final String NOT_FOUND_MESSAGE = "Ünvan kaydı bulunamadı.";
-    public static final String PARAMETERS_MUST_BE_NOT_NULL = "Parametre girilmesi gerekmektedir.";
-    public static final String TITLE_NAME_MUST_BE_NOT_NULL = "Ünvan adı girilmesi gerekmektedir.";
-    //endregion
+  //region Messages
+  public static final String NOT_FOUND_MESSAGE = "Ünvan kaydı bulunamadı.";
+  public static final String PARAMETERS_MUST_BE_NOT_NULL = "Parametre girilmesi gerekmektedir.";
+  public static final String TITLE_NAME_MUST_BE_NOT_NULL = "Ünvan adı girilmesi gerekmektedir.";
+  //endregion
 
-    @Autowired
-    TitleRepository titleRepository;
+  @Autowired
+  TitleRepository titleRepository;
 
-    @Override
-    public List<TitleListDto> getAll() {
-        List<Title> list = titleRepository.findAll();
-        return TitleListDtoMapper.mapEntitiesToDtos(list);
+  @Override
+  public List<TitleListDto> getAll() {
+    List<Title> list = titleRepository.findAll();
+    return TitleListDtoMapper.mapEntitiesToDtos(list);
+  }
+
+  @Override
+  public TitleListDto getByID(int titleID) throws Exception {
+    Title entity = titleRepository.getOne(titleID);
+
+    if (entity == null) {
+      throw new Exception(NOT_FOUND_MESSAGE);
     }
 
-    @Override
-    public TitleListDto getByID(int titleID) throws Exception {
-        Title entity = titleRepository.getOne(titleID);
+    return TitleListDtoMapper.mapEntityToDto(entity);
+  }
 
-        if(entity == null) {
-            throw new Exception(NOT_FOUND_MESSAGE);
-        }
+  @Override
+  public void deleteByID(int titleID) {
+    titleRepository.delete(titleID);
+  }
 
-        return TitleListDtoMapper.mapEntityToDto(entity);
+  @Override
+  public int saveOrUpdate(TitleListDto dto) throws Exception {
+    if (dto == null) {
+      throw new Exception(PARAMETERS_MUST_BE_NOT_NULL);
     }
 
-    @Override
-    public void deleteByID(int titleID) {
-        titleRepository.delete(titleID);
+    if (dto.getName() == null || dto.getName().isEmpty()) {
+      throw new Exception(TITLE_NAME_MUST_BE_NOT_NULL);
     }
 
-    @Override
-    public int saveOrUpdate(TitleListDto dto) throws Exception {
-        if(dto == null) {
-            throw new Exception(PARAMETERS_MUST_BE_NOT_NULL);
-        }
+    Title entity = TitleEntityMapper.mapDtoToEntity(dto);
+    entity = titleRepository.save(entity);
 
-        if(dto.getName() == null || dto.getName().isEmpty()) {
-            throw new Exception(TITLE_NAME_MUST_BE_NOT_NULL);
-        }
-
-        Title entity = TitleEntityMapper.mapDtoToEntity(dto);
-        entity = titleRepository.save(entity);
-
-        return entity.getId();
-    }
+    return entity.getId();
+  }
 
 }

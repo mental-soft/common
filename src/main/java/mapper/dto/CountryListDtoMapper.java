@@ -11,20 +11,20 @@ import java.util.stream.Collectors;
  */
 public class CountryListDtoMapper {
 
-    public static List<CountryDto> mapEntitiesToDtos(List<Country> entities) {
-        return entities.stream().map(CountryListDtoMapper::mapEntityToDto).collect(Collectors.toList());
-    }
+  public static List<CountryDto> mapEntitiesToDtos(List<Country> entities) {
+    return entities.stream().map(CountryListDtoMapper::mapEntityToDto).collect(Collectors.toList());
+  }
 
-    public static CountryDto mapEntityToDto(Country entity) {
-        return CountryDto.getBuilder()
-                .id(entity.getId())
-                .name(entity.getName())
-                .code(entity.getCode())
-                .enName(entity.getEnName())
-                .active(entity.getActive())
-                .modifiedDate(entity.getModifiedDate())
-                .createdDate(entity.getCreatedDate())
-                .build();
-    }
+  public static CountryDto mapEntityToDto(Country entity) {
+    return CountryDto.getBuilder()
+        .id(entity.getId())
+        .name(entity.getName())
+        .code(entity.getCode())
+        .enName(entity.getEnName())
+        .active(entity.getActive())
+        .modifiedDate(entity.getModifiedDate())
+        .createdDate(entity.getCreatedDate())
+        .build();
+  }
 
 }

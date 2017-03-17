@@ -11,16 +11,16 @@ import java.util.stream.Collectors;
  */
 public class TitleListDtoMapper {
 
-    public static List<TitleListDto> mapEntitiesToDtos(List<Title> entities) {
-        return entities.stream().map(TitleListDtoMapper::mapEntityToDto).collect(Collectors.toList());
-    }
+  public static List<TitleListDto> mapEntitiesToDtos(List<Title> entities) {
+    return entities.stream().map(TitleListDtoMapper::mapEntityToDto).collect(Collectors.toList());
+  }
 
-    public static TitleListDto mapEntityToDto(Title entity) {
-        return TitleListDto.getBuilder()
-                .id(entity.getId())
-                .name(entity.getName())
-                .active(entity.getActive())
-                .build();
-    }
+  public static TitleListDto mapEntityToDto(Title entity) {
+    return TitleListDto.getBuilder()
+        .id(entity.getId())
+        .name(entity.getName())
+        .active(entity.getActive())
+        .build();
+  }
 
 }

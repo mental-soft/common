@@ -11,15 +11,15 @@ import java.util.stream.Collectors;
  */
 public class BloodGroupEntityMapper {
 
-    public static List<BloodGroup> mapDtosToEntities(List<BloodGroupListDto> dtos) {
-        return dtos.stream().map(BloodGroupEntityMapper::mapDtoToEntity).collect(Collectors.toList());
-    }
+  public static List<BloodGroup> mapDtosToEntities(List<BloodGroupListDto> dtos) {
+    return dtos.stream().map(BloodGroupEntityMapper::mapDtoToEntity).collect(Collectors.toList());
+  }
 
-    public static BloodGroup mapDtoToEntity(BloodGroupListDto dto) {
-        return BloodGroup.getBuilder()
-                .id(dto.getId())
-                .name(dto.getName())
-                .active(dto.getActive())
-                .build();
-    }
+  public static BloodGroup mapDtoToEntity(BloodGroupListDto dto) {
+    return BloodGroup.getBuilder()
+        .id(dto.getId())
+        .name(dto.getName())
+        .active(dto.getActive())
+        .build();
+  }
 }

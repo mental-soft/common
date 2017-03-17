@@ -11,9 +11,9 @@ public interface BloodGroupService {
 
     List<BloodGroupListDto> getAll();
 
-    BloodGroupListDto getByID(int bloodGroupID) throws Exception;
+    BloodGroupListDto getById(int bloodGroupId) throws Exception;
 
-    void deleteByID(int bloodGroupID);
+    void deleteById(int bloodGroupId);
 
     int saveOrUpdate(BloodGroupListDto dto) throws Exception;
 

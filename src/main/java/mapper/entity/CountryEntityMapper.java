@@ -8,20 +8,20 @@ import entity.Country;
  */
 public class CountryEntityMapper {
 
-//    public static List<Country> mapDtosToEntities(List<CountryListDto> dtos) {
-//        return dtos.stream().map(CountryEntityMapper::mapDtoToEntity).collect(Collectors.toList());
-//    }
+  //    public static List<Country> mapDtosToEntities(List<CountryListDto> dtos) {
+  //        return dtos.stream().map(CountryEntityMapper::mapDtoToEntity).collect(Collectors.toList());
+  //    }
 
-    public static Country mapDtoToEntity(CountryDto countryDto) {
-        return Country.getBuilder()
-                .id(countryDto.getId())
-                .name(countryDto.getName())
-                .code(countryDto.getCode())
-                .enName(countryDto.getEnName())
-                .active(countryDto.getIsActive())
-                .modifiedDate(countryDto.getModifiedDate())
-                .createdDate(countryDto.getCreatedDate())
-                .build();
-    }
+  public static Country mapDtoToEntity(CountryDto countryDto) {
+    return Country.getBuilder()
+        .id(countryDto.getId())
+        .name(countryDto.getName())
+        .code(countryDto.getCode())
+        .enName(countryDto.getEnName())
+        .active(countryDto.getIsActive())
+        .modifiedDate(countryDto.getModifiedDate())
+        .createdDate(countryDto.getCreatedDate())
+        .build();
+  }
 
 }

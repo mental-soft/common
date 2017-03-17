@@ -18,6 +18,7 @@ public class WebMvcResolverConfig {
 
   /**
    * Template resolver for view.
+   *
    * @return Servlet context template resolver
    */
   @Bean
@@ -33,6 +34,7 @@ public class WebMvcResolverConfig {
 
   /**
    * View resolver.
+   *
    * @return ViewResolver
    */
   @Bean
@@ -48,6 +50,7 @@ public class WebMvcResolverConfig {
 
   /**
    * Template engine.
+   *
    * @return SpringTemplateEngine
    */
   @Bean
@@ -60,6 +63,7 @@ public class WebMvcResolverConfig {
 
   /**
    * Configure View resolver to provide JSON output using JACKSON.
+   *
    * @return JsonViewResolver
    */
   @Bean
@@ -69,6 +73,7 @@ public class WebMvcResolverConfig {
 
   /**
    * Configure ContentNegotiatingViewResolver.
+   *
    * @param manager ContentNegotiationManager
    * @return All ViewResolver
    */

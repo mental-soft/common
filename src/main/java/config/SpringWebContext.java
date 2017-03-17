@@ -1,8 +1,14 @@
 package config;
 
-
 import constant.Encoding;
 import constant.MessagesFile;
+
+import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -13,21 +19,16 @@ import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
-import org.springframework.http.converter.json.GsonHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.util.StringUtils;
-import org.springframework.web.servlet.config.annotation.*;
+import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.lang.reflect.Type;
-import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 @Configuration
 @EnableWebMvc
@@ -112,20 +113,22 @@ public class SpringWebContext extends WebMvcConfigurerAdapter {
 
   /**
    * For Negotiation.
+   *
    * @param configurer config
    */
   @Override
   public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
     configurer.favorPathExtension(true)
-            .ignoreAcceptHeader(true)
-            .useJaf(false)
-            .defaultContentType(MediaType.TEXT_HTML)
-            .mediaType("html", MediaType.TEXT_HTML)
-            .mediaType("json", MediaType.APPLICATION_JSON_UTF8);
+        .ignoreAcceptHeader(true)
+        .useJaf(false)
+        .defaultContentType(MediaType.TEXT_HTML)
+        .mediaType("html", MediaType.TEXT_HTML)
+        .mediaType("json", MediaType.APPLICATION_JSON_UTF8);
   }
 
   /**
    * Configure message converters.
+   *
    * @param converters HttpMessageConverter
    */
   @Override

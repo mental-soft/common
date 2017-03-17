@@ -9,12 +9,12 @@ import java.util.List;
  */
 public interface JobService {
 
-    List<JobListDto> getAll();
+  List<JobListDto> getAll();
 
-    JobListDto getByID(int jobID) throws Exception;
+  JobListDto getByID(int jobID) throws Exception;
 
-    void deleteByID(int jobID);
+  void deleteByID(int jobID);
 
-    int saveOrUpdate(JobListDto dto) throws Exception;
+  int saveOrUpdate(JobListDto dto) throws Exception;
 
 }
