@@ -49,7 +49,7 @@ public class CityServiceImpl implements CityService {
 
     @Override
     public CityDto getByID(Integer cityID) throws Exception {
-        City entity = cityRepository.getOne(cityID);
+        City entity = cityRepository.findOne(cityID);
 
         if(entity == null) {
             throw new Exception(NOT_FOUND_MESSAGE);
