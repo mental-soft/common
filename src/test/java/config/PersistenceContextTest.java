@@ -13,19 +13,19 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class PersistenceContextTest {
 
-    @Bean
-    CountryRepository countryRepository() {
-        return Mockito.mock(CountryRepository.class);
-    }
+  @Bean
+  CountryRepository countryRepository() {
+    return Mockito.mock(CountryRepository.class);
+  }
 
-    @Bean
-    CityRepository cityRepository() {
-        return Mockito.mock(CityRepository.class);
-    }
+  @Bean
+  CityRepository cityRepository() {
+    return Mockito.mock(CityRepository.class);
+  }
 
-    @Bean
-    DistrictRepository districtRepository() {
-        return Mockito.mock(DistrictRepository.class);
-    }
+  @Bean
+  DistrictRepository districtRepository() {
+    return Mockito.mock(DistrictRepository.class);
+  }
 
 }

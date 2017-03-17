@@ -13,13 +13,13 @@ import service.JobServiceImpl;
 @Configuration
 public class JobServiceTestConfig {
 
-    @Bean
-    JobRepository jobRepository() {
-        return Mockito.mock(JobRepository.class);
-    }
+  @Bean
+  JobRepository jobRepository() {
+    return Mockito.mock(JobRepository.class);
+  }
 
-    @Bean
-    JobService jobService(){
-        return new JobServiceImpl();
-    }
+  @Bean
+  JobService jobService() {
+    return new JobServiceImpl();
+  }
 }

@@ -17,19 +17,23 @@ import service.DistrictServiceImpl;
 @Configuration
 public class CityServiceTestConfig {
 
-    @Bean
-    CityRepository cityRepository() {
-        return Mockito.mock(CityRepository.class);
-    }
+  @Bean
+  CityRepository cityRepository() {
+    return Mockito.mock(CityRepository.class);
+  }
 
-    @Bean
-    CityService cityService(){
-        return new CityServiceImpl();
-    }
+  @Bean
+  CityService cityService() {
+    return new CityServiceImpl();
+  }
 
-    @Bean
-    DistrictService districtService() {return new DistrictServiceImpl();}
+  @Bean
+  DistrictService districtService() {
+    return new DistrictServiceImpl();
+  }
 
-    @Bean
-    DistrictRepository districtRepository() {return Mockito.mock(DistrictRepository.class);}
+  @Bean
+  DistrictRepository districtRepository() {
+    return Mockito.mock(DistrictRepository.class);
+  }
 }

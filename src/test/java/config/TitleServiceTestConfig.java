@@ -13,13 +13,13 @@ import service.TitleServiceImpl;
 @Configuration
 public class TitleServiceTestConfig {
 
-    @Bean
-    TitleRepository titleRepository() {
-        return Mockito.mock(TitleRepository.class);
-    }
+  @Bean
+  TitleRepository titleRepository() {
+    return Mockito.mock(TitleRepository.class);
+  }
 
-    @Bean
-    TitleService titleService(){
-        return new TitleServiceImpl();
-    }
+  @Bean
+  TitleService titleService() {
+    return new TitleServiceImpl();
+  }
 }

@@ -6,7 +6,12 @@ import jpa.DistrictRepository;
 import org.mockito.Mockito;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import service.*;
+import service.CityService;
+import service.CityServiceImpl;
+import service.CountryService;
+import service.CountryServiceImpl;
+import service.DistrictService;
+import service.DistrictServiceImpl;
 
 /**
  * Created by okan on 7.03.2017.
@@ -15,26 +20,34 @@ import service.*;
 @Configuration
 public class CountryServiceTestConfig {
 
-    @Bean
-    CountryRepository countryRepository() {
-        return Mockito.mock(CountryRepository.class);
-    }
+  @Bean
+  CountryRepository countryRepository() {
+    return Mockito.mock(CountryRepository.class);
+  }
 
-    @Bean
-    CountryService countryService(){
-        return new CountryServiceImpl();
-    }
+  @Bean
+  CountryService countryService() {
+    return new CountryServiceImpl();
+  }
 
-    @Bean
-    CityService cityservice() {return new CityServiceImpl();}
+  @Bean
+  CityService cityservice() {
+    return new CityServiceImpl();
+  }
 
-    @Bean
-    CityRepository cityRepository(){return Mockito.mock(CityRepository.class);}
+  @Bean
+  CityRepository cityRepository() {
+    return Mockito.mock(CityRepository.class);
+  }
 
-    @Bean
-    DistrictService districtService() {return new DistrictServiceImpl();}
+  @Bean
+  DistrictService districtService() {
+    return new DistrictServiceImpl();
+  }
 
-    @Bean
-    DistrictRepository districtRepository() {return Mockito.mock(DistrictRepository.class);}
+  @Bean
+  DistrictRepository districtRepository() {
+    return Mockito.mock(DistrictRepository.class);
+  }
 
 }

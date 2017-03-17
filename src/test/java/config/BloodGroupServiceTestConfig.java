@@ -13,11 +13,13 @@ import service.BloodGroupServiceImpl;
 @Configuration
 public class BloodGroupServiceTestConfig {
 
-    @Bean
-    BloodGroupRepository bloodGroupRepository() {
-        return Mockito.mock(BloodGroupRepository.class);
-    }
+  @Bean
+  BloodGroupRepository bloodGroupRepository() {
+    return Mockito.mock(BloodGroupRepository.class);
+  }
 
-    @Bean
-    BloodGroupService bloodGroupService(){return new BloodGroupServiceImpl();}
+  @Bean
+  BloodGroupService bloodGroupService() {
+    return new BloodGroupServiceImpl();
+  }
 }

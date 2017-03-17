@@ -13,13 +13,13 @@ import service.DistrictServiceImpl;
 
 @Configuration
 public class DistrictServiceTestConfig {
-    @Bean
-    DistrictRepository districtRepository() {
-        return Mockito.mock(DistrictRepository.class);
-    }
+  @Bean
+  DistrictRepository districtRepository() {
+    return Mockito.mock(DistrictRepository.class);
+  }
 
-    @Bean
-    DistrictService districtService(){
-        return new DistrictServiceImpl();
-    }
+  @Bean
+  DistrictService districtService() {
+    return new DistrictServiceImpl();
+  }
 }
