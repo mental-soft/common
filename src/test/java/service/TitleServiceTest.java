@@ -135,8 +135,7 @@ public class TitleServiceTest {
 
   @Test
   public void getById_WhenFull_ShouldReturnInfo() {
-    Title entity = new Title();
-    entity = Title.getBuilder()
+    Title entity = Title.getBuilder()
         .id(1)
         .name("A")
         .active(true)
@@ -202,8 +201,7 @@ public class TitleServiceTest {
 
   @Test
   public void saveOrUpdate_WhenDtoFull_ShouldReturnEntityId() {
-    Title entity = new Title();
-    entity = Title.getBuilder()
+    Title entity = Title.getBuilder()
         .id(1)
         .name("A")
         .active(true)

@@ -142,8 +142,7 @@ public class CountryServiceTest {
 
   @Test
   public void getById_WhenFull_ShouldReturnInfo() {
-    Country entity = new Country();
-    entity = Country.getBuilder()
+    Country entity = Country.getBuilder()
         .id(1)
         .name("China")
         .active(true)
@@ -222,8 +221,7 @@ public class CountryServiceTest {
 
   @Test
   public void saveOrUpdate_WhenDtoFull_ShouldReturnEntityId() {
-    Country entity = new Country();
-    entity = Country.getBuilder()
+    Country entity = Country.getBuilder()
         .id(1)
         .name("A")
         .active(true)

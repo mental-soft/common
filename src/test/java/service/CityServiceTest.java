@@ -161,14 +161,13 @@ public class CityServiceTest {
 
   @Test
   public void getById_WhenFull_ShouldReturnInfo() {
-    City entity = new City();
     Country country = Country.getBuilder()
         .id(1)
         .name("China")
         .active(true)
         .build();
 
-    entity = City.getBuilder()
+    City entity = City.getBuilder()
         .id(1)
         .name("A")
         .active(true)
@@ -248,14 +247,13 @@ public class CityServiceTest {
 
   @Test
   public void saveOrUpdate_WhenDtoFull_ShouldReturnEntityId() {
-    City entity = new City();
     Country country = Country.getBuilder()
         .id(1)
         .name("China")
         .active(true)
         .build();
 
-    entity = City.getBuilder()
+    City entity = City.getBuilder()
         .id(1)
         .name("A")
         .active(true)

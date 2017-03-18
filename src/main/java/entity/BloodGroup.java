@@ -1,5 +1,6 @@
 package entity;
 
+import java.time.LocalDate;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,19 +33,19 @@ public class BloodGroup {
   private Boolean isActive;
 
   @Column(name = "CREATED_DATE", columnDefinition = "TIMESTAMP")
-  private Date createdDate;
+  private LocalDate createdDate;
 
   @Column(name = "MODIFIED_DATE", columnDefinition = "TIMESTAMP")
-  private Date modifiedDate;
+  private LocalDate modifiedDate;
 
   @PreUpdate
   public void preUpdate() {
-    modifiedDate = new Date();
+    modifiedDate = LocalDate.now();
   }
 
   @PrePersist
   public void prePersist() {
-    createdDate = new Date();
+    createdDate = LocalDate.now();
   }
 
   public Integer getId() {
@@ -71,19 +72,19 @@ public class BloodGroup {
     isActive = active;
   }
 
-  public Date getCreatedDate() {
+  public LocalDate getCreatedDate() {
     return createdDate;
   }
 
-  public void setCreatedDate(Date createdDate) {
+  public void setCreatedDate(LocalDate createdDate) {
     this.createdDate = createdDate;
   }
 
-  public Date getModifiedDate() {
+  public LocalDate getModifiedDate() {
     return modifiedDate;
   }
 
-  public void setModifiedDate(Date modifiedDate) {
+  public void setModifiedDate(LocalDate modifiedDate) {
     this.modifiedDate = modifiedDate;
   }
 

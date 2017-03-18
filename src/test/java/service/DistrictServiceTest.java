@@ -135,8 +135,7 @@ public class DistrictServiceTest {
 
   @Test
   public void getById_WhenFull_ShouldReturnInfo() {
-    District entity = new District();
-    entity = District.getBuilder()
+    District entity = District.getBuilder()
         .id(1)
         .name("A")
         .active(true)
@@ -203,8 +202,7 @@ public class DistrictServiceTest {
 
   @Test
   public void saveOrUpdate_WhenDtoFull_ShouldReturnEntityId() {
-    District entity = new District();
-    entity = District.getBuilder()
+    District entity = District.getBuilder()
         .id(1)
         .name("A")
         .active(true)

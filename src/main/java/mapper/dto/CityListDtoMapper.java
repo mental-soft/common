@@ -6,6 +6,8 @@ import entity.City;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import util.DateUtil;
+
 /**
  * Created by Okan on 14.2.2017.
  */
@@ -13,6 +15,7 @@ public class CityListDtoMapper {
 
   /**
    * City entity listesini CityDto listesine çevirir.
+   *
    * @param entities City entity listesi
    * @return CityDto listesi
    */
@@ -22,6 +25,7 @@ public class CityListDtoMapper {
 
   /**
    * City entity sini CityDto ya çevirir.
+   *
    * @param entity City entitysi
    * @return CityDto
    */

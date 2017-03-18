@@ -135,8 +135,7 @@ public class BloodGroupServiceTest {
 
   @Test
   public void getById_WhenFull_ShouldReturnInfo() {
-    BloodGroup entity = new BloodGroup();
-    entity = BloodGroup.getBuilder()
+    BloodGroup entity = BloodGroup.getBuilder()
         .id(1)
         .name("A")
         .active(true)
@@ -151,7 +150,6 @@ public class BloodGroupServiceTest {
       assertEquals(true, dto.getActive());
     } catch (Exception e) {
       Assert.fail();
-      ;
     }
   }
   //endregion
@@ -202,8 +200,7 @@ public class BloodGroupServiceTest {
 
   @Test
   public void saveOrUpdate_WhenDtoFull_ShouldReturnEntityId() {
-    BloodGroup entity = new BloodGroup();
-    entity = BloodGroup.getBuilder()
+    BloodGroup entity = BloodGroup.getBuilder()
         .id(1)
         .name("A")
         .active(true)
@@ -222,7 +219,6 @@ public class BloodGroupServiceTest {
       assertEquals(1, entityId);
     } catch (Exception e) {
       Assert.fail();
-      ;
     }
   }
   //endregion

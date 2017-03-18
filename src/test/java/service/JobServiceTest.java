@@ -138,8 +138,7 @@ public class JobServiceTest {
 
   @Test
   public void getById_WhenFull_ShouldReturnInfo() {
-    Job entity = new Job();
-    entity = Job.getBuilder()
+    Job entity = Job.getBuilder()
         .id(1)
         .name("A")
         .active(true)
@@ -205,8 +204,7 @@ public class JobServiceTest {
 
   @Test
   public void saveOrUpdate_WhenDtoFull_ShouldReturnEntityId() {
-    Job entity = new Job();
-    entity = Job.getBuilder()
+    Job entity = Job.getBuilder()
         .id(1)
         .name("A")
         .active(true)

@@ -13,8 +13,8 @@ public class CityDto {
   private String code;
   private Boolean isBig;
   private Boolean isActive;
-  private Date modifiedDate;
-  private Date createdDate;
+  private LocalDate modifiedDate;
+  private LocalDate createdDate;
   private CountryDto countryDto;
 
   public Integer getId() {
@@ -57,20 +57,20 @@ public class CityDto {
     isActive = active;
   }
 
-  public Date getModifiedDate() {
-    return (Date) modifiedDate.clone();
+  public LocalDate getModifiedDate() {
+    return modifiedDate;
   }
 
-  public void setModifiedDate(Date modifiedDate) {
-    this.modifiedDate = (Date) modifiedDate.clone();
+  public void setModifiedDate(LocalDate modifiedDate) {
+    this.modifiedDate = modifiedDate;
   }
 
-  public Date getCreatedDate() {
-    return (Date) createdDate.clone();
+  public LocalDate getCreatedDate() {
+    return createdDate;
   }
 
-  public void setCreatedDate(Date createdDate) {
-    this.createdDate = (Date) createdDate.clone();
+  public void setCreatedDate(LocalDate createdDate) {
+    this.createdDate = createdDate;
   }
 
   public static CityDtoBuilder getBuilder() {
@@ -109,12 +109,12 @@ public class CityDto {
       return this;
     }
 
-    public CityDtoBuilder modifiedDate(Date modifiedDate) {
+    public CityDtoBuilder modifiedDate(LocalDate modifiedDate) {
       this.cityDto.setModifiedDate(modifiedDate);
       return this;
     }
 
-    public CityDtoBuilder createdDate(Date createdDate) {
+    public CityDtoBuilder createdDate(LocalDate createdDate) {
       this.cityDto.setCreatedDate(createdDate);
       return this;
     }

@@ -2,6 +2,7 @@ package dto;
 
 import entity.City;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -12,8 +13,8 @@ public class DistrictDto {
   private Integer id;
   private String name;
   private Boolean isActive;
-  private Date modifiedDate;
-  private Date createdDate;
+  private LocalDate modifiedDate;
+  private LocalDate createdDate;
   private City city;
 
   public Integer getId() {
@@ -40,19 +41,19 @@ public class DistrictDto {
     isActive = active;
   }
 
-  public Date getModifiedDate() {
+  public LocalDate getModifiedDate() {
     return modifiedDate;
   }
 
-  public void setModifiedDate(Date modifiedDate) {
+  public void setModifiedDate(LocalDate modifiedDate) {
     this.modifiedDate = modifiedDate;
   }
 
-  public Date getCreatedDate() {
+  public LocalDate getCreatedDate() {
     return createdDate;
   }
 
-  public void setCreatedDate(Date createdDate) {
+  public void setCreatedDate(LocalDate createdDate) {
     this.createdDate = createdDate;
   }
 
@@ -86,12 +87,12 @@ public class DistrictDto {
       return this;
     }
 
-    public DistrictDtoBuilder modifiedDate(Date modifiedDate) {
+    public DistrictDtoBuilder modifiedDate(LocalDate modifiedDate) {
       this.districtDto.setModifiedDate(modifiedDate);
       return this;
     }
 
-    public DistrictDtoBuilder createdDate(Date createdDate) {
+    public DistrictDtoBuilder createdDate(LocalDate createdDate) {
       this.districtDto.setCreatedDate(createdDate);
       return this;
     }
