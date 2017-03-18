@@ -20,8 +20,8 @@ public class CityServiceImpl implements CityService {
   //region Messages
   public static final String NOT_FOUND_MESSAGE = "Ülke kaydı bulunamadı.";
   public static final String PARAMETERS_MUST_BE_NOT_NULL = "Parametre girilmesi gerekmektedir.";
-  public static final String CITY_NAME_MUST_BE_NOT_NULL = "Şehir Adı girilmesi gerekmektedir.";
-  public static final String CITY_SHOULD_NOT_HAVE_DISTRICT = "Şehire ait şehirler bulunmaktadır.";
+  public static final String CITY_NAME_MUST_BE_NOT_NULL = "Sehir Adi girilmesi gerekmektedir.";
+  public static final String CITY_SHOULD_NOT_HAVE_DISTRICT = "Sehire ait şehirler bulunmaktadır.";
   //endregion
 
   @Autowired

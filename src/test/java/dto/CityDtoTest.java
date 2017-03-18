@@ -19,6 +19,7 @@ import util.DateUtil;
  */
 public class CityDtoTest {
 
+  //todo burayı anlat
   //  @Test
   //  public void testCreatedDate() {
   //    CityDto cityDto = new CityDto();
