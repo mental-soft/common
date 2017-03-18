@@ -1,11 +1,13 @@
 package entity;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -45,23 +47,25 @@ public class Country {
   @Column(name = "IS_ACTIVE", columnDefinition = "NUMBER")
   private Boolean isActive;
 
+  @Convert(converter = LocalDateTimeConverter.class)
   @Column(name = "CREATED_DATE", columnDefinition = "TIMESTAMP")
-  private LocalDate createdDate;
+  private LocalDateTime createdDate;
 
+  @Convert(converter = LocalDateTimeConverter.class)
   @Column(name = "MODIFIED_DATE", columnDefinition = "TIMESTAMP")
-  private LocalDate modifiedDate;
+  private LocalDateTime modifiedDate;
 
   @OneToMany(mappedBy = "country", cascade = CascadeType.ALL)
   private List<City> cities;
 
   @PreUpdate
   public void preUpdate() {
-    modifiedDate = LocalDate.now();
+    modifiedDate = LocalDateTime.now();
   }
 
   @PrePersist
   public void prePersist() {
-    createdDate = LocalDate.now();
+    createdDate = LocalDateTime.now();
   }
 
   public Country() {
@@ -100,19 +104,19 @@ public class Country {
     this.enName = enName;
   }
 
-  public LocalDate getCreatedDate() {
+  public LocalDateTime getCreatedDate() {
     return createdDate;
   }
 
-  public void setCreatedDate(LocalDate createdDate) {
+  public void setCreatedDate(LocalDateTime createdDate) {
     this.createdDate = createdDate;
   }
 
-  public LocalDate getModifiedDate() {
+  public LocalDateTime getModifiedDate() {
     return modifiedDate;
   }
 
-  public void setModifiedDate(LocalDate modifiedDate) {
+  public void setModifiedDate(LocalDateTime modifiedDate) {
     this.modifiedDate = modifiedDate;
   }
 
@@ -167,12 +171,12 @@ public class Country {
       return this;
     }
 
-    public CountryBuilder modifiedDate(LocalDate modifiedDate) {
+    public CountryBuilder modifiedDate(LocalDateTime modifiedDate) {
       this.country.setModifiedDate(modifiedDate);
       return this;
     }
 
-    public CountryBuilder createdDate(LocalDate createdDate) {
+    public CountryBuilder createdDate(LocalDateTime createdDate) {
       this.country.setCreatedDate(createdDate);
       return this;
     }

@@ -1,6 +1,6 @@
 package entity;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -33,19 +33,19 @@ public class Title {
   private Boolean isActive;
 
   @Column(name = "CREATED_DATE", columnDefinition = "TIMESTAMP")
-  private LocalDate createdDate;
+  private LocalDateTime createdDate;
 
   @Column(name = "MODIFIED_DATE", columnDefinition = "TIMESTAMP")
-  private LocalDate modifiedDate;
+  private LocalDateTime modifiedDate;
 
   @PreUpdate
   public void preUpdate() {
-    modifiedDate = LocalDate.now();
+    modifiedDate = LocalDateTime.now();
   }
 
   @PrePersist
   public void prePersist() {
-    createdDate = LocalDate.now();
+    createdDate = LocalDateTime.now();
   }
 
   public Integer getId() {
@@ -72,19 +72,19 @@ public class Title {
     isActive = active;
   }
 
-  public LocalDate getCreatedDate() {
+  public LocalDateTime getCreatedDate() {
     return createdDate;
   }
 
-  public void setCreatedDate(LocalDate createdDate) {
+  public void setCreatedDate(LocalDateTime createdDate) {
     this.createdDate = createdDate;
   }
 
-  public LocalDate getModifiedDate() {
+  public LocalDateTime getModifiedDate() {
     return modifiedDate;
   }
 
-  public void setModifiedDate(LocalDate modifiedDate) {
+  public void setModifiedDate(LocalDateTime modifiedDate) {
     this.modifiedDate = modifiedDate;
   }
 

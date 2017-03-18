@@ -6,8 +6,6 @@ import entity.City;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import util.DateUtil;
-
 /**
  * Created by Okan on 14.2.2017.
  */

@@ -1,6 +1,6 @@
 package entity;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -36,10 +36,10 @@ public class District {
   private Boolean isActive;
 
   @Column(name = "CREATED_DATE", columnDefinition = "TIMESTAMP")
-  private LocalDate createdDate;
+  private LocalDateTime createdDate;
 
   @Column(name = "MODIFIED_DATE", columnDefinition = "TIMESTAMP")
-  private LocalDate modifiedDate;
+  private LocalDateTime modifiedDate;
 
   @ManyToOne
   @JoinColumn(name = "CITY_ID", referencedColumnName = "ID")
@@ -69,19 +69,19 @@ public class District {
     isActive = active;
   }
 
-  public LocalDate getCreatedDate() {
+  public LocalDateTime getCreatedDate() {
     return createdDate;
   }
 
-  public void setCreatedDate(LocalDate createdDate) {
+  public void setCreatedDate(LocalDateTime createdDate) {
     this.createdDate = createdDate;
   }
 
-  public LocalDate getModifiedDate() {
+  public LocalDateTime getModifiedDate() {
     return modifiedDate;
   }
 
-  public void setModifiedDate(LocalDate modifiedDate) {
+  public void setModifiedDate(LocalDateTime modifiedDate) {
     this.modifiedDate = modifiedDate;
   }
 
@@ -115,12 +115,12 @@ public class District {
       return this;
     }
 
-    public DistrictBuilder modifiedDate(LocalDate modifiedDate) {
+    public DistrictBuilder modifiedDate(LocalDateTime modifiedDate) {
       this.district.setModifiedDate(modifiedDate);
       return this;
     }
 
-    public DistrictBuilder createdDate(LocalDate createdDate) {
+    public DistrictBuilder createdDate(LocalDateTime createdDate) {
       this.district.setCreatedDate(createdDate);
       return this;
     }

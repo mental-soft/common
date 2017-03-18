@@ -1,6 +1,6 @@
 package dto;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -13,8 +13,8 @@ public class CityDto {
   private String code;
   private Boolean isBig;
   private Boolean isActive;
-  private LocalDate modifiedDate;
-  private LocalDate createdDate;
+  private LocalDateTime modifiedDate;
+  private LocalDateTime createdDate;
   private CountryDto countryDto;
 
   public Integer getId() {
@@ -57,19 +57,19 @@ public class CityDto {
     isActive = active;
   }
 
-  public LocalDate getModifiedDate() {
+  public LocalDateTime getModifiedDate() {
     return modifiedDate;
   }
 
-  public void setModifiedDate(LocalDate modifiedDate) {
+  public void setModifiedDate(LocalDateTime modifiedDate) {
     this.modifiedDate = modifiedDate;
   }
 
-  public LocalDate getCreatedDate() {
+  public LocalDateTime getCreatedDate() {
     return createdDate;
   }
 
-  public void setCreatedDate(LocalDate createdDate) {
+  public void setCreatedDate(LocalDateTime createdDate) {
     this.createdDate = createdDate;
   }
 
@@ -109,12 +109,12 @@ public class CityDto {
       return this;
     }
 
-    public CityDtoBuilder modifiedDate(LocalDate modifiedDate) {
+    public CityDtoBuilder modifiedDate(LocalDateTime modifiedDate) {
       this.cityDto.setModifiedDate(modifiedDate);
       return this;
     }
 
-    public CityDtoBuilder createdDate(LocalDate createdDate) {
+    public CityDtoBuilder createdDate(LocalDateTime createdDate) {
       this.cityDto.setCreatedDate(createdDate);
       return this;
     }
