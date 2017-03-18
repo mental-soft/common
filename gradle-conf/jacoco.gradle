@@ -10,6 +10,26 @@ jacocoTestCoverageVerification {
             }
         }
     }
+    afterEvaluate {
+        classDirectories = files(classDirectories.files.collect {
+            fileTree(dir: it,
+                    exclude: ['**/lib/**'])
+        })
+    }
+}
+jacocoTestReport {
+    reports {
+        html {
+            enabled true
+        }
+    }
+
+    afterEvaluate {
+        classDirectories = files(classDirectories.files.collect {
+            fileTree(dir: it,
+                    exclude: ['**/lib/**'])
+        })
+    }
 }
 
 test.finalizedBy "jacocoTestReport"
