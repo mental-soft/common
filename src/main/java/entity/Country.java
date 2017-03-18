@@ -1,5 +1,6 @@
 package entity;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -45,22 +46,22 @@ public class Country {
   private Boolean isActive;
 
   @Column(name = "CREATED_DATE", columnDefinition = "TIMESTAMP")
-  private Date createdDate;
+  private LocalDate createdDate;
 
   @Column(name = "MODIFIED_DATE", columnDefinition = "TIMESTAMP")
-  private Date modifiedDate;
+  private LocalDate modifiedDate;
 
   @OneToMany(mappedBy = "country", cascade = CascadeType.ALL)
   private List<City> cities;
 
   @PreUpdate
   public void preUpdate() {
-    modifiedDate = new Date();
+    modifiedDate = LocalDate.now();
   }
 
   @PrePersist
   public void prePersist() {
-    createdDate = new Date();
+    createdDate = LocalDate.now();
   }
 
   public Country() {
@@ -99,19 +100,19 @@ public class Country {
     this.enName = enName;
   }
 
-  public Date getCreatedDate() {
+  public LocalDate getCreatedDate() {
     return createdDate;
   }
 
-  public void setCreatedDate(Date createdDate) {
+  public void setCreatedDate(LocalDate createdDate) {
     this.createdDate = createdDate;
   }
 
-  public Date getModifiedDate() {
+  public LocalDate getModifiedDate() {
     return modifiedDate;
   }
 
-  public void setModifiedDate(Date modifiedDate) {
+  public void setModifiedDate(LocalDate modifiedDate) {
     this.modifiedDate = modifiedDate;
   }
 
@@ -166,12 +167,12 @@ public class Country {
       return this;
     }
 
-    public CountryBuilder modifiedDate(Date modifiedDate) {
+    public CountryBuilder modifiedDate(LocalDate modifiedDate) {
       this.country.setModifiedDate(modifiedDate);
       return this;
     }
 
-    public CountryBuilder createdDate(Date createdDate) {
+    public CountryBuilder createdDate(LocalDate createdDate) {
       this.country.setCreatedDate(createdDate);
       return this;
     }

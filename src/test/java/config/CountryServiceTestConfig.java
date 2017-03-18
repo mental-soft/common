@@ -16,7 +16,6 @@ import service.DistrictServiceImpl;
 /**
  * Created by okan on 7.03.2017.
  */
-
 @Configuration
 public class CountryServiceTestConfig {
 

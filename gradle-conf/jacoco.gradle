@@ -6,7 +6,7 @@ jacocoTestCoverageVerification {
         rule {
             enabled = true
             limit {
-                minimum = 0.85
+                minimum = new BigDecimal(codeCoveragePercent)
             }
         }
     }

@@ -1,5 +1,6 @@
 package dto;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -57,19 +58,19 @@ public class CityDto {
   }
 
   public Date getModifiedDate() {
-    return modifiedDate;
+    return (Date) modifiedDate.clone();
   }
 
   public void setModifiedDate(Date modifiedDate) {
-    this.modifiedDate = modifiedDate;
+    this.modifiedDate = (Date) modifiedDate.clone();
   }
 
   public Date getCreatedDate() {
-    return createdDate;
+    return (Date) createdDate.clone();
   }
 
   public void setCreatedDate(Date createdDate) {
-    this.createdDate = createdDate;
+    this.createdDate = (Date) createdDate.clone();
   }
 
   public static CityDtoBuilder getBuilder() {

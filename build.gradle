@@ -5,6 +5,10 @@ apply from: "$rootDir/gradle-conf/liquibase.gradle"
 
 apply from: "$rootDir/gradle-conf/checkstyle.gradle"
 apply from: "$rootDir/gradle-conf/jacoco.gradle"
+apply from: "$rootDir/gradle-conf/pmd.gradle"
+apply from: "$rootDir/gradle-conf/findbugs.gradle"
+//apply from: "$rootDir/gradle-conf/jdepend.gradle"
+//apply from: "$rootDir/gradle-conf/javancss.gradle"
 
 task wrapper(type: Wrapper) {
     gradleVersion = '3.4'
