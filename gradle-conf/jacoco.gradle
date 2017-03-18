@@ -1,0 +1,16 @@
+apply plugin: 'jacoco'
+
+jacocoTestCoverageVerification {
+    violationRules {
+        failOnViolation = true
+        rule {
+            enabled = true
+            limit {
+                minimum = 0.85
+            }
+        }
+    }
+}
+
+test.finalizedBy "jacocoTestReport"
+test.finalizedBy "jacocoTestCoverageVerification"
