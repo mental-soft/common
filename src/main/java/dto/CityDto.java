@@ -43,19 +43,19 @@ public class CityDto {
         this.code = code;
     }
 
-    public Boolean getBig() {
+    public Boolean getIsBig() {
         return isBig;
     }
 
-    public void setBig(Boolean big) {
+    public void setIsBig(Boolean big) {
         isBig = big;
     }
 
-    public Boolean getActive() {
+    public Boolean getIsActive() {
         return isActive;
     }
 
-    public void setActive(Boolean active) {
+    public void setIsActive(Boolean active) {
         isActive = active;
     }
 
@@ -122,12 +122,12 @@ public class CityDto {
         }
 
         public CityDtoBuilder active(Boolean active) {
-            this.cityDto.setActive(active);
+            this.cityDto.setIsActive(active);
             return this;
         }
 
         public CityDtoBuilder big(Boolean big) {
-            this.cityDto.setBig(big);
+            this.cityDto.setIsBig(big);
             return this;
         }
 

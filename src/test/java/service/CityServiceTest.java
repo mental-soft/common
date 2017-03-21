@@ -166,14 +166,14 @@ public class CityServiceTest {
         int id = dto.getId();
         assertEquals(1, id);
         assertEquals("A", dto.getName());
-        assertEquals(true, dto.getActive());
+        assertEquals(true, dto.getIsActive());
     }
     //endregion()
 
     //region getByID()
     @Test
     public void getByID_WhenEmpty_ShouldReturnException() {
-        given(cityRepository.getOne(anyInt())).willReturn(null);
+        given(cityRepository.findOne(anyInt())).willReturn(null);
 
         try {
             cityService.getByID(anyInt());
@@ -199,7 +199,7 @@ public class CityServiceTest {
                 .country(country)
                 .build();
 
-        given(cityRepository.getOne(anyInt())).willReturn(entity);
+        given(cityRepository.findOne(anyInt())).willReturn(entity);
 
         try {
             CityDto dto = cityService.getByID(anyInt());
@@ -207,7 +207,7 @@ public class CityServiceTest {
             int id = dto.getId();
             assertEquals(1, id);
             assertEquals("A", dto.getName());
-            assertEquals(true, dto.getActive());
+            assertEquals(true, dto.getIsActive());
         } catch (Exception e) {
             Assert.fail();
         }
