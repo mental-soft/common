@@ -13,9 +13,10 @@ import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
-import org.springframework.http.converter.json.GsonHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.util.StringUtils;
+import org.springframework.validation.Validator;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
@@ -112,20 +113,22 @@ public class SpringWebContext extends WebMvcConfigurerAdapter {
 
   /**
    * For Negotiation.
+   *
    * @param configurer config
    */
   @Override
   public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
     configurer.favorPathExtension(true)
-            .ignoreAcceptHeader(true)
-            .useJaf(false)
-            .defaultContentType(MediaType.TEXT_HTML)
-            .mediaType("html", MediaType.TEXT_HTML)
-            .mediaType("json", MediaType.APPLICATION_JSON_UTF8);
+        .ignoreAcceptHeader(true)
+        .useJaf(false)
+        .defaultContentType(MediaType.TEXT_HTML)
+        .mediaType("html", MediaType.TEXT_HTML)
+        .mediaType("json", MediaType.APPLICATION_JSON_UTF8);
   }
 
   /**
    * Configure message converters.
+   *
    * @param converters HttpMessageConverter
    */
   @Override
@@ -140,4 +143,10 @@ public class SpringWebContext extends WebMvcConfigurerAdapter {
     super.configureMessageConverters(converters);
   }
 
+  @Override
+  public Validator getValidator() {
+    LocalValidatorFactoryBean factory = new LocalValidatorFactoryBean();
+    factory.setValidationMessageSource(messageSource());
+    return factory;
+  }
 }
