@@ -205,7 +205,6 @@ public class CityServiceTest {
   @Test
   public void deleteById_WhenExistDistrict_ShouldReturnException() {
     given(districtRepository.countByCity_Id(anyInt())).willReturn(10);
-
     try {
       cityService.deleteById(anyInt());
       Assert.fail();

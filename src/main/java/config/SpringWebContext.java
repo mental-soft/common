@@ -21,6 +21,8 @@ import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.util.StringUtils;
+import org.springframework.validation.Validator;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -143,4 +145,10 @@ public class SpringWebContext extends WebMvcConfigurerAdapter {
     super.configureMessageConverters(converters);
   }
 
+  @Override
+  public Validator getValidator() {
+    LocalValidatorFactoryBean factory = new LocalValidatorFactoryBean();
+    factory.setValidationMessageSource(messageSource());
+    return factory;
+  }
 }

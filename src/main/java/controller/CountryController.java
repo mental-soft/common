@@ -116,7 +116,6 @@ public class CountryController {
       e.printStackTrace();
     }
     model.addAttribute("countryDto", result);
-
     return "country/delete";
   }
 
@@ -132,7 +131,6 @@ public class CountryController {
     } catch (Exception e) {
       e.printStackTrace();
     }
-
     return "redirect:/countries";
   }
 }

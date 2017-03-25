@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Detail</title>
+</head>
+<body>
+Şehir Detay
+<hr/>
+
+<table  data-th-object="${cityDto}">
+    <tr>
+        <td>
+            Ülke Adı:
+        </td>
+        <td>
+            <span data-th-text="*{countryDto.name}">
+                Türkiye
+            </span>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Şehir Adı:
+        </td>
+        <td>
+            <span data-th-text="*{name}">
+                Ankara
+            </span>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Kod:
+        </td>
+        <td>
+            <span data-th-text="*{code}">
+                06
+            </span>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Büyükşehir mi?:
+        </td>
+        <td>
+            <span data-th-text="*{isBig}?'Evet':'Hayır'">
+                Evet
+            </span>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Aktif mi?:
+        </td>
+        <td>
+            <span data-th-text="*{isActive}?'Evet':'Hayır'">
+                Evet
+            </span>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

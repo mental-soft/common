@@ -43,6 +43,10 @@ dependencies {
     //Thymeleaf
     compile 'org.thymeleaf:thymeleaf-spring4:2.1.4.RELEASE'
 
+    //Validation
+    compile group: 'javax.validation', name: 'validation-api', version: '1.1.0.Final'
+    compile group: 'org.hibernate', name: 'hibernate-validator', version: '5.4.1.Final'
+
     //Json
     compile "com.fasterxml.jackson.core:jackson-databind:$jacksonCoreVersion"
     compile "com.fasterxml.jackson.core:jackson-core:$jacksonCoreVersion"
