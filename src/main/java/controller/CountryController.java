@@ -21,8 +21,15 @@ public class CountryController {
   @Autowired
   CountryService countryService;
 
+  public static final String REQUEST_MAPPING_COUNTRY = "/country";
+
+  public static final String VIEW_COUNTRY_ADD = "country/add";
+
+  public static final String MODEL_ATTRIBUTE_COUNTRY = "countryDto";
+
   /**
    * Ülkeler listesini getirir.
+   *
    * @param model 'countries' değeri olan session modeli
    * @return 'country/countries' sayfası veya CountryDto json listesi
    */
@@ -36,7 +43,8 @@ public class CountryController {
 
   /**
    * Idsini verdiğiniz ülkenin detayını getirir.
-   * @param id integer türündeki ülke idsi
+   *
+   * @param id    integer türündeki ülke idsi
    * @param model 'country' değeri olan session modeli
    * @return 'country/detail' sayfası veya CountryDto json sonucu
    */
@@ -55,18 +63,20 @@ public class CountryController {
 
   /**
    * Ülke eklemek için sayfayı hazırlar.
+   *
    * @param model Boş CountryDto değeri olan session modeli
    * @return 'country/add' sayfası
    */
-  @RequestMapping(value = "/country", method = RequestMethod.GET)
+  @RequestMapping(value = REQUEST_MAPPING_COUNTRY, method = RequestMethod.GET)
   public String countryAdd(Model model) {
     CountryDto countryDto = new CountryDto();
-    model.addAttribute("countryDto", countryDto);
-    return "country/add";
+    model.addAttribute(MODEL_ATTRIBUTE_COUNTRY, countryDto);
+    return VIEW_COUNTRY_ADD;
   }
 
   /**
    * Ülke ekleme veya güncelleme işlemi.
+   *
    * @param countryDto Eklenmesi veya güncellenmesi istenen CountryDto değeri
    * @return 'country/{id}' controllerına yönlendirir
    */
@@ -84,7 +94,8 @@ public class CountryController {
 
   /**
    * Güncelleme için sayfayı hazırlar.
-   * @param id Güncellenmesi istenen ülkenin idsi
+   *
+   * @param id    Güncellenmesi istenen ülkenin idsi
    * @param model 'countryDto' değeri olan session modeli
    * @return 'country/edit' sayfası veya CountryDto json sonucu
    */
@@ -103,7 +114,8 @@ public class CountryController {
 
   /**
    * Ülke silme sayfasını hazırlar.
-   * @param id Silinmesi istenen ülkenin idsi
+   *
+   * @param id    Silinmesi istenen ülkenin idsi
    * @param model 'countryDto' değeri olan session model
    * @return 'country/delete' sayfası
    */
@@ -121,6 +133,7 @@ public class CountryController {
 
   /**
    * Ülke silme işlemini gerçekleştirir.
+   *
    * @param id Silinecek ülkenin idsi
    * @return '/countries' controllerına yönlendirir.
    */
