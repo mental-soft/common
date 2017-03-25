@@ -30,9 +30,9 @@ import service.CountryService;
 /**
  * Created by Coskun on 25.3.2017.
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {CountryControllerTestConfig.class, SpringWebContext.class})
-@WebAppConfiguration
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@ContextConfiguration(classes = {CountryControllerTestConfig.class, SpringWebContext.class})
+//@WebAppConfiguration
 public class CountryControllerTest {
 
   //  @Autowired
