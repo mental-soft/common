@@ -55,9 +55,6 @@ public class CountryController {
   public String countryPost(@Valid CountryDto countryDto, BindingResult bindingResult) {
 
     if (bindingResult.hasErrors()) {
-
-
-
       String errPage = "country/edit";
       if (countryDto.getId() == null) {
         errPage = "country/add";
