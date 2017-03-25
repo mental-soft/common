@@ -9,7 +9,11 @@ import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.reset;
 
 import config.DistrictServiceTestConfig;
+import dto.CityDto;
+import dto.CountryDto;
 import dto.DistrictDto;
+import entity.City;
+import entity.Country;
 import entity.District;
 
 import java.util.ArrayList;
@@ -167,6 +171,7 @@ public class DistrictServiceTest {
     } catch (Exception e) {
       assertEquals(EmptyResultDataAccessException.class, e.getClass());
     }
+<<<<<<< HEAD
   }
 
   @Test
@@ -221,6 +226,251 @@ public class DistrictServiceTest {
       assertEquals(1, entityId);
     } catch (Exception e) {
       Assert.fail();
+=======
+
+    @Test
+    public void getAll_WhenFull_ShouldReturnSize() {
+        List<District> entityList = new ArrayList<>();
+
+        Country country = Country.getBuilder()
+                .id(1)
+                .name("Türkiye")
+                .active(true)
+                .build();
+
+        City city = City.getBuilder()
+                .id(1)
+                .name("Ankara")
+                .active(true)
+                .country(country)
+                .build();
+
+        entityList.add(District.getBuilder()
+                .id(1)
+                .name("Yenimahalle")
+                .active(true)
+                .city(city)
+                .build());
+
+        entityList.add(District.getBuilder()
+                .id(2)
+                .name("Cankaya")
+                .active(true)
+                .city(city)
+                .build());
+
+        entityList.add(District.getBuilder()
+                .id(3)
+                .name("Altındağ")
+                .active(true)
+                .city(city)
+                .build());
+
+        given(repository.findAll()).willReturn(entityList);
+
+        List<DistrictDto> list = service.getAll();
+
+        assertEquals(3, list.size());
+    }
+
+    @Test
+    public void getAll_WhenFull_ShouldReturnInfo() {
+        List<District> entityList = new ArrayList<>();
+
+        Country country = Country.getBuilder()
+                .id(1)
+                .name("Türkiye")
+                .active(true)
+                .build();
+
+        City city = City.getBuilder()
+                .id(1)
+                .name("Ankara")
+                .active(true)
+                .country(country)
+                .build();
+
+        entityList.add(District.getBuilder()
+                .id(1)
+                .name("A")
+                .active(true)
+                .city(city)
+                .build());
+
+        entityList.add(District.getBuilder()
+                .id(2)
+                .name("B")
+                .active(true)
+                .city(city)
+                .build());
+
+        entityList.add(District.getBuilder()
+                .id(3)
+                .name("C")
+                .active(true)
+                .city(city)
+                .build());
+
+        given(repository.findAll()).willReturn(entityList);
+
+        DistrictDto dto = service.getAll().get(0);
+        int id = dto.getId();
+        assertEquals(1, id);
+        assertEquals("A", dto.getName());
+        assertEquals(true, dto.getActive());
+    }
+    //endregion()
+
+    //region getByID()
+    @Test
+    public void getByID_WhenEmpty_ShouldReturnException() {
+        given(repository.findOne(anyInt())).willReturn(null);
+
+        try {
+            service.getByID(anyInt());
+            Assert.fail();
+        } catch (Exception e) {
+            assertEquals(DistrictServiceImpl.NOT_FOUND_MESSAGE, e.getMessage());
+        }
+    }
+
+    @Test
+    public void getByID_WhenFull_ShouldReturnInfo() {
+        District entity = new District();
+
+        Country country = Country.getBuilder()
+                .id(1)
+                .name("Türkiye")
+                .active(true)
+                .build();
+
+        City city = City.getBuilder()
+                .id(1)
+                .name("Ankara")
+                .active(true)
+                .country(country)
+                .build();
+
+        entity = District.getBuilder()
+                .id(1)
+                .name("A")
+                .active(true)
+                .city(city)
+                .build();
+
+        given(repository.findOne(anyInt())).willReturn(entity);
+
+        try {
+            DistrictDto dto = service.getByID(anyInt());
+
+            int id = dto.getId();
+            assertEquals(1, id);
+            assertEquals("A", dto.getName());
+            assertEquals(true, dto.getActive());
+        } catch (Exception e) {
+            Assert.fail();
+        }
+    }
+    //endregion
+
+    //region deleteByID()
+    @Test
+    public void deleteByID_WhenEmpty_ShouldReturnException() {
+        doThrow(EmptyResultDataAccessException.class).when(repository).delete(anyInt());
+
+        try {
+            service.deleteByID(anyInt());
+            Assert.fail();
+        } catch (Exception e) {
+            assertEquals(EmptyResultDataAccessException.class, e.getClass());
+        }
+    }
+
+    @Test
+    public void deleteByID_WhenFull_ShouldDeleteSuccess() {
+        try {
+            service.deleteByID(anyInt());
+        } catch (Exception e) {
+            Assert.fail();
+        }
+    }
+    //endregion
+
+    //region saveOrUpdate()
+    @Test
+    public void saveOrUpdate_WhenDtoEmpty_ShouldReturnException() {
+        try {
+            service.saveOrUpdate(null);
+            Assert.fail();
+        } catch (Exception e) {
+            assertEquals(DistrictServiceImpl.PARAMETERS_MUST_BE_NOT_NULL, e.getMessage());
+        }
+    }
+
+    @Test
+    public void saveOrUpdate_WhenDtoNameEmpty_ShouldReturnException() {
+        try {
+            service.saveOrUpdate(DistrictDto.getBuilder().build());
+            Assert.fail();
+        } catch (Exception e) {
+            assertEquals(DistrictServiceImpl.DISTRICT_NAME_MUST_BE_NOT_NULL, e.getMessage());
+        }
+    }
+
+    @Test
+    public void saveOrUpdate_WhenDtoFull_ShouldReturnEntityID() {
+        District entity = new District();
+
+        Country country = Country.getBuilder()
+                .id(1)
+                .name("Türkiye")
+                .active(true)
+                .build();
+
+        City  city = City.getBuilder()
+                .id(1)
+                .name("Ankara")
+                .active(true)
+                .country(country)
+                .build();
+
+        entity = District.getBuilder()
+                .id(1)
+                .name("A")
+                .active(true)
+                .city(city)
+                .build();
+
+        given(repository.save(any(District.class))).willReturn(entity);
+
+        try {
+
+            CountryDto countryDto =CountryDto.getBuilder()
+                    .id(1)
+                    .name("Türkiye")
+                    .active(true)
+                    .build();
+
+            CityDto cityDto = CityDto.getBuilder()
+                    .id(1)
+                    .name("Ankara")
+                    .active(true)
+                    .countryDto(countryDto)
+                    .build();
+
+            DistrictDto dto = DistrictDto.getBuilder()
+                    .id(1)
+                    .name("A")
+                    .active(true)
+                    .cityDto(cityDto)
+                    .build();
+
+            int entityID = service.saveOrUpdate(dto);
+            assertEquals(1,entityID);
+        } catch (Exception e) {
+            Assert.fail();
+        }
+>>>>>>> task/COM-24
     }
   }
   //endregion

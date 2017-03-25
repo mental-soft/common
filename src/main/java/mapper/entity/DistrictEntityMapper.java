@@ -1,6 +1,7 @@
 package mapper.entity;
 
 import dto.DistrictDto;
+
 import entity.District;
 
 /**
@@ -10,17 +11,19 @@ public class DistrictEntityMapper {
 
   /**
    * DistrictDtosunu District e çevirir.
+   *
    * @param districtDto DistrictDto
    * @return District entitysi
    */
   public static District mapDtoToEntity(DistrictDto districtDto) {
+
     return District.getBuilder()
         .id(districtDto.getId())
         .name(districtDto.getName())
         .active(districtDto.getActive())
         .modifiedDate(districtDto.getModifiedDate())
         .createdDate(districtDto.getCreatedDate())
-        .city((districtDto.getCity()))
+        .city(CityEntityMapper.mapDtoToEntity(districtDto.getCityDto()))
         .build();
   }
 

@@ -2,7 +2,6 @@ package controller;
 
 import dto.CityDto;
 import dto.CountryDto;
-import dto.CountryListDto;
 
 import java.util.List;
 
@@ -16,9 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import service.CityService;
 import service.CountryService;
 
-
 /**
- * Created by admin on 17.3.2017.
+ * Created by okan on 14.03.2017.
  */
 @Controller
 public class CityController {
@@ -30,74 +28,141 @@ public class CityController {
   CountryService countryService;
 
   /**
-   * Cumle.
-   * @param model model
-   * @return cities view
+   * Cümle gelecek.
+   * @param model gelecek
+   * @return gelecek
    */
   @RequestMapping(value = "/cities", method = RequestMethod.GET)
   public String cityList(Model model) {
-
-    List<CityDto> cities = cityService.getAll();
-
-    model.addAttribute("cities", cities);
+    List<CityDto> result = cityService.getAll();
+    model.addAttribute("cities", result);
 
     return "city/cities";
   }
 
   /**
-   * Detay sayfası.
-   * @param id Şehir idsi
-   * @param model Şehir detay dtosu eklenir
-   * @return detail viewi
+   * Cümle gelecek.
+   * @param id gelecek
+   * @param model gelecek
+   * @return gelecek
+   */
+  @RequestMapping(value = "/country/{id}/cities", method = RequestMethod.GET)
+  public String cityListByCountry(@PathVariable(value = "id") Integer id, Model model) {
+    List<CityDto> result = cityService.getAllCityByCountry(id);
+    model.addAttribute("cities", result);
+
+    return "city/cities";
+  }
+
+  /**
+   * Cümle gelecek.
+   * @param id city idsi
+   * @param model city modeli
+   * @return city detail döndürecek
    */
   @RequestMapping(value = "/city/{id}", method = RequestMethod.GET)
   public String cityDetail(@PathVariable(value = "id") Integer id, Model model) {
-
-    CityDto cityDto = null;
+    CityDto result = null;
     try {
-      cityDto = cityService.getById(id);
+      result = cityService.getById(id);
     } catch (Exception e) {
       e.printStackTrace();
     }
-
-    model.addAttribute("cityDto", cityDto);
+    model.addAttribute("city", result);
 
     return "city/detail";
   }
 
   /**
-   * Şehir ekleme sayfası.
-   * @param model Model
-   * @return string
+   * cümle gelecek.
+   * @param model gelecek
+   * @return gelecek
    */
   @RequestMapping(value = "/city", method = RequestMethod.GET)
   public String cityAdd(Model model) {
-
     CityDto cityDto = new CityDto();
-    model.addAttribute("cityDto", cityDto);
+    List<CountryDto> result = countryService.getAll();
 
-    List<CountryDto> countries = countryService.getAll();
-    model.addAttribute("countries", countries);
+    model.addAttribute("countries", result);
+    model.addAttribute("cityDto", cityDto);
 
     return "city/add";
   }
 
   /**
-   * Şehir ekleme postu.
-   * @param cityDto şehir dto
-   * @return string
+   * Cümle gelecek.
+   * @param model gelecek
+   * @param cityDto gelecek
+   * @return gelecek
    */
   @RequestMapping(value = "/city", method = RequestMethod.POST)
-  public String cityAddPost(CityDto cityDto) {
-
+  public String cityPost(Model model, CityDto cityDto) {
     int id = 0;
     try {
+
       id = cityService.saveOrUpdate(cityDto);
     } catch (Exception e) {
       e.printStackTrace();
     }
-
     return "redirect:/city/" + id;
+  }
+
+  /**
+   * Cümle gelecek.
+   * @param id gelecek
+   * @param model gelecek.
+   * @return gelecek
+   */
+  @RequestMapping(value = "/city/{id}/edit", method = RequestMethod.GET)
+  public String cityEdit(@PathVariable(value = "id") Integer id, Model model) {
+    CityDto result = null;
+    List<CountryDto> countryDtoList = countryService.getAll();
+
+    try {
+      result = cityService.getById(id);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    model.addAttribute("countries", countryDtoList);
+    model.addAttribute("cityDto", result);
+
+    return "city/edit";
+  }
+
+  /**
+   * Cümle gelecek.
+   * @param id gelecek
+   * @param model gelecek
+   * @return gelecek
+   */
+  @RequestMapping(value = "/city/{id}/delete", method = RequestMethod.GET)
+  public String cityDelete(@PathVariable(value = "id") Integer id, Model model) {
+    CityDto result = null;
+    try {
+      result = cityService.getById(id);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    model.addAttribute("cityDto", result);
+
+    return "city/delete";
+  }
+
+  /**
+   * Cümle gelecek.
+   * @param id gelecek
+   * @param model gelecek
+   * @return gelecek
+   */
+  @RequestMapping(value = "/city/delete", method = RequestMethod.POST)
+  public String cityDeletePost(Integer id, Model model) {
+    try {
+      cityService.deleteById(id);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+    return "redirect:/cities";
   }
 
 }

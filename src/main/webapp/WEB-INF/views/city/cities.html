@@ -5,52 +5,30 @@
     <title>Title</title>
 </head>
 <body>
+<<<<<<< HEAD
 Cities
 
 <hr/>
-
 <table>
     <tr>
-        <th>
-            Ülke Adı
-        </th>
-        <th>
-            Şehir Adı
-        </th>
-        <th>
-            Kod
-        </th>
-        <th>
-            Büyükşehir mi?
-        </th>
-        <th>
-            Aktif mi?
-        </th>
-        <th>
-            İşlemler
-        </th>
+        <th>Ülke Adı</th>
+        <th>Şehir Adı</th>
+        <th>Şehir Kodu</th>
+        <th>Büyükşehir Mi?</th>
+        <th>Aktif Mi?</th>
+        <th>İşlemler</th>
     </tr>
-    <tr data-th-each="city : ${cities}" data-th-object="${city}">
-        <td data-th-text="*{countryDto.name}">
-            Türkiye
-        </td>
-        <td data-th-text="*{name}">
-            Ankara
-        </td>
-        <td data-th-text="${city.code}">
-            06
-        </td>
-        <td data-th-text="${city.isBig}?'Evet':'Hayır'">
-            Evet
-        </td>
-        <td data-th-text="${city.isActive}?'Evet':'Hayır'">
-            Evet
-        </td>
-        <td>
-            <a href="#" data-th-href="@{'/city/{id}'(id=${city.id})}">Detay</a>
-            <a href="#">Güncelle</a>
-            <a href="#">Sil</a>
-            <a href="#">İlçeler</a>
+    <tr data-th-each="city:${cities}">
+        <td data-th-text="${city.CountryDto.name}"></td>
+        <td data-th-text="${city.name}"></td>
+        <td data-th-text="${city.code}"></td>
+        <td data-th-text="${city.Big}? 'Evet' : 'Hayır' "></td>
+        <td data-th-text="${city.Active}? 'Evet' : 'Hayır' "></td>
+        <td><a href="#" data-th-href="@{'/city/{id}'(id=${city.id})}"> Detay </a>
+            <a href="#" data-th-href="@{'/city/{id}/edit'(id=${city.id})}"> Güncelle</a>
+            <a href="#" data-th-href="@{'/city/{id}/delete'(id=${city.id})}"> Sil</a>
+            <a href="#" data-th-href="@{'/city/{id}/districts'(id=${city.id})}"> İlçeler</a>
+
         </td>
     </tr>
 </table>

@@ -5,6 +5,7 @@
     <title>Title</title>
 </head>
 <body>
+<<<<<<< HEAD
 Şehir Ekle
 <hr/>
 
@@ -62,6 +63,52 @@
     </table>
 
     <button type="submit">Kaydet</button>
+=======
+
+Şehir Ekle
+<form method="post" data-th-action="@{/city}" data-th-object="${cityDto}">
+    <table>
+
+         <tr>
+        <td>Ülke Adı</td>
+        <td>
+
+
+            <select name="countryDto.id">
+                <option value="">Ülke Seçiniz.</option>
+                <option data-th-each="country : ${countries}" data-th-value="${country.id}" data-th-text="${country.name}">
+                    trtrtr
+                </option>
+            </select>
+
+        </td>
+
+        </tr>
+
+        <tr>
+            <td>Şehir Adı</td>
+            <td><input data-th-field="${cityDto.name}" type="text"/></td>
+        </tr>
+        <tr>
+            <td>Kod</td>
+            <td>
+                <input data-th-field="${cityDto.code}" type="text"/></td>
+        </tr>
+
+
+        <tr>
+            <td>Büyükşehir Mi?</td>
+            <td><input data-th-field="${cityDto.Big}" type="checkbox"/></td>
+        </tr>
+
+        <tr>
+            <td>Aktif Mi?</td>
+            <td><input data-th-field="${cityDto.Active}" type="checkbox"/></td>
+        </tr>
+    </table>
+
+    <button type="submit">Ekle</button>
+>>>>>>> task/COM-24
 </form>
 
 </body>

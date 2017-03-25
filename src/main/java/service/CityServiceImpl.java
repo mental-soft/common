@@ -20,8 +20,8 @@ public class CityServiceImpl implements CityService {
   //region Messages
   public static final String NOT_FOUND_MESSAGE = "Ülke kaydı bulunamadı.";
   public static final String PARAMETERS_MUST_BE_NOT_NULL = "Parametre girilmesi gerekmektedir.";
-  public static final String CITY_NAME_MUST_BE_NOT_NULL = "Sehir Adi girilmesi gerekmektedir.";
-  public static final String CITY_SHOULD_NOT_HAVE_DISTRICT = "Sehire ait şehirler bulunmaktadır.";
+  public static final String CITY_NAME_MUST_BE_NOT_NULL = "İl Adı girilmesi gerekmektedir.";
+  public static final String CITY_SHOULD_NOT_HAVE_DISTRICT = "İlin ilçeleri bulunmaktadır.";
   //endregion
 
   @Autowired
@@ -42,6 +42,7 @@ public class CityServiceImpl implements CityService {
     return cityRepository.countByCountry_Id(countryId) > 0 ? true : false;
   }
 
+
   @Override
   public List<CityDto> getAll() {
     List<City> list = cityRepository.findAll();
@@ -50,7 +51,7 @@ public class CityServiceImpl implements CityService {
 
   @Override
   public CityDto getById(Integer cityId) throws Exception {
-    City entity = cityRepository.getOne(cityId);
+    City entity = cityRepository.findOne(cityId);
 
     if (entity == null) {
       throw new Exception(NOT_FOUND_MESSAGE);

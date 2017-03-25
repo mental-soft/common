@@ -1,7 +1,6 @@
 package dto;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 /**
  * Created by okan on 12.02.2017.

@@ -10,9 +10,9 @@ import java.util.stream.Collectors;
  * Created by okan on 15.02.2017.
  */
 public class DistrictListDtoMapper {
-
   /**
    * District entity listesini DistrictDto listesine çevirir.
+   *
    * @param entities District entity listesi
    * @return DistrictDto listesi
    */
@@ -24,13 +24,15 @@ public class DistrictListDtoMapper {
 
   /**
    * District entity sini DistrictDto ya çevirir.
+   *
    * @param entity District entitysi
    * @return DistrictDto
    */
+
   public static DistrictDto mapEntityToDto(District entity) {
     return DistrictDto.getBuilder()
         .id(entity.getId())
-        .city(entity.getCity())
+        .cityDto(CityListDtoMapper.mapEntityToDto(entity.getCity()))
         .name(entity.getName())
         .active(entity.getActive())
         .modifiedDate(entity.getModifiedDate())

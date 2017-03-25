@@ -1,21 +1,19 @@
 package dto;
 
-import entity.City;
-
 import java.time.LocalDateTime;
-import java.util.Date;
+
 
 /**
  * Created by okan on 12.02.2017.
  */
 public class DistrictDto {
-
   private Integer id;
   private String name;
   private Boolean isActive;
   private LocalDateTime modifiedDate;
   private LocalDateTime createdDate;
-  private City city;
+  private CityDto cityDto;
+
 
   public Integer getId() {
     return id;
@@ -61,12 +59,12 @@ public class DistrictDto {
     return new DistrictDtoBuilder();
   }
 
-  public City getCity() {
-    return city;
+  public CityDto getCityDto() {
+    return cityDto;
   }
 
-  public void setCity(City city) {
-    this.city = city;
+  public void setCityDto(CityDto cityDto) {
+    this.cityDto = cityDto;
   }
 
   public static class DistrictDtoBuilder {
@@ -102,14 +100,16 @@ public class DistrictDto {
       return this;
     }
 
-    public DistrictDtoBuilder city(City city) {
-      this.districtDto.setCity(city);
+    public DistrictDtoBuilder cityDto(CityDto cityDto) {
+      this.districtDto.setCityDto(cityDto);
       return this;
     }
 
     public DistrictDto build() {
       return districtDto;
     }
-  }
 
+  }
 }
+
+

@@ -1,7 +1,7 @@
 package entity;
 
 import java.time.LocalDateTime;
-import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,8 +9,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+
 
 /**
  * District tablosu ile map edildi.
@@ -45,9 +49,20 @@ public class District {
   @JoinColumn(name = "CITY_ID", referencedColumnName = "ID")
   private City city;
 
+  @PreUpdate
+  public void preUpdate() {
+    modifiedDate = LocalDateTime.now();
+  }
+
+  @PrePersist
+  public void prePersist() {
+    createdDate = LocalDateTime.now();
+  }
+
   public Integer getId() {
     return id;
   }
+
 
   public void setId(Integer id) {
     this.id = id;
