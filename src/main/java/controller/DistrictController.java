@@ -27,6 +27,11 @@ public class DistrictController {
   @Autowired
   CityService cityService;
 
+  /**
+   * Cümle gelecek.
+   * @param model gelecek
+   * @return gelecek
+   */
   @RequestMapping(value = "/districts", method = RequestMethod.GET)
   public String districtList(Model model) {
     List<DistrictDto> result = districtService.getAll();
@@ -89,7 +94,7 @@ public class DistrictController {
    * @param model gelecek
    * @param districtDto gelecek
    * @param cityId gelecek
-   * @return
+   * @return gelecek
    */
   @RequestMapping(value = "/district", method = RequestMethod.POST)
   public String districtPost(Model model, DistrictDto districtDto, @RequestParam Integer cityId) {
@@ -150,9 +155,10 @@ public class DistrictController {
 
   /**
    * Cümle gelecek.
+   * Cümle gelecek.
    * @param id gelecek
    * @param model gelecek
-   * @return
+   * @return gelecek
    */
   @RequestMapping(value = "/district/delete", method = RequestMethod.POST)
   public String districtDeletePost(Integer id, Model model) {

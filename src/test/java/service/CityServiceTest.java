@@ -147,46 +147,7 @@ public class CityServiceTest {
   //endregion()
 
   //region getById()
-  @Test
-  public void getById_WhenEmpty_ShouldReturnException() {
-    given(cityRepository.getOne(anyInt())).willReturn(null);
 
-    try {
-      cityService.getById(anyInt());
-      Assert.fail();
-    } catch (Exception e) {
-      assertEquals(CityServiceImpl.NOT_FOUND_MESSAGE, e.getMessage());
-    }
-  }
-
-  @Test
-  public void getById_WhenFull_ShouldReturnInfo() {
-    Country country = Country.getBuilder()
-        .id(1)
-        .name("China")
-        .active(true)
-        .build();
-
-    City entity = City.getBuilder()
-        .id(1)
-        .name("A")
-        .active(true)
-        .country(country)
-        .build();
-
-    given(cityRepository.getOne(anyInt())).willReturn(entity);
-
-    try {
-      CityDto dto = cityService.getById(anyInt());
-
-      int id = dto.getId();
-      assertEquals(1, id);
-      assertEquals("A", dto.getName());
-      assertEquals(true, dto.getActive());
-    } catch (Exception e) {
-      Assert.fail();
-    }
-  }
   //endregion
 
   //region deleteById()
@@ -222,50 +183,50 @@ public class CityServiceTest {
       Assert.fail();
     }
   }
-    //endregion()
+  //endregion()
 
-    //region getByID()
-    @Test
-    public void getByID_WhenEmpty_ShouldReturnException() {
-        given(cityRepository.findOne(anyInt())).willReturn(null);
+  //region getById()
+  @Test
+  public void getById_WhenEmpty_ShouldReturnException() {
+    given(cityRepository.findOne(anyInt())).willReturn(null);
 
-        try {
-            cityService.getById(anyInt());
-            Assert.fail();
-        } catch (Exception e) {
-            assertEquals(CityServiceImpl.NOT_FOUND_MESSAGE, e.getMessage());
-        }
+    try {
+      cityService.getById(anyInt());
+      Assert.fail();
+    } catch (Exception e) {
+      assertEquals(CityServiceImpl.NOT_FOUND_MESSAGE, e.getMessage());
     }
+  }
 
-    @Test
-    public void getByID_WhenFull_ShouldReturnInfo() {
-        City entity = new City();
-        Country country = Country.getBuilder()
-                .id(1)
-                .name("China")
-                .active(true)
-                .build();
+  @Test
+  public void getById_WhenFull_ShouldReturnInfo() {
+    City entity ;
+    Country country = Country.getBuilder()
+        .id(1)
+        .name("China")
+        .active(true)
+        .build();
 
-        entity = City.getBuilder()
-                .id(1)
-                .name("A")
-                .active(true)
-                .country(country)
-                .build();
+    entity = City.getBuilder()
+        .id(1)
+        .name("A")
+        .active(true)
+        .country(country)
+        .build();
 
-        given(cityRepository.findOne(anyInt())).willReturn(entity);
+    given(cityRepository.findOne(anyInt())).willReturn(entity);
 
-        try {
-            CityDto dto = cityService.getById(anyInt());
+    try {
+      CityDto dto = cityService.getById(anyInt());
 
-            int id = dto.getId();
-            assertEquals(1, id);
-            assertEquals("A", dto.getName());
-            assertEquals(true, dto.getActive());
-        } catch (Exception e) {
-            Assert.fail();
-        }
+      int id = dto.getId();
+      assertEquals(1, id);
+      assertEquals("A", dto.getName());
+      assertEquals(true, dto.getActive());
+    } catch (Exception e) {
+      Assert.fail();
     }
+  }
 
   //endregion
 
@@ -280,15 +241,32 @@ public class CityServiceTest {
     }
   }
 
+  //endregion
+
+  //region saveOrUpdate()
+
+
+  @Test
+  public void saveOrUpdate_WhenDtoNameEmpty_ShouldReturnException() {
+    try {
+      cityService.saveOrUpdate(CityDto.getBuilder().build());
+      Assert.fail();
+    } catch (Exception e) {
+      assertEquals(CityServiceImpl.CITY_NAME_MUST_BE_NOT_NULL, e.getMessage());
+    }
+  }
+
   @Test
   public void saveOrUpdate_WhenDtoFull_ShouldReturnEntityId() {
+    City entity ;
+
     Country country = Country.getBuilder()
         .id(1)
         .name("China")
         .active(true)
         .build();
 
-    City entity = City.getBuilder()
+    entity = City.getBuilder()
         .id(1)
         .name("A")
         .active(true)
@@ -317,72 +295,8 @@ public class CityServiceTest {
     } catch (Exception e) {
       Assert.fail();
     }
+
   }
-
-    @Test
-    public void deleteByID_WhenFull_ShouldDeleteSuccess() {
-        try {
-            cityService.deleteById(anyInt());
-        } catch (Exception e) {
-            Assert.fail();
-        }
-    }
-    //endregion
-
-    //region saveOrUpdate()
-
-
-    @Test
-    public void saveOrUpdate_WhenDtoNameEmpty_ShouldReturnException() {
-        try {
-            cityService.saveOrUpdate(CityDto.getBuilder().build());
-            Assert.fail();
-        } catch (Exception e) {
-            assertEquals(CityServiceImpl.CITY_NAME_MUST_BE_NOT_NULL, e.getMessage());
-        }
-    }
-
-    @Test
-    public void saveOrUpdate_WhenDtoFull_ShouldReturnEntityID() {
-        City entity = new City();
-
-        Country country = Country.getBuilder()
-                .id(1)
-                .name("China")
-                .active(true)
-                .build();
-
-        entity = City.getBuilder()
-                .id(1)
-                .name("A")
-                .active(true)
-                .country(country)
-                .build();
-
-        given(cityRepository.save(any(City.class))).willReturn(entity);
-
-        try {
-
-            CountryDto countryDto = CountryDto.getBuilder()
-                    .id(1)
-                    .name("China")
-                    .active(true)
-                    .build();
-
-            CityDto dto = CityDto.getBuilder()
-                    .id(1)
-                    .name("A")
-                    .active(true)
-                    .countryDto(countryDto)
-                    .build();
-
-            int entityID = cityService.saveOrUpdate(dto);
-            assertEquals(1,entityID);
-        } catch (Exception e) {
-            Assert.fail();
-        }
-
-    }
 
   //endregion
 }
