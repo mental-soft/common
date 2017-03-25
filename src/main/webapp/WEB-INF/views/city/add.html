@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+Şehir Ekle
+<hr/>
+
+<form data-th-action="@{/city}" method="post" data-th-object="${cityDto}">
+    <table  data-th-object="${cityDto}">
+        <tr>
+            <td>
+                Ülke Seçin:
+            </td>
+            <td>
+
+                <select name="countryDto.id">
+                    <option data-th-each="country : ${countries}" data-th-value="${country.id}" data-th-text="${country.name}">
+                        trtrtr
+                    </option>
+                </select>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Şehir Adı:
+            </td>
+            <td>
+
+                <input type="text" data-th-field="*{name}"/>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Kod:
+            </td>
+            <td>
+                <input type="text" data-th-field="*{code}"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Büyükşehir mi?:
+            </td>
+            <td>
+                <input type="checkbox" data-th-field="*{isBig}"/>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Aktif mi?:
+            </td>
+            <td>
+                <input type="checkbox" data-th-field="*{isActive}"/>
+            </td>
+        </tr>
+    </table>
+
+    <button type="submit">Kaydet</button>
+</form>
+
+</body>
+</html>

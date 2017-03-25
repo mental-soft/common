@@ -6,6 +6,9 @@
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
     <changeSet id="1" author="demirtasokan">
+        <comment>
+            BLOOD_GROUP tablosu olusturuldu.
+        </comment>
         <createTable tableName="BLOOD_GROUP">
             <column name="ID" type="NUMBER"/>
             <column name="NAME" type="NVARCHAR(250)"/>
@@ -17,6 +20,9 @@
     </changeSet>
 
     <changeSet id="2" author="demirtasokan">
+        <comment>
+            TITLE tablosu olusturuldu.
+        </comment>
         <createTable tableName="TITLE">
             <column name="ID" type="NUMBER"/>
             <column name="NAME" type="NVARCHAR(250)"/>

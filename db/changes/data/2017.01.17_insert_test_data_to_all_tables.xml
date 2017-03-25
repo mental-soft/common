@@ -9,7 +9,7 @@
 
     <changeSet id="1" author="erhan.karakaya" context="!qa and !prod">
         <comment>
-            COUNTRY tablosuna 5 farklı ülke eklendi.
+            COUNTRY tablosuna 5 farklı ulke eklendi.
         </comment>
         <insert tableName="COUNTRY">
             <column name="ID" value="1"/>
