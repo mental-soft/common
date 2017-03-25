@@ -12,11 +12,7 @@
         </comment>
             <addUniqueConstraint tableName="COUNTRY" columnNames="NAME" constraintName="UNQ_COUNTRY_NAME"/>
             <addUniqueConstraint tableName="COUNTRY" columnNames="CODE" constraintName="UNQ_COUNTRY_CODE"/>
-            <addUniqueConstraint tableName="UNIVERSITY_EDUCATION_LEVEL" columnNames="NAME" constraintName="UNQ_UNI_EDU_LEVEL_NAME"/>
-            <addUniqueConstraint tableName="UNIVERSITY_DEPARTMENT" columnNames="NAME" constraintName="UNQ_UNI_DEPARTMENT_NAME"/>
-            <addUniqueConstraint tableName="EDUCATION_TYPE" columnNames="NAME" constraintName="UNQ_EDUCATION_TYPE_NAME"/>
             <addUniqueConstraint tableName="JOB" columnNames="NAME" constraintName="UNQ_JOB_NAME"/>
-            <addUniqueConstraint tableName="UNIVERSITY" columnNames="NAME" constraintName="UNQ_UNIVERSITY_NAME"/>
             <addUniqueConstraint tableName="BLOOD_GROUP" columnNames="NAME" constraintName="UNQ_BLOOD_GROUP_NAME"/>
             <addUniqueConstraint tableName="TITLE" columnNames="NAME" constraintName="UNQ_TITLE_NAME"/>
     </changeSet>
@@ -70,44 +66,12 @@
             ADD CONSTRAINT NN_DISTRICT_IS_ACTIVE
             CHECK (IS_ACTIVE IS NOT NULL);
 
-            ALTER TABLE UNIVERSITY_EDUCATION_LEVEL
-            ADD CONSTRAINT NN_UNI_EDU_LEVEL_NAME
-            CHECK (NAME IS NOT NULL);
-
-            ALTER TABLE UNIVERSITY_EDUCATION_LEVEL
-            ADD CONSTRAINT NN_UNI_EDU_LEVEL_IS_ACTIVE
-            CHECK (IS_ACTIVE IS NOT NULL);
-
-            ALTER TABLE UNIVERSITY_DEPARTMENT
-            ADD CONSTRAINT NN_UNI_DEPART_NAME
-            CHECK (NAME IS NOT NULL);
-
-            ALTER TABLE UNIVERSITY_DEPARTMENT
-            ADD CONSTRAINT NN_UNI_DEPART_IS_ACTIVE
-            CHECK (IS_ACTIVE IS NOT NULL);
-
-            ALTER TABLE EDUCATION_TYPE
-            ADD CONSTRAINT NN_EDUCATION_TYPE_NAME
-            CHECK (NAME IS NOT NULL);
-
-            ALTER TABLE EDUCATION_TYPE
-            ADD CONSTRAINT NN_EDUCATION_TYPE_IS_ACTIVE
-            CHECK (IS_ACTIVE IS NOT NULL);
-
             ALTER TABLE JOB
             ADD CONSTRAINT NN_JOB_NAME
             CHECK (NAME IS NOT NULL);
 
             ALTER TABLE JOB
             ADD CONSTRAINT NN_JOB_IS_ACTIVE
-            CHECK (IS_ACTIVE IS NOT NULL);
-
-            ALTER TABLE UNIVERSITY
-            ADD CONSTRAINT NN_UNIVERSITY_NAME
-            CHECK (NAME IS NOT NULL);
-
-            ALTER TABLE UNIVERSITY
-            ADD CONSTRAINT NN_UNIVERSITY_IS_ACTIVE
             CHECK (IS_ACTIVE IS NOT NULL);
 
             ALTER TABLE BLOOD_GROUP

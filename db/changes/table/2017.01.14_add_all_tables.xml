@@ -5,6 +5,8 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
+<<<<<<< HEAD
+=======
     <changeSet id="1" author="erhan.karakaya">
         <comment>
             UNIVERSITY_EDUCATION_LEVEL tablosu olusturuldu.
@@ -46,6 +48,7 @@
         </createTable>
     </changeSet>
 
+>>>>>>> master
     <changeSet id="1" author="sefa.aras">
         <comment>
             JOB tablosu olusturuldu.
@@ -60,6 +63,8 @@
         </createTable>
     </changeSet>
 
+<<<<<<< HEAD
+=======
     <changeSet id="1" author="coskun.deniz">
         <comment>
             UNIVERSITY tablosu olusturuldu.
@@ -74,4 +79,5 @@
         </createTable>
     </changeSet>
 
+>>>>>>> master
 </databaseChangeLog>
