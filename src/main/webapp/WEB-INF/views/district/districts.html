@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+
+<table>
+    <tr>
+        <th>Şehir Adı</th>
+        <th>İlçe Adı</th>
+        <th>Aktif Mi?</th>
+        <th>İşlemler</th>
+    </tr>
+    <tr data-th-each="district:${districts}">
+        <td data-th-text="${district.CityDto.name}"></td>
+        <td data-th-text="${district.name}"></td>
+        <td data-th-text="${district.Active}? 'Evet' : 'Hayır' "></td>
+
+        <td><a href="#" data-th-href="@{'/district/{id}'(id=${district.id})}"> Detay </a>
+            <a href="#" data-th-href="@{'/district/{id}/edit'(id=${district.id})}"> Güncelle</a>
+            <a href="#" data-th-href="@{'/district/{id}/delete'(id=${district.id})}"> Sil</a>
+
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

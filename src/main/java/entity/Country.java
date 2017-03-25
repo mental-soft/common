@@ -1,13 +1,20 @@
 package entity;
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Where;
-
-import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Convert;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 /**
  * Country tablosu ile map edildi.
@@ -17,98 +24,171 @@ import java.util.List;
 @Entity
 @Table(name = "COUNTRY")
 @SequenceGenerator(name = "ID_SEQ",
-        sequenceName = "SEQ_COUNTRY_ID",
-        allocationSize = 1)
+    sequenceName = "SEQ_COUNTRY_ID",
+    allocationSize = 1)
 public class Country {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_SEQ")
-    @Column(name = "ID")
-    private Integer id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_SEQ")
+  @Column(name = "ID")
+  private Integer id;
 
-    @Column(name = "NAME", columnDefinition = "NVARCHAR2")
-    private String name;
+  @Column(name = "NAME", columnDefinition = "NVARCHAR2")
+  private String name;
 
-    @Column(name = "CODE", columnDefinition = "NVARCHAR2")
-    private String code;
+  @Column(name = "CODE", columnDefinition = "NVARCHAR2")
+  private String code;
 
-    @Column(name = "EN_NAME", columnDefinition = "NVARCHAR2")
-    private String enName;
+  @Column(name = "EN_NAME", columnDefinition = "NVARCHAR2")
+  private String enName;
 
-    @Column(name = "IS_ACTIVE", columnDefinition = "NUMBER")
-    private Boolean isActive;
+  @Column(name = "IS_ACTIVE", columnDefinition = "NUMBER")
+  private Boolean isActive;
 
-    @Column(name = "CREATED_DATE", columnDefinition = "TIMESTAMP")
-    private Date createdDate;
+  @Convert(converter = LocalDateTimeConverter.class)
+  @Column(name = "CREATED_DATE", columnDefinition = "TIMESTAMP")
+  private LocalDateTime createdDate;
 
-    @Column(name = "MODIFIED_DATE", columnDefinition = "TIMESTAMP")
-    private Date modifiedDate;
+  @Convert(converter = LocalDateTimeConverter.class)
+  @Column(name = "MODIFIED_DATE", columnDefinition = "TIMESTAMP")
+  private LocalDateTime modifiedDate;
 
-    @OneToMany(mappedBy = "country",cascade = CascadeType.ALL)
-    private List<City> cities;
+  @OneToMany(mappedBy = "country", cascade = CascadeType.ALL)
+  private List<City> cities;
 
-    public Country() {
-        cities = new ArrayList<>();
+  @PreUpdate
+  public void preUpdate() {
+    modifiedDate = LocalDateTime.now();
+  }
+
+  @PrePersist
+  public void prePersist() {
+    createdDate = LocalDateTime.now();
+  }
+
+  public Country() {
+    cities = new ArrayList<>();
+  }
+
+  public Integer getId() {
+    return id;
+  }
+
+  public void setId(Integer id) {
+    this.id = id;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public String getCode() {
+    return code;
+  }
+
+  public void setCode(String code) {
+    this.code = code;
+  }
+
+  public String getEnName() {
+    return enName;
+  }
+
+  public void setEnName(String enName) {
+    this.enName = enName;
+  }
+
+  public LocalDateTime getCreatedDate() {
+    return createdDate;
+  }
+
+  public void setCreatedDate(LocalDateTime createdDate) {
+    this.createdDate = createdDate;
+  }
+
+  public LocalDateTime getModifiedDate() {
+    return modifiedDate;
+  }
+
+  public void setModifiedDate(LocalDateTime modifiedDate) {
+    this.modifiedDate = modifiedDate;
+  }
+
+  public Boolean getActive() {
+    return isActive;
+  }
+
+  public void setActive(Boolean active) {
+    isActive = active;
+  }
+
+  public List<City> getCities() {
+    return cities;
+  }
+
+  public void setCities(List<City> cities) {
+    this.cities = cities;
+  }
+
+
+  public static CountryBuilder getBuilder() {
+    return new CountryBuilder();
+
+  }
+
+  public static class CountryBuilder {
+
+
+    private Country country;
+
+    public CountryBuilder() {
+      country = new Country();
     }
 
-    public Integer getId() {
-        return id;
+    public CountryBuilder id(Integer id) {
+      this.country.setId(id);
+      return this;
     }
 
-    public String getName() {
-        return name;
+    public CountryBuilder name(String name) {
+      this.country.setName(name);
+      return this;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public CountryBuilder enName(String enName) {
+      this.country.setEnName(enName);
+      return this;
     }
 
-    public String getCode() {
-        return code;
+    public CountryBuilder code(String code) {
+      this.country.setCode(code);
+      return this;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public CountryBuilder modifiedDate(LocalDateTime modifiedDate) {
+      this.country.setModifiedDate(modifiedDate);
+      return this;
     }
 
-    public String getEnName() {
-        return enName;
+    public CountryBuilder createdDate(LocalDateTime createdDate) {
+      this.country.setCreatedDate(createdDate);
+      return this;
     }
 
-    public void setEnName(String enName) {
-        this.enName = enName;
+    public CountryBuilder active(Boolean active) {
+      this.country.setActive(active);
+      return this;
     }
 
-    public Date getCreatedDate() {
-        return createdDate;
+    public Country build() {
+      return country;
+
     }
 
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    public Date getModifiedDate() {
-        return modifiedDate;
-    }
-
-    public void setModifiedDate(Date modifiedDate) {
-        this.modifiedDate = modifiedDate;
-    }
-
-    public Boolean getActive() {
-        return isActive;
-    }
-
-    public void setActive(Boolean active) {
-        isActive = active;
-    }
-
-    public List<City> getCities() {
-        return cities;
-    }
-
-    public void setCities(List<City> cities) {
-        this.cities = cities;
-    }
+  }
 
 }

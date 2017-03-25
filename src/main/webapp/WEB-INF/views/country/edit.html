@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+
+Ülke Güncelle
+<form method="post" data-th-action="@{/country}" data-th-object="${countryDto}">
+    <input data-th-field="*{id}" type="hidden"/>
+    <table>
+        <tr>
+            <td>Ülke Adı</td>
+            <td><input data-th-field="*{name}" type="text"/></td>
+        </tr>
+        <tr>
+            <td>Ülke Kodu</td>
+            <td>
+                <input data-th-field="*{code}" type="text"/></td>
+        </tr>
+        <tr>
+            <td>İngilizce Adı</td>
+            <td><input data-th-field="*{enName}" type="text"/></td>
+        </tr>
+        <tr>
+            <td>Aktif Mi?</td>
+            <td><input data-th-field="*{isActive}" type="checkbox"/></td>
+        </tr>
+    </table>
+
+    <button type="submit">Güncelle</button>
+</form>
+
+</body>
+</html>

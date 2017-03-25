@@ -6,18 +6,21 @@
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
     <changeSet id="1" author="demirtasokan">
+        <comment>
+            COUNTRY.NAME, COUNTRY.CODE, UNIVERSITY_EDUCATION_LEVEL.NAME, UNIVERSITY_DEPARTMENT.NAME, EDUCATION_TYPE.NAME,
+            JOB.NAME, UNIVERSITY.NAME, BLOOD_GROUP.NAME ve TITLE.NAME kolonlarina UNIQUE constrainti eklendi.
+        </comment>
             <addUniqueConstraint tableName="COUNTRY" columnNames="NAME" constraintName="UNQ_COUNTRY_NAME"/>
             <addUniqueConstraint tableName="COUNTRY" columnNames="CODE" constraintName="UNQ_COUNTRY_CODE"/>
-            <addUniqueConstraint tableName="UNIVERSITY_EDUCATION_LEVEL" columnNames="NAME" constraintName="UNQ_UNI_EDU_LEVEL_NAME"/>
-            <addUniqueConstraint tableName="UNIVERSITY_DEPARTMENT" columnNames="NAME" constraintName="UNQ_UNI_DEPARTMENT_NAME"/>
-            <addUniqueConstraint tableName="EDUCATION_TYPE" columnNames="NAME" constraintName="UNQ_EDUCATION_TYPE_NAME"/>
             <addUniqueConstraint tableName="JOB" columnNames="NAME" constraintName="UNQ_JOB_NAME"/>
-            <addUniqueConstraint tableName="UNIVERSITY" columnNames="NAME" constraintName="UNQ_UNIVERSITY_NAME"/>
             <addUniqueConstraint tableName="BLOOD_GROUP" columnNames="NAME" constraintName="UNQ_BLOOD_GROUP_NAME"/>
             <addUniqueConstraint tableName="TITLE" columnNames="NAME" constraintName="UNQ_TITLE_NAME"/>
     </changeSet>
 
     <changeSet id="2" author="demirtasokan">
+        <comment>
+            NOT NULL constraintleri eklendi.
+        </comment>
         <sql>
             ALTER TABLE COUNTRY
             ADD CONSTRAINT NN_COUNTRY_NAME
@@ -63,44 +66,12 @@
             ADD CONSTRAINT NN_DISTRICT_IS_ACTIVE
             CHECK (IS_ACTIVE IS NOT NULL);
 
-            ALTER TABLE UNIVERSITY_EDUCATION_LEVEL
-            ADD CONSTRAINT NN_UNI_EDU_LEVEL_NAME
-            CHECK (NAME IS NOT NULL);
-
-            ALTER TABLE UNIVERSITY_EDUCATION_LEVEL
-            ADD CONSTRAINT NN_UNI_EDU_LEVEL_IS_ACTIVE
-            CHECK (IS_ACTIVE IS NOT NULL);
-
-            ALTER TABLE UNIVERSITY_DEPARTMENT
-            ADD CONSTRAINT NN_UNI_DEPART_NAME
-            CHECK (NAME IS NOT NULL);
-
-            ALTER TABLE UNIVERSITY_DEPARTMENT
-            ADD CONSTRAINT NN_UNI_DEPART_IS_ACTIVE
-            CHECK (IS_ACTIVE IS NOT NULL);
-
-            ALTER TABLE EDUCATION_TYPE
-            ADD CONSTRAINT NN_EDUCATION_TYPE_NAME
-            CHECK (NAME IS NOT NULL);
-
-            ALTER TABLE EDUCATION_TYPE
-            ADD CONSTRAINT NN_EDUCATION_TYPE_IS_ACTIVE
-            CHECK (IS_ACTIVE IS NOT NULL);
-
             ALTER TABLE JOB
             ADD CONSTRAINT NN_JOB_NAME
             CHECK (NAME IS NOT NULL);
 
             ALTER TABLE JOB
             ADD CONSTRAINT NN_JOB_IS_ACTIVE
-            CHECK (IS_ACTIVE IS NOT NULL);
-
-            ALTER TABLE UNIVERSITY
-            ADD CONSTRAINT NN_UNIVERSITY_NAME
-            CHECK (NAME IS NOT NULL);
-
-            ALTER TABLE UNIVERSITY
-            ADD CONSTRAINT NN_UNIVERSITY_IS_ACTIVE
             CHECK (IS_ACTIVE IS NOT NULL);
 
             ALTER TABLE BLOOD_GROUP
@@ -122,6 +93,9 @@
     </changeSet>
 
     <changeSet id="3" author="demirtasokan">
+        <comment>
+            COUNTRY.IS_ACTIVE alanina CHECK constraint eklendi. IS_ACTIVE alani (0,1) araliginda olmali.
+        </comment>
         <sql>
             ALTER TABLE COUNTRY
             ADD CONSTRAINT CHK_COUNTRY_IS_ACTIVE

@@ -1,6 +1,6 @@
 package service;
 
-import dto.CountryListDto;
+import dto.CountryDto;
 
 import java.util.List;
 
@@ -9,8 +9,12 @@ import java.util.List;
  */
 public interface CountryService {
 
-    long countryActiveCount();
+  List<CountryDto> getAll();
 
-    List<CountryListDto> getAllCountry();
+  CountryDto getById(int countryId) throws Exception;
+
+  void deleteById(int countryId) throws Exception;
+
+  int saveOrUpdate(CountryDto dto) throws Exception;
 
 }

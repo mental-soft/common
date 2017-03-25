@@ -6,6 +6,9 @@
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
     <changeSet id="1" author="coskun.deniz">
+        <comment>
+            COUNTRY tablosu olusturuldu.
+        </comment>
         <createTable tableName="COUNTRY">
             <column name="ID" type="NUMBER"/>
             <column name="NAME" type="NVARCHAR(250)"/>
@@ -19,10 +22,16 @@
     </changeSet>
 
     <changeSet id="1" author="demirtasokan">
+        <comment>
+            COUNTRY tablosundaki ID kolunu PrimaryKey olarak ayarlandi.
+        </comment>
         <addPrimaryKey tableName="COUNTRY" columnNames="ID" constraintName="PK_COUNTRY_ID"/>
     </changeSet>
 
     <changeSet id="2" author="coskun.deniz">
+        <comment>
+            CITY tablosu olusturuldu.
+        </comment>
         <createTable tableName="CITY">
             <column name="ID" type="NUMBER"/>
             <column name="COUNTRY_ID" type="NUMBER">
