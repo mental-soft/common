@@ -80,7 +80,7 @@ public class CountryController {
    * @param countryDto Eklenmesi veya güncellenmesi istenen CountryDto değeri
    * @return 'country/{id}' controllerına yönlendirir
    */
-  @RequestMapping(value = "/country", method = RequestMethod.POST)
+  @RequestMapping(value = REQUEST_MAPPING_COUNTRY, method = RequestMethod.POST)
   public String countryPost(CountryDto countryDto) {
     int id = 0;
     try {
