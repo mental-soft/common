@@ -59,7 +59,6 @@ dependencies {
     //Testte çıkan el hataları için eklendi. İkisi de olmalı.
     testCompile group: 'javax.el', name: 'javax.el-api', version: '3.0.1-b04'
     testCompile group: 'org.glassfish', name: 'javax.el', version: '3.0.1-b08'
-
-
+    testCompile group: 'com.jayway.jsonpath', name: 'json-path', version: '2.2.0'
 
 }

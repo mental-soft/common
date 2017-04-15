@@ -22,10 +22,13 @@ public class CountryController {
   CountryService countryService;
 
   public static final String REQUEST_MAPPING_COUNTRY = "/country";
+  public static final String REQUEST_MAPPING_COUNTRY_DETAIL = "/country/{id}";
 
   public static final String VIEW_COUNTRY_ADD = "country/add";
+  public static final String VIEW_COUNTRY_DETAIL = "country/detail";
 
-  public static final String MODEL_ATTRIBUTE_COUNTRY = "countryDto";
+  public static final String MODEL_ATTRIBUTE_COUNTRY_DTO = "countryDto";
+  public static final String MODEL_ATTRIBUTE_COUNTRY = "country";
 
   /**
    * Ülkeler listesini getirir.
@@ -48,7 +51,7 @@ public class CountryController {
    * @param model 'country' değeri olan session modeli
    * @return 'country/detail' sayfası veya CountryDto json sonucu
    */
-  @RequestMapping(value = "/country/{id}", method = RequestMethod.GET)
+  @RequestMapping(value = REQUEST_MAPPING_COUNTRY_DETAIL, method = RequestMethod.GET)
   public String countryDetail(@PathVariable(value = "id") Integer id, Model model) {
     CountryDto result = null;
     try {
@@ -56,9 +59,9 @@ public class CountryController {
     } catch (Exception e) {
       e.printStackTrace();
     }
-    model.addAttribute("country", result);
+    model.addAttribute(MODEL_ATTRIBUTE_COUNTRY, result);
 
-    return "country/detail";
+    return VIEW_COUNTRY_DETAIL;
   }
 
   /**
@@ -70,7 +73,7 @@ public class CountryController {
   @RequestMapping(value = REQUEST_MAPPING_COUNTRY, method = RequestMethod.GET)
   public String countryAdd(Model model) {
     CountryDto countryDto = new CountryDto();
-    model.addAttribute(MODEL_ATTRIBUTE_COUNTRY, countryDto);
+    model.addAttribute(MODEL_ATTRIBUTE_COUNTRY_DTO, countryDto);
     return VIEW_COUNTRY_ADD;
   }
 

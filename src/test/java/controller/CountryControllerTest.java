@@ -15,7 +15,9 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -25,6 +27,7 @@ import config.CountryControllerTestConfig;
 import config.SpringWebContext;
 import dto.CountryDto;
 
+import java.nio.charset.Charset;
 import java.util.Map;
 
 import org.junit.Before;
@@ -130,6 +133,89 @@ public class CountryControllerTest {
     assertThat(formObject.getEnName(), is("Country1"));
     assertThat(formObject.getCode(), is("UL"));
     assertTrue(formObject.getIsActive());
+  }
+
+  @Test
+  public void showDetailCountryEntry_ShouldGetObjectAndRenderDetailCountryEntry()
+      throws Exception {
+
+    CountryDto dto = CountryDto.getBuilder()
+        .id(2)
+        .name("Ülke2")
+        .enName("Country2")
+        .code("UL2")
+        .active(true)
+        .build();
+
+    when(countryService.getById(1)).thenReturn(dto);
+
+    ResultActions result = mockMvc.perform(get(CountryController.REQUEST_MAPPING_COUNTRY_DETAIL, 1))
+        .andDo(print())  //Gelen sonucu konsola basar.
+        .andExpect(status().isOk())
+        .andExpect(content().contentType(MediaType.TEXT_HTML.toString() + ";charset=ISO-8859-1"))
+        .andExpect(view().name(CountryController.VIEW_COUNTRY_DETAIL))
+        .andExpect(model().size(1))
+        .andExpect(model().hasNoErrors());
+
+    MockHttpServletResponse response = result.andReturn().getResponse();
+    assertTrue(50000 > response.getContentAsByteArray().length);
+
+    Map<String, Object> model = result.andReturn().getModelAndView().getModel();
+    CountryDto countryDto = (CountryDto) model.get(CountryController.MODEL_ATTRIBUTE_COUNTRY);
+    assertEquals(dto.getId(), countryDto.getId());
+    assertEquals(dto.getName(), countryDto.getName());
+    assertEquals(dto.getCode(), countryDto.getCode());
+    assertEquals(dto.getEnName(), countryDto.getEnName());
+    assertTrue(countryDto.getIsActive());
+
+    verify(countryService, times(1)).getById(1);
+
+    verifyNoMoreInteractions(countryService);
+
+  }
+
+  @Test
+  public void showJsonDetailCountryEntry_ShouldGetObjectAndRenderDetailCountryEntry()
+      throws Exception {
+
+    CountryDto dto = CountryDto.getBuilder()
+        .id(2)
+        .name("Ülke2")
+        .enName("Country2")
+        .code("UL2")
+        .active(true)
+        .build();
+
+    when(countryService.getById(2)).thenReturn(dto);
+
+    ResultActions result = mockMvc.perform(get(CountryController.REQUEST_MAPPING_COUNTRY_DETAIL + ".json", 2))
+        .andDo(print())  //Gelen sonucu konsola basar.
+        .andExpect(status().isOk())
+        .andExpect(view().name(CountryController.VIEW_COUNTRY_DETAIL))
+        .andExpect(model().size(1))
+        .andExpect(model().hasNoErrors())
+        .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8.toString()))
+        .andExpect(jsonPath("$.id", is(2)))
+        .andExpect(jsonPath("$.name", is("Ülke2")))
+        .andExpect(jsonPath("$.enName", is("Country2")))
+        .andExpect(jsonPath("$.code", is("UL2")))
+        .andExpect(jsonPath("$.isActive", is(true)));
+
+    MockHttpServletResponse response = result.andReturn().getResponse();
+    assertTrue(50000 > response.getContentAsByteArray().length);
+
+    Map<String, Object> model = result.andReturn().getModelAndView().getModel();
+    CountryDto countryDto = (CountryDto) model.get(CountryController.MODEL_ATTRIBUTE_COUNTRY);
+    assertEquals(dto.getId(), countryDto.getId());
+    assertEquals(dto.getName(), countryDto.getName());
+    assertEquals(dto.getCode(), countryDto.getCode());
+    assertEquals(dto.getEnName(), countryDto.getEnName());
+    assertTrue(countryDto.getIsActive());
+
+    verify(countryService, times(1)).getById(2);
+
+    verifyNoMoreInteractions(countryService);
+
   }
 
 }
