@@ -188,7 +188,8 @@ public class CountryControllerTest {
 
     when(countryService.getById(2)).thenReturn(dto);
 
-    ResultActions result = mockMvc.perform(get(CountryController.REQUEST_MAPPING_COUNTRY_DETAIL + ".json", 2))
+    ResultActions result = mockMvc.perform(
+        get(CountryController.REQUEST_MAPPING_COUNTRY_DETAIL + ".json", 2))
         .andDo(print())  //Gelen sonucu konsola basar.
         .andExpect(status().isOk())
         .andExpect(view().name(CountryController.VIEW_COUNTRY_DETAIL))
