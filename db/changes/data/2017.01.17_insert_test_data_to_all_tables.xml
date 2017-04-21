@@ -277,4 +277,52 @@
         </sql>
     </changeSet>
 
+    <changeSet id="11" author="sefa.aras" context="!qa and !prod">
+        <comment>
+            JOB tablosuna 5 yeni kayıt girildi.
+        </comment>
+        <insert tableName="JOB">
+            <column name="ID" value="1"/>
+            <column name="NAME" value="MÜHENDİS"/>
+            <column name="IS_ACTIVE" value="1"/>
+            <column name="MODIFIED_DATE" valueDate="${currentdatefunction}"/>
+            <column name="CREATED_DATE" valueDate="${currentdatefunction}"/>
+        </insert>
+        <insert tableName="JOB">
+            <column name="ID" value="2"/>
+            <column name="NAME" value="EV HANIMI"/>
+            <column name="IS_ACTIVE" value="1"/>
+            <column name="MODIFIED_DATE" valueDate="${currentdatefunction}"/>
+            <column name="CREATED_DATE" valueDate="${currentdatefunction}"/>
+        </insert>
+        <insert tableName="JOB">
+            <column name="ID" value="3"/>
+            <column name="NAME" value="DOKTOR"/>
+            <column name="IS_ACTIVE" value="1"/>
+            <column name="MODIFIED_DATE" valueDate="${currentdatefunction}"/>
+            <column name="CREATED_DATE" valueDate="${currentdatefunction}"/>
+        </insert>
+        <insert tableName="JOB">
+            <column name="ID" value="4"/>
+            <column name="NAME" value="ÖĞRETMEN"/>
+            <column name="IS_ACTIVE" value="1"/>
+            <column name="MODIFIED_DATE" valueDate="${currentdatefunction}"/>
+            <column name="CREATED_DATE" valueDate="${currentdatefunction}"/>
+        </insert>
+        <insert tableName="JOB">
+            <column name="ID" value="5"/>
+            <column name="NAME" value="AKADEMİSYEN"/>
+            <column name="IS_ACTIVE" value="1"/>
+            <column name="MODIFIED_DATE" valueDate="${currentdatefunction}"/>
+            <column name="CREATED_DATE" valueDate="${currentdatefunction}"/>
+        </insert>
+        <sql>
+            select SEQ_JOB_ID.nextval from dual;
+            select SEQ_JOB_ID.nextval from dual;
+            select SEQ_JOB_ID.nextval from dual;
+            select SEQ_JOB_ID.nextval from dual;
+            select SEQ_JOB_ID.nextval from dual;
+        </sql>
+    </changeSet>
+
 </databaseChangeLog>

@@ -1,12 +1,6 @@
 package dto;
 
 import java.time.LocalDateTime;
-import java.time.LocalDateTime;
-import java.util.Date;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
-import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * Bu sınıf ülke listesinde kullanılacak.

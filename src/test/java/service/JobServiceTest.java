@@ -126,7 +126,7 @@ public class JobServiceTest {
   //region getById()
   @Test
   public void getById_WhenEmpty_ShouldReturnException() {
-    given(repository.getOne(anyInt())).willReturn(null);
+    given(repository.findOne(anyInt())).willReturn(null);
 
     try {
       service.getById(anyInt());
@@ -144,7 +144,7 @@ public class JobServiceTest {
         .active(true)
         .build();
 
-    given(repository.getOne(anyInt())).willReturn(entity);
+    given(repository.findOne(anyInt())).willReturn(entity);
 
     try {
       JobListDto dto = service.getById(anyInt());

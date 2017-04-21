@@ -34,7 +34,7 @@ public class JobServiceImpl implements JobService {
 
   @Override
   public JobListDto getById(int jobId) throws Exception {
-    Job entity = jobRepository.getOne(jobId);
+    Job entity = jobRepository.findOne(jobId);
 
     if (entity == null) {
       throw new Exception(NOT_FOUND_MESSAGE);

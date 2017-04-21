@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+
+Meslek Detayı
+<hr/>
+
+<table>
+    <tr>
+        <td>Meslek Adı</td>
+        <td data-th-text="${job.name}"></td>
+    </tr>
+    <tr>
+        <td>Aktif mi?</td>
+        <td data-th-text="${job.active}?'Evet':'Hayır'"></td>
+    </tr>
+</table>
+
+</body>
+</html>
