@@ -38,6 +38,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -60,6 +62,8 @@ import service.CountryService;
 @ContextConfiguration(classes = {CountryControllerTestConfig.class, SpringWebContext.class})
 @WebAppConfiguration
 public class CountryControllerTest {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(CountryControllerTest.class);
 
   @Autowired
   private CountryService countryService;
@@ -95,6 +99,8 @@ public class CountryControllerTest {
     assertNull(countryDto.getCode());
     assertNull(countryDto.getEnName());
     assertNull(countryDto.getIsActive());
+
+    LOGGER.error("******" + countryDto.getName());
 
     verifyZeroInteractions(countryService);
   }
