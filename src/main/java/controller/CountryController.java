@@ -4,6 +4,8 @@ import dto.CountryDto;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +19,8 @@ import service.CountryService;
  */
 @Controller
 public class CountryController {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(CountryController.class);
 
   @Autowired
   CountryService countryService;
@@ -72,8 +76,10 @@ public class CountryController {
    */
   @RequestMapping(value = REQUEST_MAPPING_COUNTRY, method = RequestMethod.GET)
   public String countryAdd(Model model) {
+    LOGGER.debug("***************** Started countryAdd");
     CountryDto countryDto = new CountryDto();
     model.addAttribute(MODEL_ATTRIBUTE_COUNTRY_DTO, countryDto);
+
     return VIEW_COUNTRY_ADD;
   }
 
