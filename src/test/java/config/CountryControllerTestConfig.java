@@ -8,6 +8,7 @@ import service.CityService;
 import service.CountryService;
 import service.CountryServiceImpl;
 import service.DistrictService;
+import service.JobService;
 
 /**
  * Created by Coskun on 25.3.2017.
@@ -28,6 +29,11 @@ public class CountryControllerTestConfig {
   @Bean
   public DistrictService districtService() {
     return Mockito.mock(DistrictService.class);
+  }
+
+  @Bean
+  public JobService jobService() {
+    return Mockito.mock(JobService.class);
   }
 
 }
