@@ -27,10 +27,19 @@ public class CityController {
   @Autowired
   CountryService countryService;
 
+  public static final String REQUEST_MAPPING_CITY = "/city";
+  public static final String REQUEST_MAPPING_CITY_DETAIL = "/city/{id}";
+
+  public static final String VIEW_CITY_ADD = "city/add";
+  public static final String VIEW_CITY_DETAIL = "city/detail";
+
+  public static final String MODEL_ATTRIBUTE_CITY_DTO = "cityDto";
+  public static final String MODEL_ATTRIBUTE_CITY = "city";
+
   /**
-   * Cümle gelecek.
-   * @param model gelecek
-   * @return gelecek
+   * Şehirler listesini getirir.
+   * @param model 'cities' değeri olan session modeli
+   * @return city/cities' sayfası veya CityDto json listesi
    */
   @RequestMapping(value = "/cities", method = RequestMethod.GET)
   public String cityList(Model model) {
@@ -78,7 +87,7 @@ public class CityController {
    * @param model gelecek
    * @return gelecek
    */
-  @RequestMapping(value = "/city", method = RequestMethod.GET)
+  @RequestMapping(value = REQUEST_MAPPING_CITY, method = RequestMethod.GET)
   public String cityAdd(Model model) {
     CityDto cityDto = new CityDto();
     List<CountryDto> result = countryService.getAll();
@@ -86,7 +95,7 @@ public class CityController {
     model.addAttribute("countries", result);
     model.addAttribute("cityDto", cityDto);
 
-    return "city/add";
+    return VIEW_CITY_ADD;
   }
 
   /**
@@ -95,7 +104,7 @@ public class CityController {
    * @param cityDto gelecek
    * @return gelecek
    */
-  @RequestMapping(value = "/city", method = RequestMethod.POST)
+  @RequestMapping(value = REQUEST_MAPPING_CITY, method = RequestMethod.POST)
   public String cityPost(Model model, CityDto cityDto) {
     int id = 0;
     try {
