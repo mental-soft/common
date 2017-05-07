@@ -26,6 +26,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import config.CityControllerTestConfig;
 import config.SpringWebContext;
 import dto.CityDto;
+import dto.CountryDto;
 
 import java.nio.charset.Charset;
 import java.util.Map;
@@ -104,5 +105,145 @@ public class CityControllerTest {
     verifyZeroInteractions(cityService);
   }
 
+  @Test
+  public void add_NewCityEntry_ShouldAddCityEntryAndRenderViewCityEntryView()
+      throws Exception {
+
+    when(cityService.saveOrUpdate(any(CityDto.class))).thenReturn(1);
+
+    ResultActions result = mockMvc.perform(post(CityController.REQUEST_MAPPING_CITY)
+        .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+        .param("name", "Sehir1")
+        .param("code", "Ct1")
+        .param("Active", "true")
+        .param("_Active", "on")
+        .param("Big", "true")
+        .param("_Big", "on")
+        .param("countryDto.id","1")
+
+    )
+        .andDo(print())
+        .andExpect(status().isFound())
+        .andExpect(view().name("redirect:/city/" + 1))
+        .andExpect(redirectedUrl("/city/" + 1));
+
+    MockHttpServletResponse response = result.andReturn().getResponse();
+    assertTrue(50000 > response.getContentAsByteArray().length);
+
+    //Map<String, Object> model = result.andReturn().getModelAndView().getModel();
+    //assertEquals(0, model.size());
+
+    ArgumentCaptor<CityDto> formObjectArgument = ArgumentCaptor.forClass(CityDto.class);
+    verify(cityService, times(1)).saveOrUpdate(formObjectArgument.capture());
+    verifyNoMoreInteractions(cityService);
+
+    CityDto formObject = formObjectArgument.getValue();
+    assertThat(formObject.getName(), is("Sehir1"));
+    assertThat(formObject.getCode(), is("Ct1"));
+    assertTrue(formObject.getActive());
+    assertTrue(formObject.getBig());
+  }
+
+  @Test
+  public void showDetailCityEntry_ShouldGetObjectAndRenderDetailCityEntry()
+      throws Exception {
+
+    CountryDto countryDto = CountryDto.getBuilder()
+        .id(2)
+        .name("Ülke2")
+        .enName("Country2")
+        .code("UL2")
+        .active(true)
+        .build();
+
+    CityDto cityDto = CityDto.getBuilder()
+        .countryDto(countryDto)
+        .id(1)
+        .name("Sehir1")
+        .code("Sh1")
+        .active(true)
+        .big(true)
+        .build();
+
+    when(cityService.getById(1)).thenReturn(cityDto);
+
+    ResultActions result = mockMvc.perform(get(CityController.REQUEST_MAPPING_CITY_DETAIL, 1))
+        .andDo(print())  //Gelen sonucu konsola basar.
+        .andExpect(status().isOk())
+        .andExpect(content().contentType(MediaType.TEXT_HTML.toString() + ";charset=ISO-8859-1"))
+        .andExpect(view().name(CityController.VIEW_CITY_DETAIL))
+        .andExpect(model().size(1))
+        .andExpect(model().hasNoErrors());
+
+    MockHttpServletResponse response = result.andReturn().getResponse();
+    assertTrue(50000 > response.getContentAsByteArray().length);
+
+    Map<String, Object> model = result.andReturn().getModelAndView().getModel();
+    CityDto cityDto2 = (CityDto) model.get(CityController.MODEL_ATTRIBUTE_CITY);
+    assertEquals(cityDto.getId(), cityDto2.getId());
+    assertEquals(cityDto.getName(), cityDto2.getName());
+    assertEquals(cityDto.getCode(), cityDto2.getCode());
+    assertTrue(cityDto.getActive());
+    assertTrue(cityDto.getBig());
+
+    verify(cityService, times(1)).getById(1);
+
+    verifyNoMoreInteractions(cityService);
+
+  }
+
+  @Test
+  public void showJsonDetailCityEntry_ShouldGetObjectAndRenderDetailCityEntry()
+      throws Exception {
+
+    CountryDto countryDto = CountryDto.getBuilder()
+        .id(2)
+        .name("Ülke2")
+        .enName("Country2")
+        .code("UL2")
+        .active(true)
+        .build();
+
+    CityDto cityDto = CityDto.getBuilder()
+        .countryDto(countryDto)
+        .id(1)
+        .name("Sehir1")
+        .code("Sh1")
+        .active(true)
+        .big(true)
+        .build();
+
+    when(cityService.getById(1)).thenReturn(cityDto);
+
+    ResultActions result = mockMvc.perform(
+        get(CityController.REQUEST_MAPPING_CITY_DETAIL + ".json", 1))
+        .andDo(print())  //Gelen sonucu konsola basar.
+        .andExpect(status().isOk())
+        .andExpect(view().name(CityController.VIEW_CITY_DETAIL))
+        .andExpect(model().size(1))
+        .andExpect(model().hasNoErrors())
+        .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8.toString()))
+        .andExpect(jsonPath("$.id", is(1)))
+        .andExpect(jsonPath("$.name", is("Sehir1")))
+        .andExpect(jsonPath("$.code", is("Sh1")))
+        .andExpect(jsonPath("$.active", is(true)))
+        .andExpect(jsonPath("$.big", is(true)));
+
+    MockHttpServletResponse response = result.andReturn().getResponse();
+    assertTrue(50000 > response.getContentAsByteArray().length);
+
+    Map<String, Object> model = result.andReturn().getModelAndView().getModel();
+    CityDto cityDto2 = (CityDto) model.get(CityController.MODEL_ATTRIBUTE_CITY);
+    assertEquals(cityDto.getId(), cityDto2.getId());
+    assertEquals(cityDto.getName(), cityDto2.getName());
+    assertEquals(cityDto.getCode(), cityDto2.getCode());
+    assertTrue(cityDto.getActive());
+    assertTrue(cityDto.getBig());
+
+    verify(cityService, times(1)).getById(1);
+
+    verifyNoMoreInteractions(cityService);
+
+  }
 
 }

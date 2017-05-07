@@ -38,6 +38,7 @@ public class CityController {
 
   /**
    * Şehirler listesini getirir.
+   *
    * @param model 'cities' değeri olan session modeli
    * @return city/cities' sayfası veya CityDto json listesi
    */
@@ -50,10 +51,11 @@ public class CityController {
   }
 
   /**
-   * Cümle gelecek.
-   * @param id gelecek
-   * @param model gelecek
-   * @return gelecek
+   * Id si verilen ülkenin şehirlerini getirir.
+   *
+   * @param id integer değerindeki ülke id
+   * @param model 'city' değeri olan session modeli
+   * @return 'city/cities' sayfası veya CityDto json sonucu
    */
   @RequestMapping(value = "/country/{id}/cities", method = RequestMethod.GET)
   public String cityListByCountry(@PathVariable(value = "id") Integer id, Model model) {
@@ -64,12 +66,13 @@ public class CityController {
   }
 
   /**
-   * Cümle gelecek.
-   * @param id city idsi
-   * @param model city modeli
-   * @return city detail döndürecek
+   * Id si verilen şehrin detayını verir.
+   *
+   * @param id integer değerindeki city idsi
+   * @param model 'city' değeri olan session modeli
+   * @return 'city/detail' sayfası veya CityDto json sonucu
    */
-  @RequestMapping(value = "/city/{id}", method = RequestMethod.GET)
+  @RequestMapping(value = REQUEST_MAPPING_CITY_DETAIL, method = RequestMethod.GET)
   public String cityDetail(@PathVariable(value = "id") Integer id, Model model) {
     CityDto result = null;
     try {
@@ -77,15 +80,16 @@ public class CityController {
     } catch (Exception e) {
       e.printStackTrace();
     }
-    model.addAttribute("city", result);
+    model.addAttribute(MODEL_ATTRIBUTE_CITY, result);
 
-    return "city/detail";
+    return VIEW_CITY_DETAIL;
   }
 
   /**
-   * cümle gelecek.
-   * @param model gelecek
-   * @return gelecek
+   * Şehir eklemek için sayfayı hazırlar.
+   *
+   * @param model 'countries' ve CityDto değeri olan session modeli
+   * @return 'city/add' sayfası
    */
   @RequestMapping(value = REQUEST_MAPPING_CITY, method = RequestMethod.GET)
   public String cityAdd(Model model) {
@@ -93,16 +97,16 @@ public class CityController {
     List<CountryDto> result = countryService.getAll();
 
     model.addAttribute("countries", result);
-    model.addAttribute("cityDto", cityDto);
+    model.addAttribute(MODEL_ATTRIBUTE_CITY_DTO, cityDto);
 
     return VIEW_CITY_ADD;
   }
 
   /**
-   * Cümle gelecek.
-   * @param model gelecek
-   * @param cityDto gelecek
-   * @return gelecek
+   * Şehir ekleme veya güncelleme işlemi.
+   *
+   * @param cityDto Eklenmesi veya güncellenmesi istenen CityDto değeri   *
+   * @return 'city/{id}' controller
    */
   @RequestMapping(value = REQUEST_MAPPING_CITY, method = RequestMethod.POST)
   public String cityPost(Model model, CityDto cityDto) {
@@ -117,10 +121,11 @@ public class CityController {
   }
 
   /**
-   * Cümle gelecek.
-   * @param id gelecek
-   * @param model gelecek.
-   * @return gelecek
+   * Güncelleme için sayfa hazırlar.
+   *
+   * @param id    Güncellenmesi istenen şehrin idsi
+   * @param model 'cityDto' değeri olan session modeli
+   * @return 'city/edit' sayfası veya CityDto json sonucu
    */
   @RequestMapping(value = "/city/{id}/edit", method = RequestMethod.GET)
   public String cityEdit(@PathVariable(value = "id") Integer id, Model model) {
@@ -133,16 +138,17 @@ public class CityController {
       e.printStackTrace();
     }
     model.addAttribute("countries", countryDtoList);
-    model.addAttribute("cityDto", result);
+    model.addAttribute(MODEL_ATTRIBUTE_CITY_DTO, result);
 
     return "city/edit";
   }
 
   /**
-   * Cümle gelecek.
-   * @param id gelecek
-   * @param model gelecek
-   * @return gelecek
+   * Şehir silme sayfasını hazırlar.
+   *
+   * @param id    Silinmesi istenen şehrin idsi
+   * @param model 'cityDto' değeri olan session model
+   * @return 'city/delete' sayfası
    */
   @RequestMapping(value = "/city/{id}/delete", method = RequestMethod.GET)
   public String cityDelete(@PathVariable(value = "id") Integer id, Model model) {
@@ -152,16 +158,16 @@ public class CityController {
     } catch (Exception e) {
       e.printStackTrace();
     }
-    model.addAttribute("cityDto", result);
+    model.addAttribute(MODEL_ATTRIBUTE_CITY_DTO, result);
 
     return "city/delete";
   }
 
   /**
-   * Cümle gelecek.
-   * @param id gelecek
-   * @param model gelecek
-   * @return gelecek
+   * Şehir silme işlemini gerçekleştirir.
+   *
+   * @param id Silinecek şehrin idsi
+   * @return '/cities' controllerına yönlendirir.
    */
   @RequestMapping(value = "/city/delete", method = RequestMethod.POST)
   public String cityDeletePost(Integer id, Model model) {
