@@ -1,11 +1,19 @@
 version: '2'
 services:
-  common1:
+  web:
     image: mental/common:1.0
+    container_name: cont_common
     build: .
     ports:
-    - "8889:8080"
-  database1:
-    image: alexeiled/docker-oracle-xe-11g
+    - "8080:8080"
+    links:
+      - db
+  db:
+    image: sameersbn/postgresql
+    container_name: cont_common_postgre
     ports:
-    - "1522:1521"
+      - "5432:5432"
+    environment:
+      - DB_USER=common
+      - DB_PASS=common
+      - DB_NAME=db_common

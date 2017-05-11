@@ -17,9 +17,9 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "TITLE")
-@SequenceGenerator(name = "ID_SEQ",
-    sequenceName = "SEQ_TITLE_ID",
-    allocationSize = 1)
+//@SequenceGenerator(name = "ID_SEQ",
+//    sequenceName = "SEQ_TITLE_ID",
+//    allocationSize = 1)
 public class Title {
 
   @Id

@@ -17,9 +17,9 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "BLOOD_GROUP")
-@SequenceGenerator(name = "ID_SEQ",
-    sequenceName = "SEQ_BLOOD_GROUP_ID",
-    allocationSize = 1)
+//@SequenceGenerator(name = "ID_SEQ",
+//    sequenceName = "SEQ_BLOOD_GROUP_ID",
+//    allocationSize = 1)
 public class BloodGroup {
 
   @Id

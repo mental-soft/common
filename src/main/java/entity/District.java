@@ -23,13 +23,13 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "DISTRICT")
-@SequenceGenerator(name = "ID_SEQ",
-    sequenceName = "SEQ_DISTRICT_ID",
-    allocationSize = 1)
+//@SequenceGenerator(name = "ID_SEQ",
+//    sequenceName = "SEQ_DISTRICT_ID",
+//    allocationSize = 1)
 public class District {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_SEQ")
+  @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "ID")
   private Integer id;
 

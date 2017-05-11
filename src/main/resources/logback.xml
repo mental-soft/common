@@ -20,12 +20,12 @@
         </encoder>
     </appender>
 
-    <logger name="controller" level="ERROR" additivity="false">
+    <logger name="controller" level="INFO" additivity="false">
         <appender-ref ref="FILE"/>
         <appender-ref ref="STDOUT"/>
     </logger>
 
-    <root level="ERROR">
+    <root level="INFO">
         <appender-ref ref="FILE"/>
         <appender-ref ref="STDOUT"/>
     </root>

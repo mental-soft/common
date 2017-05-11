@@ -5,7 +5,7 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-    <property name="currentdatefunction" value="sysdate" dbms="oracle"/>
+    <property name="currentdatefunction" value="now()" dbms="postgresql"/>
 
     <changeSet id="1" author="erhan.karakaya" context="!qa and !prod">
         <comment>
@@ -56,7 +56,7 @@
             <column name="MODIFIED_DATE" valueDate="${currentdatefunction}"/>
             <column name="CREATED_DATE" valueDate="${currentdatefunction}"/>
         </insert>
-        <sql>
+        <sql dbms="!postgresql">
             select SEQ_COUNTRY_ID.nextval from dual;
             select SEQ_COUNTRY_ID.nextval from dual;
             select SEQ_COUNTRY_ID.nextval from dual;
@@ -119,7 +119,7 @@
             <column name="MODIFIED_DATE" valueDate="${currentdatefunction}"/>
             <column name="CREATED_DATE" valueDate="${currentdatefunction}"/>
         </insert>
-        <sql>
+        <sql dbms="!postgresql">
             select SEQ_CITY_ID.nextval from dual;
             select SEQ_CITY_ID.nextval from dual;
             select SEQ_CITY_ID.nextval from dual;
@@ -172,7 +172,7 @@
             <column name="MODIFIED_DATE" valueDate="${currentdatefunction}"/>
             <column name="CREATED_DATE" valueDate="${currentdatefunction}"/>
         </insert>
-        <sql>
+        <sql dbms="!postgresql">
             select SEQ_DISTRICT_ID.nextval from dual;
             select SEQ_DISTRICT_ID.nextval from dual;
             select SEQ_DISTRICT_ID.nextval from dual;
@@ -220,7 +220,7 @@
             <column name="MODIFIED_DATE" valueDate="${currentdatefunction}"/>
             <column name="CREATED_DATE" valueDate="${currentdatefunction}"/>
         </insert>
-        <sql>
+        <sql dbms="!postgresql">
             select SEQ_BLOOD_GROUP_ID.nextval from dual;
             select SEQ_BLOOD_GROUP_ID.nextval from dual;
             select SEQ_BLOOD_GROUP_ID.nextval from dual;
@@ -268,7 +268,7 @@
             <column name="MODIFIED_DATE" valueDate="${currentdatefunction}"/>
             <column name="CREATED_DATE" valueDate="${currentdatefunction}"/>
         </insert>
-        <sql>
+        <sql dbms="!postgresql">
             select SEQ_TITLE_ID.nextval from dual;
             select SEQ_TITLE_ID.nextval from dual;
             select SEQ_TITLE_ID.nextval from dual;
@@ -316,7 +316,7 @@
             <column name="MODIFIED_DATE" valueDate="${currentdatefunction}"/>
             <column name="CREATED_DATE" valueDate="${currentdatefunction}"/>
         </insert>
-        <sql>
+        <sql dbms="!postgresql">
             select SEQ_JOB_ID.nextval from dual;
             select SEQ_JOB_ID.nextval from dual;
             select SEQ_JOB_ID.nextval from dual;

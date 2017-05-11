@@ -23,13 +23,13 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "COUNTRY")
-@SequenceGenerator(name = "ID_SEQ",
-    sequenceName = "SEQ_COUNTRY_ID",
-    allocationSize = 1)
+//@SequenceGenerator(name = "ID_SEQ",
+//    sequenceName = "SEQ_COUNTRY_ID",
+//    allocationSize = 1)
 public class Country {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_SEQ")
+  @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "ID")
   private Integer id;
 

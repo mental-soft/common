@@ -29,7 +29,8 @@ ext {
 
 dependencies {
 
-    compile files('src/main/resources/lib/ojdbc6.jar')
+    compile group: 'org.postgresql', name: 'postgresql', version: '42.0.0'
+
     compile group: 'com.zaxxer', name: 'HikariCP', version: '2.5.0'
     compile group: 'org.hibernate', name: 'hibernate-entitymanager', version: '5.0.9.Final'
     compile group: 'org.springframework.data', name: 'spring-data-jpa', version: '1.10.6.RELEASE'
