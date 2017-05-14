@@ -63,7 +63,7 @@ import service.CountryService;
 @WebAppConfiguration
 public class CountryControllerTest {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(CountryControllerTest.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(CityControllerTest.class);
 
   @Autowired
   private CountryService countryService;

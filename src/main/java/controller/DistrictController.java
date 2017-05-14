@@ -27,10 +27,20 @@ public class DistrictController {
   @Autowired
   CityService cityService;
 
+  public static final String REQUEST_MAPPING_DISTRICT = "/district";
+  public static final String REQUEST_MAPPING_DISTRICT_DETAIL = "/district/{id}";
+
+  public static final String VIEW_DISTRICT_ADD = "district/add";
+  public static final String VIEW_DISTRICT_DETAIL = "district/detail";
+
+  public static final String MODEL_ATTRIBUTE_DISTRICT_DTO = "districtDto";
+  public static final String MODEL_ATTRIBUTE_DISTRICT = "district";
+
   /**
-   * Cümle gelecek.
-   * @param model gelecek
-   * @return gelecek
+   * İlçeler listesini getirir.
+   *
+   * @param model 'districts' değeri olan session modeli
+   * @return district/districts' sayfası veya DistrictDto json listesi
    */
   @RequestMapping(value = "/districts", method = RequestMethod.GET)
   public String districtList(Model model) {
@@ -41,10 +51,11 @@ public class DistrictController {
   }
 
   /**
-   * Cümle gelecek.
-   * @param id gelecek
-   * @param model gelecek
-   * @return gelecek
+   * Id si verilen şehrin ilçelerini getirir.
+   *
+   * @param id integer değerindeki şehir id
+   * @param model 'districts' değeri olan session modeli
+   * @return 'district/districts' sayfası veya DistrictDto json sonucu
    */
   @RequestMapping(value = "/city/{id}/districts", method = RequestMethod.GET)
   public String districtListByCity(@PathVariable(value = "id") Integer id, Model model) {
@@ -55,12 +66,13 @@ public class DistrictController {
   }
 
   /**
-   * Cümle gelecek.
-   * @param id gelecek
-   * @param model gelecek
-   * @return gelecek
+   * Id si verilen ilçenin detayını verir.
+   *
+   * @param id integer değerindeki district idsi
+   * @param model 'district' değeri olan session modeli
+   * @return 'district/detail' sayfası veya CityDto json sonucu
    */
-  @RequestMapping(value = "/district/{id}", method = RequestMethod.GET)
+  @RequestMapping(value = REQUEST_MAPPING_DISTRICT_DETAIL, method = RequestMethod.GET)
   public String districtDetail(@PathVariable(value = "id") Integer id, Model model) {
     DistrictDto result = null;
     try {
@@ -68,40 +80,39 @@ public class DistrictController {
     } catch (Exception ex) {
       ex.printStackTrace();
     }
-    model.addAttribute("district", result);
+    model.addAttribute(MODEL_ATTRIBUTE_DISTRICT, result);
 
-    return "district/detail";
+    return VIEW_DISTRICT_DETAIL;
   }
 
   /**
-   * Cümle gelecek.
-   * @param model gelecek
-   * @return gelecek
+   * District eklemek için sayfayı hazırlar.
+   *
+   * @param model 'cities' ve DistrictDto değeri olan session modeli
+   * @return 'district/add' sayfası
    */
-  @RequestMapping(value = "/district", method = RequestMethod.GET)
+  @RequestMapping(value = REQUEST_MAPPING_DISTRICT, method = RequestMethod.GET)
   public String districtAdd(Model model) {
     DistrictDto districtDto = new DistrictDto();
     List<CityDto> result = cityService.getAll();
 
     model.addAttribute("cities", result);
-    model.addAttribute("districtDto", districtDto);
+    model.addAttribute(MODEL_ATTRIBUTE_DISTRICT_DTO, districtDto);
 
-    return "district/add";
+    return VIEW_DISTRICT_ADD;
   }
 
   /**
-   * Cümle gelecek.
-   * @param model gelecek
-   * @param districtDto gelecek
-   * @param cityId gelecek
-   * @return gelecek
+   * Şehir ekleme veya güncelleme işlemi.
+   *
+   * @param districtDto Eklenmesi veya güncellenmesi istenen DistrictDto değeri   *
+   * @return 'district/{id}' controller
    */
-  @RequestMapping(value = "/district", method = RequestMethod.POST)
-  public String districtPost(Model model, DistrictDto districtDto, @RequestParam Integer cityId) {
+  @RequestMapping(value = REQUEST_MAPPING_DISTRICT, method = RequestMethod.POST)
+  public String districtPost(Model model, DistrictDto districtDto) {
     int id = 0;
     try {
-      CityDto cityDto = cityService.getById(cityId);
-      districtDto.setCityDto(cityDto);
+
       id = districtService.saveOrUpdate(districtDto);
     } catch (Exception ex) {
       ex.printStackTrace();
@@ -111,12 +122,12 @@ public class DistrictController {
   }
 
   /**
-   * Cümle gelecek.
-   * @param id gelecek
-   * @param model gelecek
-   * @return gelecek
+   * Güncelleme için sayfa hazırlar.
+   *
+   * @param id    Güncellenmesi istenen ilçenin idsi
+   * @param model 'districtDto' değeri olan session modeli
+   * @return 'district/edit' sayfası veya DistrictDto json sonucu
    */
-
   @RequestMapping(value = "/district/{id}/edit", method = RequestMethod.GET)
   public String districtEdit(@PathVariable(value = "id") Integer id, Model model) {
     DistrictDto result = null;
@@ -129,16 +140,17 @@ public class DistrictController {
       ex.printStackTrace();
     }
     model.addAttribute("cities", cityDtoList);
-    model.addAttribute("districtDto", result);
+    model.addAttribute(MODEL_ATTRIBUTE_DISTRICT_DTO, result);
 
     return "district/edit";
   }
 
   /**
-   * Cümle gelecek.
-   * @param id gelecek.
-   * @param model gelecek
-   * @return gelecek
+   * İlçe silme sayfasını hazırlar.
+   *
+   * @param id    Silinmesi istenen ilçenin idsi
+   * @param model 'districtDto' değeri olan session model
+   * @return 'district/delete' sayfası
    */
   @RequestMapping(value = "/district/{id}/delete", method = RequestMethod.GET)
   public String districtDelete(@PathVariable(value = "id") Integer id, Model model) {
@@ -148,17 +160,16 @@ public class DistrictController {
     } catch (Exception e) {
       e.printStackTrace();
     }
-    model.addAttribute("districtDto", result);
+    model.addAttribute(MODEL_ATTRIBUTE_DISTRICT_DTO, result);
 
     return "district/delete";
   }
 
   /**
-   * Cümle gelecek.
-   * Cümle gelecek.
-   * @param id gelecek
-   * @param model gelecek
-   * @return gelecek
+   * İlçe silme işlemini gerçekleştirir.
+   *
+   * @param id Silinecek ilçenin idsi
+   * @return '/cities' controllerına yönlendirir.
    */
   @RequestMapping(value = "/district/delete", method = RequestMethod.POST)
   public String districtDeletePost(Integer id, Model model) {

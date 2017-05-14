@@ -23,10 +23,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
-import config.CityControllerTestConfig;
+import config.DistrictControllerTestConfig;
 import config.SpringWebContext;
 import dto.CityDto;
-import dto.CountryDto;
+import dto.DistrictDto;
 
 import java.nio.charset.Charset;
 import java.util.Map;
@@ -53,21 +53,22 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.WebApplicationContext;
-import service.CityService;
+import service.DistrictService;
+
 
 /**
- * Created by okan on 6.05.2017.
+ * Created by okan on 13.05.2017.
  */
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {CityControllerTestConfig.class, SpringWebContext.class})
+@ContextConfiguration(classes = {DistrictControllerTestConfig.class, SpringWebContext.class})
 @WebAppConfiguration
-public class CityControllerTest {
+public class DistrictControllerTest {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(CityControllerTest.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(DistrictControllerTest.class);
 
   @Autowired
-  private CityService cityService;
+  private DistrictService districtService;
 
   private MockMvc mockMvc;
 
@@ -76,102 +77,93 @@ public class CityControllerTest {
 
   @Before
   public void setUp() {
-    Mockito.reset(cityService);
+    Mockito.reset(districtService);
     mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
   }
 
   @Test
-  public void showAddCityForm_ShouldCreateFormObjectAndRenderAddCityForm()
-      throws Exception {
-    ResultActions result = mockMvc.perform(get(CityController.REQUEST_MAPPING_CITY))
+  public void showAddDistrictForm_ShouldCreateFormObjectAndRenderAddDistrictForm()
+      throws  Exception {
+    ResultActions result = mockMvc.perform(get(DistrictController.REQUEST_MAPPING_DISTRICT))
         //.andDo(print())  //Gelen sonucu konsola basar.
         .andExpect(status().isOk())
-        .andExpect(view().name(CityController.VIEW_CITY_ADD))
+        .andExpect(view().name(DistrictController.VIEW_DISTRICT_ADD))
         .andExpect(model().size(2))
         .andExpect(model().hasNoErrors());
 
     MockHttpServletResponse response = result.andReturn().getResponse();
     assertTrue(50000 > response.getContentAsByteArray().length);
 
-    Map<String, Object> model = result.andReturn().getModelAndView().getModel();
-    CityDto cityDto = (CityDto) model.get("cityDto");
-    assertNull(cityDto.getId());
-    assertNull(cityDto.getName());
-    assertNull(cityDto.getCode());
-    assertNull(cityDto.getBig());
+    Map<String,Object> model = result.andReturn().getModelAndView().getModel();
+    DistrictDto distritDto = (DistrictDto) model.get("districtDto");
+    assertNull(distritDto.getId());
+    assertNull(distritDto.getName());
+    assertNull(distritDto.getActive());
 
-    LOGGER.error("******" + cityDto.getName());
+    LOGGER.error("******" + distritDto.getName());
 
-    verifyZeroInteractions(cityService);
+    verifyZeroInteractions(districtService);
   }
 
   @Test
-  public void add_NewCityEntry_ShouldAddCityEntryAndRenderViewCityEntryView()
+  public void add_NewDistrictEntry_ShouldAddDistrictEntryAndRenderViewDistrictEntryView()
       throws Exception {
 
-    when(cityService.saveOrUpdate(any(CityDto.class))).thenReturn(1);
+    when(districtService.saveOrUpdate(any(DistrictDto.class))).thenReturn(1);
 
-    ResultActions result = mockMvc.perform(post(CityController.REQUEST_MAPPING_CITY)
+    ResultActions result = mockMvc.perform(post(DistrictController.REQUEST_MAPPING_DISTRICT)
         .contentType(MediaType.APPLICATION_FORM_URLENCODED)
-        .param("name", "Sehir1")
-        .param("code", "Ct1")
+        .param("name", "Ilce1")
         .param("Active", "true")
         .param("_Active", "on")
-        .param("Big", "true")
-        .param("_Big", "on")
-        .param("countryDto.id","1")
+        .param("cityDto.id","1")
 
     )
         .andDo(print())
         .andExpect(status().isFound())
-        .andExpect(view().name("redirect:/city/" + 1))
-        .andExpect(redirectedUrl("/city/" + 1));
+        .andExpect(view().name("redirect:/district/" + 1))
+        .andExpect(redirectedUrl("/district/" + 1));
 
     MockHttpServletResponse response = result.andReturn().getResponse();
     assertTrue(50000 > response.getContentAsByteArray().length);
 
-    //Map<String, Object> model = result.andReturn().getModelAndView().getModel();
-    //assertEquals(0, model.size());
+    ArgumentCaptor<DistrictDto> formObjectArgument = ArgumentCaptor.forClass(DistrictDto.class);
+    verify(districtService,times(1)).saveOrUpdate(formObjectArgument.capture());
+    verifyNoMoreInteractions(districtService);
 
-    ArgumentCaptor<CityDto> formObjectArgument = ArgumentCaptor.forClass(CityDto.class);
-    verify(cityService, times(1)).saveOrUpdate(formObjectArgument.capture());
-    verifyNoMoreInteractions(cityService);
-
-    CityDto formObject = formObjectArgument.getValue();
-    assertThat(formObject.getName(), is("Sehir1"));
-    assertThat(formObject.getCode(), is("Ct1"));
+    DistrictDto formObject = formObjectArgument.getValue();
+    assertThat(formObject.getName(),is("Ilce1"));
     assertTrue(formObject.getActive());
-    assertTrue(formObject.getBig());
   }
 
   @Test
-  public void showDetailCityEntry_ShouldGetObjectAndRenderDetailCityEntry()
+  public void showDetailDistrictEntry_ShouldGetObjectAndRenderDetailDistrictEntry()
       throws Exception {
 
-    CountryDto countryDto = CountryDto.getBuilder()
-        .id(2)
-        .name("Ülke2")
-        .enName("Country2")
-        .code("UL2")
-        .active(true)
-        .build();
-
     CityDto cityDto = CityDto.getBuilder()
-        .countryDto(countryDto)
         .id(1)
         .name("Sehir1")
-        .code("Sh1")
         .active(true)
         .big(true)
+        .code("SH1")
         .build();
 
-    when(cityService.getById(1)).thenReturn(cityDto);
+    DistrictDto districtDto = DistrictDto.getBuilder()
+        .cityDto(cityDto)
+        .id(1)
+        .name("Ilce1")
+        .active(true)
+        .build();
 
-    ResultActions result = mockMvc.perform(get(CityController.REQUEST_MAPPING_CITY_DETAIL, 1))
+    when(districtService.getById(1)).thenReturn(districtDto);
+
+    ResultActions result = mockMvc.perform(
+        get(DistrictController.REQUEST_MAPPING_DISTRICT_DETAIL, 1)
+    )
         .andDo(print())  //Gelen sonucu konsola basar.
         .andExpect(status().isOk())
         .andExpect(content().contentType(MediaType.TEXT_HTML.toString() + ";charset=ISO-8859-1"))
-        .andExpect(view().name(CityController.VIEW_CITY_DETAIL))
+        .andExpect(view().name(DistrictController.VIEW_DISTRICT_DETAIL))
         .andExpect(model().size(1))
         .andExpect(model().hasNoErrors());
 
@@ -179,71 +171,62 @@ public class CityControllerTest {
     assertTrue(50000 > response.getContentAsByteArray().length);
 
     Map<String, Object> model = result.andReturn().getModelAndView().getModel();
-    CityDto cityDto2 = (CityDto) model.get(CityController.MODEL_ATTRIBUTE_CITY);
-    assertEquals(cityDto.getId(), cityDto2.getId());
-    assertEquals(cityDto.getName(), cityDto2.getName());
-    assertEquals(cityDto.getCode(), cityDto2.getCode());
-    assertTrue(cityDto.getActive());
-    assertTrue(cityDto.getBig());
+    DistrictDto districtDto1 = (DistrictDto) model.get(DistrictController.MODEL_ATTRIBUTE_DISTRICT);
+    assertEquals(districtDto.getId(),districtDto1.getId());
+    assertEquals(districtDto.getActive(),districtDto1.getActive());
+    assertEquals(districtDto.getName(),districtDto1.getName());
 
-    verify(cityService, times(1)).getById(1);
+    verify(districtService,times(1)).getById(1);
 
-    verifyNoMoreInteractions(cityService);
+    verifyNoMoreInteractions(districtService);
 
   }
 
   @Test
-  public void showJsonDetailCityEntry_ShouldGetObjectAndRenderDetailCityEntry()
+  public void showJsonDetailDistrictEntry_ShouldGetObjectAndRenderDetailDistrictEntry()
       throws Exception {
 
-    CountryDto countryDto = CountryDto.getBuilder()
-        .id(2)
-        .name("Ülke2")
-        .enName("Country2")
-        .code("UL2")
-        .active(true)
-        .build();
-
     CityDto cityDto = CityDto.getBuilder()
-        .countryDto(countryDto)
         .id(1)
         .name("Sehir1")
-        .code("Sh1")
         .active(true)
         .big(true)
+        .code("SH1")
         .build();
 
-    when(cityService.getById(1)).thenReturn(cityDto);
+    DistrictDto districtDto = DistrictDto.getBuilder()
+        .cityDto(cityDto)
+        .id(1)
+        .name("Ilce1")
+        .active(true)
+        .build();
+
+    when(districtService.getById(1)).thenReturn(districtDto);
 
     ResultActions result = mockMvc.perform(
-        get(CityController.REQUEST_MAPPING_CITY_DETAIL + ".json", 1))
-        .andDo(print())  //Gelen sonucu konsola basar.
+        get(DistrictController.REQUEST_MAPPING_DISTRICT_DETAIL + ".json",1))
+        .andDo(print()) //Gelen sonucu console basar.
         .andExpect(status().isOk())
-        .andExpect(view().name(CityController.VIEW_CITY_DETAIL))
+        .andExpect(view().name(DistrictController.VIEW_DISTRICT_DETAIL))
         .andExpect(model().size(1))
         .andExpect(model().hasNoErrors())
         .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8.toString()))
         .andExpect(jsonPath("$.id", is(1)))
-        .andExpect(jsonPath("$.name", is("Sehir1")))
-        .andExpect(jsonPath("$.code", is("Sh1")))
-        .andExpect(jsonPath("$.active", is(true)))
-        .andExpect(jsonPath("$.big", is(true)));
+        .andExpect(jsonPath("$.name",is("Ilce1")))
+        .andExpect(jsonPath("$.active",is(true)));
 
     MockHttpServletResponse response = result.andReturn().getResponse();
     assertTrue(50000 > response.getContentAsByteArray().length);
 
-    Map<String, Object> model = result.andReturn().getModelAndView().getModel();
-    CityDto cityDto2 = (CityDto) model.get(CityController.MODEL_ATTRIBUTE_CITY);
-    assertEquals(cityDto.getId(), cityDto2.getId());
-    assertEquals(cityDto.getName(), cityDto2.getName());
-    assertEquals(cityDto.getCode(), cityDto2.getCode());
-    assertTrue(cityDto.getActive());
-    assertTrue(cityDto.getBig());
+    Map<String,Object> model = result.andReturn().getModelAndView().getModel();
+    DistrictDto districtDto1 = (DistrictDto) model.get(DistrictController.MODEL_ATTRIBUTE_DISTRICT);
+    assertEquals(districtDto.getId(),districtDto1.getId());
+    assertEquals(districtDto.getName(),districtDto1.getName());
+    assertTrue(districtDto.getActive());
 
-    verify(cityService, times(1)).getById(1);
+    verify(districtService, times(1)).getById(1);
 
-    verifyNoMoreInteractions(cityService);
-
+    verifyNoMoreInteractions(districtService);
   }
 
 }
