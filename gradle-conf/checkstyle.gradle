@@ -2,4 +2,5 @@ apply plugin: 'checkstyle'
 
 checkstyle {
     toolVersion = '7.6'
+    ignoreFailures = ignoreFailuresInCheck.toBoolean()
 }

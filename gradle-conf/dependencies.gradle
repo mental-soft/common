@@ -1,0 +1,45 @@
+ext {
+    jacksonMapperVersion = '1.9.13'
+    jacksonCoreVersion = '2.7.3'
+}
+
+dependencies {
+
+    compile group: 'org.postgresql', name: 'postgresql', version: '42.0.0'
+
+    compile group: 'com.zaxxer', name: 'HikariCP', version: '2.5.0'
+    compile group: 'org.hibernate', name: 'hibernate-entitymanager', version: '5.0.9.Final'
+    compile group: 'org.springframework.data', name: 'spring-data-jpa', version: '1.10.6.RELEASE'
+
+    //Spring Web Mvc
+    compile 'org.springframework:spring-webmvc:4.3.5.RELEASE'
+
+    //Javax Servlet
+    compile 'javax.servlet:javax.servlet-api:3.1.0'
+
+    //Thymeleaf
+    compile 'org.thymeleaf:thymeleaf-spring4:2.1.4.RELEASE'
+
+    //Validation
+    compile group: 'javax.validation', name: 'validation-api', version: '1.1.0.Final'
+    compile group: 'org.hibernate', name: 'hibernate-validator', version: '5.4.1.Final'
+
+    //Json
+    compile "com.fasterxml.jackson.core:jackson-databind:$jacksonCoreVersion"
+    compile "com.fasterxml.jackson.core:jackson-core:$jacksonCoreVersion"
+    compile "org.codehaus.jackson:jackson-mapper-asl:$jacksonMapperVersion"
+
+    //Logging
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
+    compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
+
+    testCompile group: 'org.springframework', name: 'spring-test', version: '4.3.5.RELEASE'
+    testCompile group: 'org.mockito', name: 'mockito-core', version: '2.7.1'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+
+    //Testte çıkan el hataları için eklendi. İkisi de olmalı.
+    testCompile group: 'javax.el', name: 'javax.el-api', version: '3.0.1-b04'
+    testCompile group: 'org.glassfish', name: 'javax.el', version: '3.0.1-b08'
+    testCompile group: 'com.jayway.jsonpath', name: 'json-path', version: '2.2.0'
+
+}

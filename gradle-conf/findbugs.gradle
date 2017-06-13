@@ -7,3 +7,10 @@ tasks.withType(FindBugs) {
         html.stylesheet resources.text.fromFile('config/findbugs/default.xsl')
     }
 }
+
+findbugs {
+    ignoreFailures = ignoreFailuresInCheck.toBoolean()
+    sourceSets = [sourceSets.main]
+    effort = "max"
+    reportLevel ="high"
+}
