@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+
+Ünvanlar
+<hr/>
+
+<table>
+    <tr>
+        <th>Adı</th>
+        <th>Aktif Mi?</th>
+    </tr>
+    <tr data-th-each="title:${titles}">
+        <td data-th-text="${title.name}"></td>
+        <td data-th-text="${title.active}? 'Evet' : 'Hayır' "></td>
+        <td>
+            <a href="#" data-th-href="@{'/title/{id}'(id=${title.id})}"> Detay </a>
+            <a href="#" data-th-href="@{'/title/{id}/edit'(id=${title.id})}"> Güncelle</a>
+            <a href="#" data-th-href="@{'/title/{id}/delete'(id=${title.id})}"> Sil</a>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+Ünvan Sil
+<hr/>
+
+<form method="post" data-th-action="@{/title/delete}" data-th-object="${titleListDto}">
+    <input data-th-field="${titleListDto.id}" type="hidden"/>
+    <fieldset>
+        <legend>Silme İşlemi</legend>
+        <span data-th-text="${titleListDto.name}"></span> isimli kayıt silinsin mi?
+        <a href="#" data-th-href="@{/titles}">Hayır</a>
+        <button type="submit">Evet</button>
+    </fieldset>
+</form>
+
+</body>
+</html>
