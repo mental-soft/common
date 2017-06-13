@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+
+Kan Grupları
+<hr/>
+
+<table>
+    <tr>
+        <th>Adı</th>
+        <th>Aktif Mi?</th>
+    </tr>
+    <tr data-th-each="bloodGroup:${bloodGroups}">
+        <td data-th-text="${bloodGroup.name}"></td>
+        <td data-th-text="${bloodGroup.active}? 'Evet' : 'Hayır' "></td>
+        <td>
+            <a href="#" data-th-href="@{'/bloodGroup/{id}'(id=${job.id})}"> Detay </a>
+            <a href="#" data-th-href="@{'/bloodGroup/{id}/edit'(id=${bloodGroup.id})}"> Güncelle</a>
+            <a href="#" data-th-href="@{'/bloodGroup/{id}/delete'(id=${bloodGroup.id})}"> Sil</a>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

@@ -4,9 +4,10 @@ import org.mockito.Mockito;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
+
+import service.BloodGroupService;
 import service.CityService;
 import service.CountryService;
-import service.CountryServiceImpl;
 import service.DistrictService;
 import service.JobService;
 
@@ -15,6 +16,11 @@ import service.JobService;
  */
 @Configuration
 public class CountryControllerTestConfig {
+
+  @Bean
+  public BloodGroupService bloodGroupService() {
+    return Mockito.mock(BloodGroupService.class);
+  }
 
   @Bean
   public CountryService countryService() {

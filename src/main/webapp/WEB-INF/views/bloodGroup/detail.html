@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+
+Kan Grubu Detayı
+<hr/>
+
+<table>
+    <tr>
+        <td>Kan Grubu Adı</td>
+        <td data-th-text="${bloodGroup.name}"></td>
+    </tr>
+    <tr>
+        <td>Aktif mi?</td>
+        <td data-th-text="${bloodGroup.active}?'Evet':'Hayır'"></td>
+    </tr>
+</table>
+
+</body>
+</html>

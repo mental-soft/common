@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+
+Kan Grubu Güncelle
+<hr/>
+
+<form method="post" data-th-action="@{/job}" data-th-object="${bloodGroupListDto}">
+    <input data-th-field="${bloodGroupListDto.id}" type="hidden"/>
+    <table>
+        <tr>
+            <td>Kan Grubu Adı</td>
+            <td><input data-th-field="${bloodGroupListDto.name}" type="text"/></td>
+        </tr>
+        <tr>
+            <td>Aktif mi?</td>
+            <td><input data-th-field="${bloodGroupListDto.active}" type="checkbox"/></td>
+        </tr>
+    </table>
+    <button type="submit">Güncelle</button>
+</form>
+
+</body>
+</html>

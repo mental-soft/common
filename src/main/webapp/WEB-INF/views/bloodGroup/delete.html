@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+
+Kan Grubu Sil
+<hr/>
+
+<form method="post" data-th-action="@{/bloodGroup/delete}" data-th-object="${bloodGroupListDto}">
+    <input data-th-field="${bloodGroupListDto.id}" type="hidden"/>
+    <fieldset>
+        <legend>Silme İşlemi</legend>
+        <span data-th-text="${bloodGroupListDto.name}"></span> isimli kayıt silinsin mi?
+        <a href="#" data-th-href="@{/bloodGroups}">Hayır</a>
+        <button type="submit">Evet</button>
+    </fieldset>
+</form>
+
+</body>
+</html>
