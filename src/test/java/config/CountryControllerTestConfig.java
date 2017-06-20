@@ -3,12 +3,11 @@ package config;
 import org.mockito.Mockito;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import service.CityService;
 import service.CountryService;
-import service.CountryServiceImpl;
 import service.DistrictService;
 import service.JobService;
+import service.TitleService;
 
 /**
  * Created by Coskun on 25.3.2017.
@@ -34,6 +33,11 @@ public class CountryControllerTestConfig {
   @Bean
   public JobService jobService() {
     return Mockito.mock(JobService.class);
+  }
+
+  @Bean
+  public TitleService titleService() {
+    return Mockito.mock(TitleService.class);
   }
 
 }
