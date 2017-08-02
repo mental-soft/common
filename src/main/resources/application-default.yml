@@ -1,0 +1,10 @@
+  spring:
+    datasource:
+      url: jdbc:postgresql://${connection:localhost}:5432/common
+      username: common
+      password: common
+    jpa:
+      show-sql: true
+    liquibase:
+      drop-first: true
+      contexts: default
