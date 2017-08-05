@@ -9,21 +9,22 @@
         <comment>
             DISTRICT tablosu olusturuldu.
         </comment>
-        <createTable tableName="District">
-            <column name="Id"
+        <createTable tableName="district">
+            <column name="id"
                     type="serial"
                     incrementBy="1"
-                    startWith="1">
+                    startWith="1"
+                    autoIncrement="true">
                 <constraints primaryKey="true"
-                             primaryKeyName="PK_DISTRICT_ID"/>
+                             primaryKeyName="pk_district_id"/>
             </column>
-            <column name="City_Id" type="smallint">
-                <constraints foreignKeyName="FK_DISTRICT_CITY"
-                             referencedColumnNames="Id"
-                             referencedTableName="City"
+            <column name="city_id" type="smallint">
+                <constraints foreignKeyName="fk_district_city"
+                             referencedColumnNames="id"
+                             referencedTableName="city"
                              nullable="false" />
             </column>
-            <column name="Name" type="VARCHAR(100)">
+            <column name="name" type="varchar(100)">
                 <constraints nullable="false"/>
             </column>
         </createTable>

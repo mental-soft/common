@@ -9,25 +9,25 @@
         <comment>
             District tablosuna data eklendi.
         </comment>
-        <insert tableName="District">
-            <column name="City_Id" value="1"/>
-            <column name="Name" value="Etimesgut"/>
+        <insert tableName="DISTRICT">
+            <column name="CITY_ID" value="1"/>
+            <column name="NAME" value="Etimesgut"/>
         </insert>
-        <insert tableName="District">
-            <column name="City_Id" value="1"/>
-            <column name="Name" value="Çankaya"/>
+        <insert tableName="DISTRICT">
+            <column name="CITY_ID" value="1"/>
+            <column name="NAME" value="Çankaya"/>
         </insert>
-        <insert tableName="District">
-            <column name="City_Id" value="1"/>
-            <column name="Name" value="Mamak"/>
+        <insert tableName="DISTRICT">
+            <column name="CITY_ID" value="1"/>
+            <column name="NAME" value="Mamak"/>
         </insert>
-        <insert tableName="District">
-            <column name="City_Id" value="1"/>
-            <column name="Name" value="Keçiören"/>
+        <insert tableName="DISTRICT">
+            <column name="CITY_ID" value="1"/>
+            <column name="NAME" value="Keçiören"/>
         </insert>
-        <insert tableName="District">
-            <column name="City_Id" value="1"/>
-            <column name="Name" value="Sincan"/>
+        <insert tableName="DISTRICT">
+            <column name="CITY_ID" value="1"/>
+            <column name="NAME" value="Sincan"/>
         </insert>
     </changeSet>
 </databaseChangeLog>

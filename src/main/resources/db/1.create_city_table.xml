@@ -9,15 +9,16 @@
         <comment>
             CITY tablosu olusturuldu.
         </comment>
-        <createTable tableName="City">
-            <column name="Id"
+        <createTable tableName="city">
+            <column name="id"
                     type="smallserial"
                     incrementBy="1"
-                    startWith="1">
+                    startWith="1"
+                    autoIncrement="true">
                 <constraints primaryKey="true"
-                             primaryKeyName="PK_CITY_ID"/>
+                             primaryKeyName="pk_city_id"/>
             </column>
-            <column name="Name" type="VARCHAR(50)">
+            <column name="name" type="varchar(50)">
                 <constraints nullable="false"/>
             </column>
         </createTable>

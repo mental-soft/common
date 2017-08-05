@@ -9,20 +9,20 @@
         <comment>
             City tablosuna data eklendi.
         </comment>
-        <insert tableName="City">
-            <column name="Name" value="Ankara"/>
+        <insert tableName="CITY">
+            <column name="NAME" value="Ankara"/>
         </insert>
-        <insert tableName="City">
-            <column name="Name" value="İstanbul"/>
+        <insert tableName="CITY">
+            <column name="NAME" value="İstanbul"/>
         </insert>
-        <insert tableName="City">
-            <column name="Name" value="İzmir"/>
+        <insert tableName="CITY">
+            <column name="NAME" value="İzmir"/>
         </insert>
-        <insert tableName="City">
-            <column name="Name" value="Eskişehir"/>
+        <insert tableName="CITY">
+            <column name="NAME" value="Eskişehir"/>
         </insert>
-        <insert tableName="City">
-            <column name="Name" value="Manisa"/>
+        <insert tableName="CITY">
+            <column name="NAME" value="Manisa"/>
         </insert>
     </changeSet>
 </databaseChangeLog>

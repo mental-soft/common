@@ -9,18 +9,19 @@
         <comment>
             GenericValue tablosu olusturuldu.
         </comment>
-        <createTable tableName="GenericValue">
-            <column name="Id"
+        <createTable tableName="generic_value">
+            <column name="id"
                     type="serial"
                     incrementBy="1"
-                    startWith="1">
+                    startWith="1"
+                    autoIncrement="true">
                 <constraints primaryKey="true"
-                             primaryKeyName="PK_GENERICVALUE_ID"/>
+                             primaryKeyName="pk_generic_value_id"/>
             </column>
-            <column name="GenericType_Id" type="smallint">
+            <column name="generic_type_id" type="smallint">
                 <constraints nullable="false" />
             </column>
-            <column name="Data" type="VARCHAR(500)">
+            <column name="data" type="varchar(500)">
                 <constraints nullable="false"/>
             </column>
         </createTable>
