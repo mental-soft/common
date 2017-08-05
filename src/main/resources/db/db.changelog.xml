@@ -6,5 +6,8 @@
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
     <include file="db/1.create_city_table.xml"/>
+    <include file="db/2.create_district_table.xml"/>
+    <include file="db/3.add_test_data_to_city.xml"/>
+    <include file="db/4.add_test_data_to_district.xml"/>
 
 </databaseChangeLog>

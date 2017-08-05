@@ -5,22 +5,27 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-    <changeSet id="create-city" author="erhan.karakaya">
+    <changeSet id="create-district" author="erhan.karakaya">
         <comment>
-            CITY tablosu olusturuldu.
+            DISTRICT tablosu olusturuldu.
         </comment>
-        <createTable tableName="City">
+        <createTable tableName="District">
             <column name="Id"
-                    type="smallserial"
+                    type="serial"
                     incrementBy="1"
                     startWith="1">
                 <constraints primaryKey="true"
-                             primaryKeyName="PK_CITY_ID"/>
+                             primaryKeyName="PK_DISTRICT_ID"/>
             </column>
-            <column name="Name" type="VARCHAR(50)">
+            <column name="City_Id" type="smallint">
+                <constraints foreignKeyName="FK_DISTRICT_CITY"
+                             referencedColumnNames="Id"
+                             referencedTableName="City"
+                             nullable="false" />
+            </column>
+            <column name="Name" type="VARCHAR(100)">
                 <constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>
-
 </databaseChangeLog>
