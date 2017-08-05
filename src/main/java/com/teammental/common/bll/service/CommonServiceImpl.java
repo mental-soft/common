@@ -8,8 +8,10 @@ import com.teammental.common.dal.entity.City;
 import com.teammental.common.dal.entity.District;
 import com.teammental.common.dal.repository.CityRepository;
 import com.teammental.common.dal.repository.DistrictRepository;
+import com.teammental.common.exception.NotFoundException;
 import com.teammental.memapper.MeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
@@ -24,8 +26,14 @@ public class CommonServiceImpl implements CommonService {
   @Autowired
   private DistrictRepository districtRepository;
 
+  @Value("exception.notfound.city")
+  private String messageNotFoundCity;
+
+  @Value("exception.notfound.district")
+  private String messageNotFoundDistrict;
+
   @Override
-  public List<IdNameDto> getCities() {
+  public List<IdNameDto> getCities() throws NotFoundException {
     List<City> cities = cityRepository.findAll();
 
     Optional<List<IdNameDto>> dtosOptional = MeMapper.getMapperFromList(cities)
@@ -35,11 +43,11 @@ public class CommonServiceImpl implements CommonService {
       return dtosOptional.get();
     }
 
-    throw new HttpClientErrorException(HttpStatus.NOT_FOUND);
+    throw new NotFoundException(messageNotFoundCity);
   }
 
   @Override
-  public List<IdNameDto> getDistrictsByCityId(Integer cityId) {
+  public List<IdNameDto> getDistrictsByCityId(Integer cityId) throws NotFoundException {
     List<District> districts = districtRepository.findAllByCityId(cityId);
 
     Optional<List<IdNameDto>> dtosOptional = MeMapper.getMapperFromList(districts)
@@ -49,6 +57,6 @@ public class CommonServiceImpl implements CommonService {
       return dtosOptional.get();
     }
 
-    throw new HttpClientErrorException(HttpStatus.NOT_FOUND);
+    throw new NotFoundException(messageNotFoundDistrict);
   }
 }

@@ -8,3 +8,7 @@ spring:
 liquibase:
   drop-first: true
   contexts: default
+logging:
+  level:
+    org.springframework.web: DEBUG
+    com.teammental: DEBUG
