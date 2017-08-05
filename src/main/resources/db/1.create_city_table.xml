@@ -1,0 +1,30 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="create-city" author="erhan.karakaya">
+        <comment>
+            CITY tablosu olusturuldu.
+        </comment>
+        <createTable tableName="CITY">
+            <column name="ID"
+                    type="SERIAL"
+                    incrementBy="1"
+                    startWith="1">
+                <constraints primaryKey="true"
+                             primaryKeyName="PK_CITY"/>
+            </column>
+            <column name="CODE" type="VARCHAR(10)"/>
+            <column name="NAME" type="VARCHAR(250)"/>
+            <column name="IS_BIG" type="BOOLEAN"/>
+            <column name="IS_ACTIVE" type="BOOLEAN"/>
+            <column name="IS_DELETED" type="BOOLEAN"/>
+            <column name="MODIFIED_DATE" type="TIMESTAMP"/>
+            <column name="CREATED_DATE" type="TIMESTAMP"/>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
