@@ -1,6 +1,7 @@
 *.jar
 
 .idea/
+*.iml
 
 .gradle/
 

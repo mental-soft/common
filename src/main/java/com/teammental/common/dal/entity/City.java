@@ -11,7 +11,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "city")
-public class City extends BaseEntity<Short> {
+public class City extends BaseEntity<Integer> {
 
   @Column(name = "name")
   @NotNull

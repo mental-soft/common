@@ -18,7 +18,7 @@
                 <constraints primaryKey="true"
                              primaryKeyName="pk_district_id"/>
             </column>
-            <column name="city_id" type="smallint">
+            <column name="city_id" type="int">
                 <constraints foreignKeyName="fk_district_city"
                              referencedColumnNames="id"
                              referencedTableName="city"
