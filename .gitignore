@@ -9,4 +9,4 @@
 
 build/
 out/
-config/
+/config/
