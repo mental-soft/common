@@ -10,17 +10,18 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import java.util.List;
-import java.util.Optional;
-
 import com.teammental.common.bll.dto.IdNameDto;
 import com.teammental.common.bll.service.CommonService;
+import com.teammental.common.config.TestDataGenerator;
+import com.teammental.common.config.TestUtil;
 import com.teammental.common.config.UrlConfig;
 import com.teammental.common.dal.entity.City;
 import com.teammental.common.exception.NotFoundException;
-import com.teammental.common.config.TestDataGenerator;
-import com.teammental.common.config.TestUtil;
 import com.teammental.memapper.MeMapper;
+
+import java.util.List;
+import java.util.Optional;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

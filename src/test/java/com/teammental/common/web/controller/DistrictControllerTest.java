@@ -11,18 +11,18 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import java.util.List;
-import java.util.Optional;
-
 import com.teammental.common.bll.dto.IdNameDto;
 import com.teammental.common.bll.service.CommonService;
 import com.teammental.common.config.TestDataGenerator;
 import com.teammental.common.config.TestUtil;
 import com.teammental.common.config.UrlConfig;
-import com.teammental.common.dal.entity.City;
 import com.teammental.common.dal.entity.District;
 import com.teammental.common.exception.NotFoundException;
 import com.teammental.memapper.MeMapper;
+
+import java.util.List;
+import java.util.Optional;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +45,7 @@ public class DistrictControllerTest {
   public void shouldReturnOkAndDistricts_whenDistrictsFound() throws Exception {
 
     final int districtSize = 2;
-    List<District> expectedDistricts = TestDataGenerator.prepateRandomListOfDistrict(districtSize);
+    List<District> expectedDistricts = TestDataGenerator.prepareRandomListOfDistrict(districtSize);
     Optional<List<IdNameDto>> expectedDtosOptional = MeMapper.getMapperFromList(expectedDistricts)
         .mapToList(IdNameDto.class);
     List<IdNameDto> expectedDtos = expectedDtosOptional.get();
@@ -53,7 +53,8 @@ public class DistrictControllerTest {
     when(commonService.getDistrictsByCityId(anyInt()))
         .thenReturn(expectedDtos);
 
-    mockMvc.perform(get(UrlConfig.DistrictControllerConfig.URL_GET_DISTRICTS_BY_CITY_ID).param("cityId","1"))
+    mockMvc.perform(get(UrlConfig.DistrictControllerConfig.URL_GET_DISTRICTS_BY_CITY_ID)
+        .param("cityId","1"))
         .andExpect(status().isOk())
         .andExpect(content().contentType(TestUtil.APPLICATION_JSON_UTF8))
         .andExpect(jsonPath("$", hasSize(districtSize)))
@@ -70,7 +71,8 @@ public class DistrictControllerTest {
     when(commonService.getDistrictsByCityId(anyInt()))
         .thenThrow(new NotFoundException(""));
 
-    mockMvc.perform(get(UrlConfig.DistrictControllerConfig.URL_GET_DISTRICTS_BY_CITY_ID).param("cityId", "1"))
+    mockMvc.perform(get(UrlConfig.DistrictControllerConfig.URL_GET_DISTRICTS_BY_CITY_ID)
+        .param("cityId", "1"))
         .andExpect(status().isNotFound());
 
     verify(commonService, times(1)).getDistrictsByCityId(anyInt());
