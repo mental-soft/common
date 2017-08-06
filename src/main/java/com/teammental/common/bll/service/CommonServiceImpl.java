@@ -1,6 +1,7 @@
 package com.teammental.common.bll.service;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 
 import com.teammental.common.bll.dto.IdNameDto;
@@ -12,6 +13,7 @@ import com.teammental.common.exception.NotFoundException;
 import com.teammental.memapper.MeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
@@ -26,11 +28,8 @@ public class CommonServiceImpl implements CommonService {
   @Autowired
   private DistrictRepository districtRepository;
 
-  @Value("exception.notfound.city")
-  private String messageNotFoundCity;
-
-  @Value("exception.notfound.district")
-  private String messageNotFoundDistrict;
+  @Autowired
+  private MessageSource messageSource;
 
   @Override
   public List<IdNameDto> getCities() throws NotFoundException {
@@ -43,7 +42,7 @@ public class CommonServiceImpl implements CommonService {
       return dtosOptional.get();
     }
 
-    throw new NotFoundException(messageNotFoundCity);
+    throw new NotFoundException(messageSource.getMessage("exception.notfound.city", null, Locale.getDefault()));
   }
 
   @Override
@@ -57,6 +56,6 @@ public class CommonServiceImpl implements CommonService {
       return dtosOptional.get();
     }
 
-    throw new NotFoundException(messageNotFoundDistrict);
+    throw new NotFoundException(messageSource.getMessage("exception.notfound.district", null, Locale.getDefault()));
   }
 }
