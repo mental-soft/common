@@ -25,8 +25,10 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.MessageSource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+@SuppressWarnings({"PMD.TooManyStaticImports", "PMD.UnusedPrivateField"})
 @RunWith(SpringJUnit4ClassRunner.class)
 public class CommonServiceImplTest {
 
@@ -38,6 +40,9 @@ public class CommonServiceImplTest {
 
   @InjectMocks
   private CommonService commonService = new CommonServiceImpl();
+
+  @MockBean
+  private MessageSource messageSource;
 
   @Before
   public void setUp() {
