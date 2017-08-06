@@ -2,6 +2,7 @@ package com.teammental.common.web.controller;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
+import static org.mockito.Matchers.anyInt;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -15,11 +16,12 @@ import java.util.Optional;
 
 import com.teammental.common.bll.dto.IdNameDto;
 import com.teammental.common.bll.service.CommonService;
-import com.teammental.common.config.UrlConfig;
-import com.teammental.common.dal.entity.City;
-import com.teammental.common.exception.NotFoundException;
 import com.teammental.common.config.TestDataGenerator;
 import com.teammental.common.config.TestUtil;
+import com.teammental.common.config.UrlConfig;
+import com.teammental.common.dal.entity.City;
+import com.teammental.common.dal.entity.District;
+import com.teammental.common.exception.NotFoundException;
 import com.teammental.memapper.MeMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,8 +32,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@WebMvcTest(CityController.class)
-public class CityControllerTest {
+@WebMvcTest(DistrictController.class)
+public class DistrictControllerTest {
 
   @MockBean
   private CommonService commonService;
@@ -40,36 +42,37 @@ public class CityControllerTest {
   private MockMvc mockMvc;
 
   @Test
-  public void shouldReturnOkAndCities_whenCitiesFound() throws Exception {
-    final int citySize = 2;
-    List<City> expectedCities = TestDataGenerator.prepareRandomListOfCities(citySize);
-    Optional<List<IdNameDto>> expectedDtosOptional = MeMapper.getMapperFromList(expectedCities)
+  public void shouldReturnOkAndDistricts_whenDistrictsFound() throws Exception {
+
+    final int districtSize = 2;
+    List<District> expectedDistricts = TestDataGenerator.prepateRandomListOfDistrict(districtSize);
+    Optional<List<IdNameDto>> expectedDtosOptional = MeMapper.getMapperFromList(expectedDistricts)
         .mapToList(IdNameDto.class);
     List<IdNameDto> expectedDtos = expectedDtosOptional.get();
 
-    when(commonService.getCities())
+    when(commonService.getDistrictsByCityId(anyInt()))
         .thenReturn(expectedDtos);
 
-    mockMvc.perform(get(UrlConfig.CityControllerConfig.URL_GET_CITIES))
+    mockMvc.perform(get(UrlConfig.DistrictControllerConfig.URL_GET_DISTRICTS_BY_CITY_ID).param("cityId","1"))
         .andExpect(status().isOk())
         .andExpect(content().contentType(TestUtil.APPLICATION_JSON_UTF8))
-        .andExpect(jsonPath("$", hasSize(citySize)))
+        .andExpect(jsonPath("$", hasSize(districtSize)))
         .andExpect(jsonPath("$[0].id", is(expectedDtos.get(0).getId())))
         .andExpect(jsonPath("$[0].name", is(expectedDtos.get(0).getName())))
         .andExpect(jsonPath("$[1].id", is(expectedDtos.get(1).getId())))
         .andExpect(jsonPath("$[1].name", is(expectedDtos.get(1).getName())));
 
-    verify(commonService, times(1)).getCities();
+    verify(commonService, times(1)).getDistrictsByCityId(anyInt());
   }
 
   @Test
-  public void shouldReturn404_whenNoCityFound() throws Exception {
-    when(commonService.getCities())
+  public void shouldReturn404_whenNoDistrictFound() throws Exception {
+    when(commonService.getDistrictsByCityId(anyInt()))
         .thenThrow(new NotFoundException(""));
 
-    mockMvc.perform(get(UrlConfig.CityControllerConfig.URL_GET_CITIES))
+    mockMvc.perform(get(UrlConfig.DistrictControllerConfig.URL_GET_DISTRICTS_BY_CITY_ID).param("cityId", "1"))
         .andExpect(status().isNotFound());
 
-    verify(commonService, times(1)).getCities();
+    verify(commonService, times(1)).getDistrictsByCityId(anyInt());
   }
 }

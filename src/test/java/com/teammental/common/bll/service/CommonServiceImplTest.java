@@ -17,7 +17,7 @@ import com.teammental.common.dal.entity.District;
 import com.teammental.common.dal.repository.CityRepository;
 import com.teammental.common.dal.repository.DistrictRepository;
 import com.teammental.common.exception.NotFoundException;
-import com.teammental.common.util.TestDataGenerator;
+import com.teammental.common.config.TestDataGenerator;
 import com.teammental.memapper.MeMapper;
 import org.junit.Before;
 import org.junit.Test;
@@ -25,9 +25,7 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.HttpStatus;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.web.client.HttpClientErrorException;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 public class CommonServiceImplTest {
@@ -85,7 +83,7 @@ public class CommonServiceImplTest {
   @Test
   public void shouldReturnDistrictsByCityId_whenFoundAny() throws NotFoundException {
     City expectedCity = TestDataGenerator.prepareRandomCity();
-    List<District> expectedDistricts = TestDataGenerator.prepateRandomListOfDistrict(expectedCity);
+    List<District> expectedDistricts = TestDataGenerator.prepateRandomListOfDistrict(expectedCity, 10);
 
     when(districtRepository.findAllByCityId(anyInt()))
         .thenReturn(expectedDistricts);

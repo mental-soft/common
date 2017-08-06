@@ -8,16 +8,18 @@ import com.teammental.common.config.UrlConfig;
 import com.teammental.common.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class CityController {
+public class DistrictController {
 
   @Autowired
   private CommonService commonService;
 
-  @GetMapping(UrlConfig.CityControllerConfig.URL_GET_CITIES)
-  public List<IdNameDto> getCities() throws NotFoundException {
-    return commonService.getCities();
+  @GetMapping(UrlConfig.DistrictControllerConfig.URL_GET_DISTRICTS_BY_CITY_ID)
+  public List<IdNameDto> getDistrictsByCityId(@RequestParam("cityId") int cityId) throws NotFoundException {
+
+    return commonService.getDistrictsByCityId(cityId);
   }
 }
