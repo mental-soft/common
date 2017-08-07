@@ -14,6 +14,7 @@ buildscript {
 apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
 apply from: "https://raw.githubusercontent.com/mental-soft/gradle-config/master/global-config.gradle"
+apply from: "https://raw.githubusercontent.com/mental-soft/gradle-config/master/dependencies-api.gradle"
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -22,18 +23,3 @@ targetCompatibility = 1.8
 jar {
     baseName = 'common'
 }
-
-dependencies {
-    compile('org.springframework.boot:spring-boot-starter-data-jpa')
-    compile('org.liquibase:liquibase-core')
-    compile('org.springframework.boot:spring-boot-starter-web')
-    compile 'com.teammental:mebuilder:1.+'
-    compile 'com.teammental:memapper:1.+'
-    runtime('org.postgresql:postgresql')
-    compile group: 'com.zaxxer', name: 'HikariCP'
-    testCompile('org.springframework.boot:spring-boot-starter-test')
-}
-//
-//test {
-//    jvmArgs 'user.language=en,user.region=US'
-//}
