@@ -11,5 +11,7 @@
     <include file="db/4.add_test_data_to_district.xml"/>
     <include file="db/5.create_title_table.xml"/>
     <include file="db/6.add_test_data_to_title.xml"/>
+    <include file="db/7.create_boardType_table.xml"/>
+    <include file="db/8.add_test_data_to_board_type.xml"/>
 
 </databaseChangeLog>
