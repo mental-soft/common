@@ -22,6 +22,6 @@ public class DistrictController {
   public List<IdNameDto> getDistrictsByCityId(@RequestParam("cityId") int cityId)
       throws NotFoundException {
 
-    return commonService.getDistrictsByCityId(cityId);
+    return commonService.findDistrictsByCityId(cityId);
   }
 }

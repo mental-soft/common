@@ -13,7 +13,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import com.teammental.common.bll.dto.IdNameDto;
 import com.teammental.common.bll.service.CommonService;
-import com.teammental.common.config.TestDataGenerator;
+import com.teammental.common.config.CityAndDisctictDataGenerator;
 import com.teammental.common.config.TestUtil;
 import com.teammental.common.config.UrlConfig;
 import com.teammental.common.dal.entity.District;
@@ -46,12 +46,13 @@ public class DistrictControllerTest {
   public void shouldReturnOkAndDistricts_whenDistrictsFound() throws Exception {
 
     final int districtSize = 2;
-    List<District> expectedDistricts = TestDataGenerator.prepareRandomListOfDistrict(districtSize);
+    List<District> expectedDistricts = CityAndDisctictDataGenerator
+        .prepareRandomListOfDistrict(districtSize);
     Optional<List<IdNameDto>> expectedDtosOptional = MeMapper.getMapperFromList(expectedDistricts)
         .mapToList(IdNameDto.class);
     List<IdNameDto> expectedDtos = expectedDtosOptional.get();
 
-    when(commonService.getDistrictsByCityId(anyInt()))
+    when(commonService.findDistrictsByCityId(anyInt()))
         .thenReturn(expectedDtos);
 
     mockMvc.perform(get(UrlConfig.DistrictControllerConfig.URL_GET_DISTRICTS_BY_CITY_ID)
@@ -64,18 +65,18 @@ public class DistrictControllerTest {
         .andExpect(jsonPath("$[1].id", is(expectedDtos.get(1).getId())))
         .andExpect(jsonPath("$[1].name", is(expectedDtos.get(1).getName())));
 
-    verify(commonService, times(1)).getDistrictsByCityId(anyInt());
+    verify(commonService, times(1)).findDistrictsByCityId(anyInt());
   }
 
   @Test
   public void shouldReturn404_whenNoDistrictFound() throws Exception {
-    when(commonService.getDistrictsByCityId(anyInt()))
+    when(commonService.findDistrictsByCityId(anyInt()))
         .thenThrow(new NotFoundException(""));
 
     mockMvc.perform(get(UrlConfig.DistrictControllerConfig.URL_GET_DISTRICTS_BY_CITY_ID)
         .param("cityId", "1"))
         .andExpect(status().isNotFound());
 
-    verify(commonService, times(1)).getDistrictsByCityId(anyInt());
+    verify(commonService, times(1)).findDistrictsByCityId(anyInt());
   }
 }

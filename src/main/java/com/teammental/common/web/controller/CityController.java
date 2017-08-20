@@ -19,6 +19,6 @@ public class CityController {
 
   @GetMapping(UrlConfig.CityControllerConfig.URL_GET_CITIES)
   public List<IdNameDto> getCities() throws NotFoundException {
-    return commonService.getCities();
+    return commonService.findAll();
   }
 }

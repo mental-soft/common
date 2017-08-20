@@ -12,7 +12,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import com.teammental.common.bll.dto.IdNameDto;
 import com.teammental.common.bll.service.CommonService;
-import com.teammental.common.config.TestDataGenerator;
+import com.teammental.common.config.CityAndDisctictDataGenerator;
 import com.teammental.common.config.TestUtil;
 import com.teammental.common.config.UrlConfig;
 import com.teammental.common.dal.entity.City;
@@ -44,12 +44,12 @@ public class CityControllerTest {
   @Test
   public void shouldReturnOkAndCities_whenCitiesFound() throws Exception {
     final int citySize = 2;
-    List<City> expectedCities = TestDataGenerator.prepareRandomListOfCities(citySize);
+    List<City> expectedCities = CityAndDisctictDataGenerator.prepareRandomListOfCities(citySize);
     Optional<List<IdNameDto>> expectedDtosOptional = MeMapper.getMapperFromList(expectedCities)
         .mapToList(IdNameDto.class);
     List<IdNameDto> expectedDtos = expectedDtosOptional.get();
 
-    when(commonService.getCities())
+    when(commonService.findAll())
         .thenReturn(expectedDtos);
 
     mockMvc.perform(get(UrlConfig.CityControllerConfig.URL_GET_CITIES))
@@ -61,17 +61,17 @@ public class CityControllerTest {
         .andExpect(jsonPath("$[1].id", is(expectedDtos.get(1).getId())))
         .andExpect(jsonPath("$[1].name", is(expectedDtos.get(1).getName())));
 
-    verify(commonService, times(1)).getCities();
+    verify(commonService, times(1)).findAll();
   }
 
   @Test
   public void shouldReturn404_whenNoCityFound() throws Exception {
-    when(commonService.getCities())
+    when(commonService.findAll())
         .thenThrow(new NotFoundException(""));
 
     mockMvc.perform(get(UrlConfig.CityControllerConfig.URL_GET_CITIES))
         .andExpect(status().isNotFound());
 
-    verify(commonService, times(1)).getCities();
+    verify(commonService, times(1)).findAll();
   }
 }

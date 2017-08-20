@@ -29,7 +29,7 @@ public class CommonServiceImpl implements CommonService {
   private MessageSource messageSource;
 
   @Override
-  public List<IdNameDto> getCities() throws NotFoundException {
+  public List<IdNameDto> findAll() throws NotFoundException {
     List<City> cities = cityRepository.findAll();
 
     Optional<List<IdNameDto>> dtosOptional = MeMapper.getMapperFromList(cities)
@@ -44,7 +44,7 @@ public class CommonServiceImpl implements CommonService {
   }
 
   @Override
-  public List<IdNameDto> getDistrictsByCityId(Integer cityId) throws NotFoundException {
+  public List<IdNameDto> findDistrictsByCityId(Integer cityId) throws NotFoundException {
     List<District> districts = districtRepository.findAllByCityId(cityId);
 
     Optional<List<IdNameDto>> dtosOptional = MeMapper.getMapperFromList(districts)
@@ -57,4 +57,6 @@ public class CommonServiceImpl implements CommonService {
     throw new NotFoundException(messageSource.getMessage("exception.notfound.district",
         null, Locale.getDefault()));
   }
+
+
 }

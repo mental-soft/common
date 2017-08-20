@@ -7,7 +7,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import com.teammental.common.bll.dto.IdNameDto;
-import com.teammental.common.config.TestDataGenerator;
+import com.teammental.common.config.CityAndDisctictDataGenerator;
 import com.teammental.common.dal.entity.City;
 import com.teammental.common.dal.entity.District;
 import com.teammental.common.dal.repository.CityRepository;
@@ -52,7 +52,7 @@ public class CommonServiceImplTest {
 
   @Test
   public void shouldReturnAllCities_whenCitiesFound() throws NotFoundException {
-    List<City> expectedCities = TestDataGenerator.prepareRandomListOfCities();
+    List<City> expectedCities = CityAndDisctictDataGenerator.prepareRandomListOfCities();
 
     when(cityRepository.findAll())
         .thenReturn(expectedCities);
@@ -61,7 +61,7 @@ public class CommonServiceImplTest {
         .mapToList(IdNameDto.class);
     List<IdNameDto> expectedDtos = expectedDtosOptional.get();
 
-    List<IdNameDto> actualDtos = commonService.getCities();
+    List<IdNameDto> actualDtos = commonService.findAll();
 
     String expectedDtoString = expectedDtos.stream()
         .map(idNameDto -> idNameDto.toString())
@@ -81,14 +81,14 @@ public class CommonServiceImplTest {
     List<City> exceptedCities = new ArrayList<>();
     when(cityRepository.findAll())
         .thenReturn(exceptedCities);
-    commonService.getCities();
+    commonService.findAll();
     verify(cityRepository, times(1)).findAll();
   }
 
   @Test
   public void shouldReturnDistrictsByCityId_whenFoundAny() throws NotFoundException {
-    City expectedCity = TestDataGenerator.prepareRandomCity();
-    List<District> expectedDistricts = TestDataGenerator
+    City expectedCity = CityAndDisctictDataGenerator.prepareRandomCity();
+    List<District> expectedDistricts = CityAndDisctictDataGenerator
         .prepareRandomListOfDistrict(expectedCity, 10);
 
     when(districtRepository.findAllByCityId(anyInt()))
@@ -98,7 +98,7 @@ public class CommonServiceImplTest {
         .mapToList(IdNameDto.class);
     List<IdNameDto> expectedDtos = expectedDtosOptional.get();
 
-    List<IdNameDto> actualDtos = commonService.getDistrictsByCityId(expectedCity.getId());
+    List<IdNameDto> actualDtos = commonService.findDistrictsByCityId(expectedCity.getId());
 
     String exptectedDtoString = expectedDtos.stream()
         .map(idNameDto -> idNameDto.toString())
@@ -119,7 +119,7 @@ public class CommonServiceImplTest {
     when(districtRepository.findAllByCityId(anyInt()))
         .thenReturn(expectedDistricts);
 
-    commonService.getDistrictsByCityId(1);
+    commonService.findDistrictsByCityId(1);
     verify(districtRepository, times(1)).findAllByCityId(anyInt());
   }
 

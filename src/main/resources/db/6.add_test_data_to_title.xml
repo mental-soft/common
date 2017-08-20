@@ -21,5 +21,10 @@
             <column name="name" value="Başkan"/>
             <column name="is_board" value="true"/>
         </insert>
+        <insert tableName="title">
+            <column name="name" value="Genel Sekreter"/>
+            <column name="is_board" value="true"/>
+            <column name="client_id" value="1"/>
+        </insert>
     </changeSet>
 </databaseChangeLog>

@@ -5,8 +5,7 @@ import com.teammental.common.exception.NotFoundException;
 
 import java.util.List;
 
-public interface CommonService {
-  List<IdNameDto> getCities() throws NotFoundException;
+public interface CommonService extends BaseService<IdNameDto> {
 
-  List<IdNameDto> getDistrictsByCityId(Integer cityId) throws NotFoundException;
+  List<IdNameDto> findDistrictsByCityId(Integer cityId) throws NotFoundException;
 }

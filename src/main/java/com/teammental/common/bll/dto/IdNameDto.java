@@ -1,16 +1,7 @@
 package com.teammental.common.bll.dto;
 
-public class IdNameDto {
-  private Integer id;
+public class IdNameDto extends BaseDto<Integer> {
   private String name;
-
-  public Integer getId() {
-    return id;
-  }
-
-  public void setId(Integer id) {
-    this.id = id;
-  }
 
   public String getName() {
     return name;
@@ -22,6 +13,6 @@ public class IdNameDto {
 
   @Override
   public String toString() {
-    return "Id = " + id + ", Name = " + name ;
+    return "Id = " + getId() + ", Name = " + name ;
   }
 }
