@@ -9,6 +9,7 @@
     <include file="db/2.create_district_table.xml"/>
     <include file="db/3.add_test_data_to_city.xml"/>
     <include file="db/4.add_test_data_to_district.xml"/>
-    <include file="db/5.create_generic_value_table.xml"/>
+    <include file="db/5.create_title_table.xml"/>
+    <include file="db/6.add_test_data_to_title.xml"/>
 
 </databaseChangeLog>
