@@ -12,7 +12,7 @@ import com.teammental.common.dal.entity.City;
 import com.teammental.common.dal.entity.District;
 import com.teammental.common.dal.repository.CityRepository;
 import com.teammental.common.dal.repository.DistrictRepository;
-import com.teammental.common.exception.NotFoundException;
+import com.teammental.meconfig.exception.NotFoundException;
 import com.teammental.memapper.MeMapper;
 
 import java.util.ArrayList;
@@ -61,7 +61,7 @@ public class CommonServiceImplTest {
         .mapToList(IdNameDto.class);
     List<IdNameDto> expectedDtos = expectedDtosOptional.get();
 
-    List<IdNameDto> actualDtos = commonService.findAll();
+    List<IdNameDto> actualDtos = commonService.findAllCities();
 
     String expectedDtoString = expectedDtos.stream()
         .map(idNameDto -> idNameDto.toString())
@@ -81,7 +81,7 @@ public class CommonServiceImplTest {
     List<City> exceptedCities = new ArrayList<>();
     when(cityRepository.findAll())
         .thenReturn(exceptedCities);
-    commonService.findAll();
+    commonService.findAllCities();
     verify(cityRepository, times(1)).findAll();
   }
 

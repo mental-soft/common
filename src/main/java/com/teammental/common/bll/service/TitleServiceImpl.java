@@ -1,40 +1,39 @@
 package com.teammental.common.bll.service;
 
 import com.teammental.common.bll.dto.TitleDto;
-import com.teammental.common.dal.entity.Title;
 import com.teammental.common.dal.repository.TitleRepository;
-import com.teammental.common.exception.NotFoundException;
-import com.teammental.memapper.MeMapper;
-
-import java.util.List;
-import java.util.Locale;
-import java.util.Optional;
+import com.teammental.meconfig.bll.service.BaseCrudServiceImpl;
+import com.teammental.meconfig.exception.NotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-public class TitleServiceImpl implements TitleService {
+public class TitleServiceImpl extends BaseCrudServiceImpl<TitleDto, Integer>
+    implements TitleService {
 
   @Autowired
   private TitleRepository titleRepository;
 
-  @Autowired
-  private MessageSource messageSource;
+  @Override
+  protected JpaRepository getRepository() {
+    return titleRepository;
+  }
 
   @Override
-  public List<TitleDto> findAll() throws NotFoundException {
+  protected Class<?> getDtoClass() {
+    return TitleDto.class;
+  }
 
-    List<Title> titles = titleRepository.findAll();
-    Optional<List<TitleDto>> titleDtosOptional = MeMapper.getMapperFromList(titles)
-        .mapToList(TitleDto.class);
 
-    if (titleDtosOptional.isPresent() && titleDtosOptional.get().size() > 0) {
-      return titleDtosOptional.get();
-    }
+  @Override
+  public TitleDto findById(Integer id) throws NotFoundException {
+    return null;
+  }
 
-    throw new NotFoundException(messageSource.getMessage("exception.notfound.title",
-        null, Locale.getDefault()));
+  @Override
+  public Integer insertOrUpdate(TitleDto dto) {
+    return null;
   }
 }

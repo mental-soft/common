@@ -12,3 +12,4 @@ logging:
   level:
     org.springframework.web: DEBUG
     com.teammental: DEBUG
+security.ignored: /**

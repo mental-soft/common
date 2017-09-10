@@ -17,7 +17,7 @@ import com.teammental.common.config.CityAndDisctictDataGenerator;
 import com.teammental.common.config.TestUtil;
 import com.teammental.common.config.UrlConfig;
 import com.teammental.common.dal.entity.District;
-import com.teammental.common.exception.NotFoundException;
+import com.teammental.meconfig.exception.NotFoundException;
 import com.teammental.memapper.MeMapper;
 
 import java.util.List;
@@ -71,7 +71,7 @@ public class DistrictControllerTest {
   @Test
   public void shouldReturn404_whenNoDistrictFound() throws Exception {
     when(commonService.findDistrictsByCityId(anyInt()))
-        .thenThrow(new NotFoundException(""));
+        .thenThrow(new NotFoundException());
 
     mockMvc.perform(get(UrlConfig.DistrictControllerConfig.URL_GET_DISTRICTS_BY_CITY_ID)
         .param("cityId", "1"))

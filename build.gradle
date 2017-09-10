@@ -19,6 +19,10 @@ apply from: "https://raw.githubusercontent.com/mental-soft/gradle-config/master/
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
+dependencies {
+    compile project(':meconfig')
+}
+
 
 jar {
     baseName = 'common'

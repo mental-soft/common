@@ -1,14 +1,18 @@
 package com.teammental.common.bll.dto;
 
-public abstract class BaseDto<IdT> implements Dto {
+import com.teammental.meconfig.dto.IdDto;
 
-  private Integer id;
+public abstract class BaseDto<IdT> implements IdDto<IdT> {
 
-  public Integer getId() {
+  private IdT id;
+
+  @Override
+  public IdT getId() {
     return id;
   }
 
-  public void setId(Integer id) {
+  @Override
+  public void setId(IdT id) {
     this.id = id;
   }
 }

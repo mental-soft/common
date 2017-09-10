@@ -16,7 +16,7 @@ import com.teammental.common.config.CityAndDisctictDataGenerator;
 import com.teammental.common.config.TestUtil;
 import com.teammental.common.config.UrlConfig;
 import com.teammental.common.dal.entity.City;
-import com.teammental.common.exception.NotFoundException;
+import com.teammental.meconfig.exception.NotFoundException;
 import com.teammental.memapper.MeMapper;
 
 import java.util.List;
@@ -49,7 +49,7 @@ public class CityControllerTest {
         .mapToList(IdNameDto.class);
     List<IdNameDto> expectedDtos = expectedDtosOptional.get();
 
-    when(commonService.findAll())
+    when(commonService.findAllCities())
         .thenReturn(expectedDtos);
 
     mockMvc.perform(get(UrlConfig.CityControllerConfig.URL_GET_CITIES))
@@ -61,17 +61,17 @@ public class CityControllerTest {
         .andExpect(jsonPath("$[1].id", is(expectedDtos.get(1).getId())))
         .andExpect(jsonPath("$[1].name", is(expectedDtos.get(1).getName())));
 
-    verify(commonService, times(1)).findAll();
+    verify(commonService, times(1)).findAllCities();
   }
 
   @Test
   public void shouldReturn404_whenNoCityFound() throws Exception {
-    when(commonService.findAll())
+    when(commonService.findAllCities())
         .thenThrow(new NotFoundException(""));
 
     mockMvc.perform(get(UrlConfig.CityControllerConfig.URL_GET_CITIES))
         .andExpect(status().isNotFound());
 
-    verify(commonService, times(1)).findAll();
+    verify(commonService, times(1)).findAllCities();
   }
 }

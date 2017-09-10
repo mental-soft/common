@@ -11,3 +11,4 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
 liquibase:
   change-log: classpath:/db/db.changelog.xml
+security.ignored: /**

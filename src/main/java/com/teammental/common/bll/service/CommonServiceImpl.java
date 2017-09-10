@@ -5,7 +5,7 @@ import com.teammental.common.dal.entity.City;
 import com.teammental.common.dal.entity.District;
 import com.teammental.common.dal.repository.CityRepository;
 import com.teammental.common.dal.repository.DistrictRepository;
-import com.teammental.common.exception.NotFoundException;
+import com.teammental.meconfig.exception.NotFoundException;
 import com.teammental.memapper.MeMapper;
 
 import java.util.List;
@@ -29,7 +29,7 @@ public class CommonServiceImpl implements CommonService {
   private MessageSource messageSource;
 
   @Override
-  public List<IdNameDto> findAll() throws NotFoundException {
+  public List<IdNameDto> findAllCities() throws NotFoundException {
     List<City> cities = cityRepository.findAll();
 
     Optional<List<IdNameDto>> dtosOptional = MeMapper.getMapperFromList(cities)

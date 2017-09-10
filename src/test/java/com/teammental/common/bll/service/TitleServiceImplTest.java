@@ -9,7 +9,7 @@ import com.teammental.common.bll.dto.TitleDto;
 import com.teammental.common.config.TitleDataGenerator;
 import com.teammental.common.dal.entity.Title;
 import com.teammental.common.dal.repository.TitleRepository;
-import com.teammental.common.exception.NotFoundException;
+import com.teammental.meconfig.exception.NotFoundException;
 import com.teammental.memapper.MeMapper;
 
 import java.util.List;
