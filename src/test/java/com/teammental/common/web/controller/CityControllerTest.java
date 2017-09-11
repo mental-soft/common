@@ -16,7 +16,6 @@ import com.teammental.common.config.CityAndDisctictDataGenerator;
 import com.teammental.common.config.TestUtil;
 import com.teammental.common.config.UrlConfig;
 import com.teammental.common.dal.entity.City;
-import com.teammental.meconfig.exception.NotFoundException;
 import com.teammental.memapper.MeMapper;
 
 import java.util.List;
@@ -64,14 +63,4 @@ public class CityControllerTest {
     verify(commonService, times(1)).findAllCities();
   }
 
-  @Test
-  public void shouldReturn404_whenNoCityFound() throws Exception {
-    when(commonService.findAllCities())
-        .thenThrow(new NotFoundException(""));
-
-    mockMvc.perform(get(UrlConfig.CityControllerConfig.URL_GET_CITIES))
-        .andExpect(status().isNotFound());
-
-    verify(commonService, times(1)).findAllCities();
-  }
 }

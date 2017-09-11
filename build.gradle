@@ -21,6 +21,7 @@ targetCompatibility = 1.8
 
 dependencies {
     compile project(':meconfig')
+    compile 'com.teammental:memapper:2.5'
 }
 
 

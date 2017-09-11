@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:postgresql://${connection:localhost}:5432/common
-    username: common
-    password: common
+    url: jdbc:postgresql://${connection:localhost}:5432/common-dev
+    username: dbuser
+    password: 12345
   jpa:
     show-sql: true
 liquibase:
