@@ -1,3 +1,4 @@
-FROM tomcat:8.0
-ADD build/libs/common.war webapps/common.war
-CMD ["catalina.sh","run"]
+FROM mental/jre
+ADD build/libs/common.jar /app/common.jar
+EXPOSE 10060
+CMD java -jar /app/common.jar --connection=cont_postgresql

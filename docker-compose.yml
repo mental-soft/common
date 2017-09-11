@@ -1,11 +1,22 @@
-version: '2'
+version: "3.3"
 services:
-  common1:
-    image: mental/common:1.0
+  web:
+    image: mental/common
     build: .
+    container_name: mencommon
     ports:
-    - "8889:8080"
-  database1:
-    image: alexeiled/docker-oracle-xe-11g
+      - "10060:10060"
+    links:
+      - cont_postgresql
+    depends_on:
+      - cont_postgresql
+    environment:
+      SPRING_PROFILES_ACTIVE: default
+  cont_postgresql:
+    image: sameersbn/postgresql
     ports:
-    - "1522:1521"
+      - "5432:5432"
+    environment:
+      DB_NAME: common-dev,common-qa
+      DB_USER: dbuser
+      DB_PASS: 12345
