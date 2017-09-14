@@ -9,7 +9,7 @@ import com.teammental.common.bll.dto.TitleDto;
 import com.teammental.common.config.TitleDataGenerator;
 import com.teammental.common.dal.entity.Title;
 import com.teammental.common.dal.repository.TitleRepository;
-import com.teammental.meconfig.exception.NotFoundException;
+import com.teammental.meconfig.exception.entity.EntityNotFoundException;
 import com.teammental.memapper.MeMapper;
 
 import java.util.List;
@@ -43,7 +43,7 @@ public class TitleServiceImplTest {
   }
 
   @Test
-  public void shouldReturnAllList_whenFoundAny() throws NotFoundException {
+  public void shouldReturnAllList_whenFoundAny() throws EntityNotFoundException {
     final int expectedSize = 10;
     final List<Title> expectedTitles = TitleDataGenerator.prepateRandomListOfTitle(expectedSize);
     when(titleRepository.findAll())
@@ -66,8 +66,8 @@ public class TitleServiceImplTest {
   }
 
 
-  @Test(expected = NotFoundException.class)
-  public void shouldThrowNotFoundException_whenNotFoundAny() throws NotFoundException {
+  @Test(expected = EntityNotFoundException.class)
+  public void shouldThrowNotFoundException_whenNotFoundAny() throws EntityNotFoundException {
     when(titleRepository.findAll())
         .thenReturn(null);
 

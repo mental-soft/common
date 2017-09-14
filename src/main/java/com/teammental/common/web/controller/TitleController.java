@@ -18,4 +18,9 @@ public class TitleController extends BaseCrudController<TitleService, TitleDto, 
     return titleService;
   }
 
+  @Override
+  protected String getMappingUrlOfController() {
+    return "/titles";
+  }
+
 }

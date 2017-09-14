@@ -12,7 +12,7 @@ import com.teammental.common.dal.entity.City;
 import com.teammental.common.dal.entity.District;
 import com.teammental.common.dal.repository.CityRepository;
 import com.teammental.common.dal.repository.DistrictRepository;
-import com.teammental.meconfig.exception.NotFoundException;
+import com.teammental.meconfig.exception.entity.EntityNotFoundException;
 import com.teammental.memapper.MeMapper;
 
 import java.util.ArrayList;
@@ -51,7 +51,7 @@ public class CommonServiceImplTest {
 
 
   @Test
-  public void shouldReturnAllCities_whenCitiesFound() throws NotFoundException {
+  public void shouldReturnAllCities_whenCitiesFound() throws EntityNotFoundException {
     List<City> expectedCities = CityAndDisctictDataGenerator.prepareRandomListOfCities();
 
     when(cityRepository.findAll())
@@ -76,8 +76,8 @@ public class CommonServiceImplTest {
     verify(cityRepository, times(1)).findAll();
   }
 
-  @Test(expected = NotFoundException.class)
-  public void shouldThrowNotFoundException_whenNoCityFound() throws NotFoundException {
+  @Test(expected = EntityNotFoundException.class)
+  public void shouldThrowNotFoundException_whenNoCityFound() throws EntityNotFoundException {
     List<City> exceptedCities = new ArrayList<>();
     when(cityRepository.findAll())
         .thenReturn(exceptedCities);
@@ -86,7 +86,7 @@ public class CommonServiceImplTest {
   }
 
   @Test
-  public void shouldReturnDistrictsByCityId_whenFoundAny() throws NotFoundException {
+  public void shouldReturnDistrictsByCityId_whenFoundAny() throws EntityNotFoundException {
     City expectedCity = CityAndDisctictDataGenerator.prepareRandomCity();
     List<District> expectedDistricts = CityAndDisctictDataGenerator
         .prepareRandomListOfDistrict(expectedCity, 10);
@@ -113,8 +113,8 @@ public class CommonServiceImplTest {
     verify(districtRepository, times(1)).findAllByCityId(anyInt());
   }
 
-  @Test(expected = NotFoundException.class)
-  public void shouldThrowNotFoundException_whenNoDistrictFound() throws NotFoundException {
+  @Test(expected = EntityNotFoundException.class)
+  public void shouldThrowNotFoundException_whenNoDistrictFound() throws EntityNotFoundException {
     List<District> expectedDistricts = new ArrayList<>();
     when(districtRepository.findAllByCityId(anyInt()))
         .thenReturn(expectedDistricts);

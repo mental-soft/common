@@ -3,7 +3,7 @@ package com.teammental.common.web.controller;
 import com.teammental.common.bll.dto.IdNameDto;
 import com.teammental.common.bll.service.CommonService;
 import com.teammental.common.config.UrlConfig;
-import com.teammental.meconfig.exception.NotFoundException;
+import com.teammental.meconfig.exception.entity.EntityNotFoundException;
 
 import java.util.List;
 
@@ -18,7 +18,7 @@ public class CityController {
   private CommonService commonService;
 
   @GetMapping(UrlConfig.CityControllerConfig.URL_GET_CITIES)
-  public List<IdNameDto> getCities() throws NotFoundException {
+  public List<IdNameDto> getCities() throws EntityNotFoundException {
     return commonService.findAllCities();
   }
 }

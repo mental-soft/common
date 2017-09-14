@@ -3,7 +3,7 @@ package com.teammental.common.web.controller;
 import com.teammental.common.bll.dto.IdNameDto;
 import com.teammental.common.bll.service.CommonService;
 import com.teammental.common.config.UrlConfig;
-import com.teammental.meconfig.exception.NotFoundException;
+import com.teammental.meconfig.exception.entity.EntityNotFoundException;
 
 import java.util.List;
 
@@ -20,7 +20,7 @@ public class DistrictController {
 
   @GetMapping(UrlConfig.DistrictControllerConfig.URL_GET_DISTRICTS_BY_CITY_ID)
   public List<IdNameDto> getDistrictsByCityId(@RequestParam("cityId") int cityId)
-      throws NotFoundException {
+      throws EntityNotFoundException {
 
     return commonService.findDistrictsByCityId(cityId);
   }
