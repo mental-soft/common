@@ -17,6 +17,8 @@ import com.teammental.common.config.CityAndDisctictDataGenerator;
 import com.teammental.common.config.TestUtil;
 import com.teammental.common.config.UrlConfig;
 import com.teammental.common.dal.entity.District;
+import com.teammental.meconfig.exception.entity.EntityNotFoundException;
+import com.teammental.meconfig.handler.rest.EntityNotFoundExceptionRestHandler;
 import com.teammental.memapper.MeMapper;
 
 import java.util.List;
@@ -27,12 +29,14 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Import;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 @SuppressWarnings("PMD.TooManyStaticImports")
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebMvcTest(DistrictController.class)
+@Import(EntityNotFoundExceptionRestHandler.class)
 public class DistrictControllerTest {
 
   @MockBean
@@ -67,5 +71,15 @@ public class DistrictControllerTest {
     verify(commonService, times(1)).findDistrictsByCityId(anyInt());
   }
 
+  @Test
+  public void shouldReturn404_whenNoDistrictFound() throws Exception {
+    when(commonService.findDistrictsByCityId(anyInt()))
+        .thenThrow(new EntityNotFoundException());
 
+    mockMvc.perform(get(UrlConfig.DistrictControllerConfig.URL_GET_DISTRICTS_BY_CITY_ID)
+        .param("cityId","1"))
+        .andExpect(status().isNotFound());
+
+    verify(commonService, times(1)).findDistrictsByCityId(anyInt());
+  }
 }

@@ -16,6 +16,8 @@ import com.teammental.common.config.CityAndDisctictDataGenerator;
 import com.teammental.common.config.TestUtil;
 import com.teammental.common.config.UrlConfig;
 import com.teammental.common.dal.entity.City;
+import com.teammental.meconfig.exception.entity.EntityNotFoundException;
+import com.teammental.meconfig.handler.rest.EntityNotFoundExceptionRestHandler;
 import com.teammental.memapper.MeMapper;
 
 import java.util.List;
@@ -26,12 +28,14 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Import;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 @SuppressWarnings("PMD.TooManyStaticImports")
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebMvcTest(CityController.class)
+@Import(EntityNotFoundExceptionRestHandler.class)
 public class CityControllerTest {
 
   @MockBean
@@ -59,6 +63,17 @@ public class CityControllerTest {
         .andExpect(jsonPath("$[0].name", is(expectedDtos.get(0).getName())))
         .andExpect(jsonPath("$[1].id", is(expectedDtos.get(1).getId())))
         .andExpect(jsonPath("$[1].name", is(expectedDtos.get(1).getName())));
+
+    verify(commonService, times(1)).findAllCities();
+  }
+
+  @Test
+  public void shouldReturn404_whenNoCityFound() throws Exception {
+    when(commonService.findAllCities())
+        .thenThrow(new EntityNotFoundException());
+
+    mockMvc.perform(get(UrlConfig.CityControllerConfig.URL_GET_CITIES))
+        .andExpect(status().isNotFound());
 
     verify(commonService, times(1)).findAllCities();
   }
