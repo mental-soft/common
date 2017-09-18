@@ -1,43 +1,39 @@
-#Mental Team - Common Projesi
+# Mental Team - Common
 
-Veritabanı Kullanıcısı oluştur
+## Gradle
 
-Development ortamı için:
-```
-create user common identified by common;
-grant connect, resource to common;
-```
+**Build**
 
-Test ortamı için:
-```
-create user common_qa identified by common_qa;
-grant connect, resource to common_qa;
-```
+<code>
+gradlew build
+</code>
+
+**Run**
+
+<code>
+gradlew bootRun
+</code>
+
+**Dependancy**
+* Postgresql
+* common-dev, common-qa
+* dbuser:12345
 
 
-Gradle Liquibase ile çalıştır
+## Docker
+**Build**
 
-```
+<code>
+docker build -t mental/common .
+</code>
 
-gradlew update
+**Run**
+<code>
+docker run -it --name mencommon -e connection <postgresql_container_name> mental/common
+</code>
 
-```
+**Run (docker-compose)**
 
-Test ortamında çalışmak için örnek script:
-```
-
-gradlew update -Penv=qa
-
-```
-
-#Test 
-
-Bütün testleri çalıştır
-```
-gradlew test
-```
-
-Sadece bir testi çalıştırma
-```
-gradlew test --tests jpa.CountryRepositoryTest.count_EntrySizeFound
-```
+<code>
+docker compose up
+</code>

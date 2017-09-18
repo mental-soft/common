@@ -20,7 +20,7 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
-    compile project(':meconfig')
+    compile 'com.teammental:meconfig:1.0'
     compile 'com.teammental:memapper:2.5'
 }
 
