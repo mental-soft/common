@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/mental-soft/common.svg?branch=master)](https://travis-ci.org/mental-soft/common)
+
 # Mental Team - Common
 
 ## Gradle
