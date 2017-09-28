@@ -10,5 +10,5 @@
     <include file="db/3.add_test_data_to_city.xml"/>
     <include file="db/4.add_test_data_to_district.xml"/>
     <include file="db/5.add_real_data_to_city.xml"/>
-
+    <include file="db/6.add_real_data_to_district.xml"/>
 </databaseChangeLog>
