@@ -1,0 +1,338 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="add-test-data-to-city" context="qa or prod" author="erhan.karakaya">
+        <comment>
+            City tablosuna data eklendi.
+        </comment>
+        <insert tableName="CITY">
+            <column name="ID" value="1"/>
+            <column name="NAME" value="ADANA"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="2"/>
+            <column name="NAME" value="ADIYAMAN"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="3"/>
+            <column name="NAME" value="AFYONKARAHİSAR"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="4"/>
+            <column name="NAME" value="AĞRI"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="5"/>
+            <column name="NAME" value="AKSARAY"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="6"/>
+            <column name="NAME" value="AMASYA"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="7"/>
+            <column name="NAME" value="ANKARA"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="8"/>
+            <column name="NAME" value="ANTALYA"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="9"/>
+            <column name="NAME" value="ARDAHAN"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="10"/>
+            <column name="NAME" value="ARTVİN"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="11"/>
+            <column name="NAME" value="AYDIN"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="12"/>
+            <column name="NAME" value="BALIKESİR"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="13"/>
+            <column name="NAME" value="BARTIN"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="14"/>
+            <column name="NAME" value="BATMAN"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="15"/>
+            <column name="NAME" value="BAYBURT"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="16"/>
+            <column name="NAME" value="BİLECİK"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="17"/>
+            <column name="NAME" value="BİNGÖL"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="18"/>
+            <column name="NAME" value="BİTLİS"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="19"/>
+            <column name="NAME" value="BOLU"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="20"/>
+            <column name="NAME" value="BURDUR"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="21"/>
+            <column name="NAME" value="BURSA"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="22"/>
+            <column name="NAME" value="ÇANAKKALE"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="23"/>
+            <column name="NAME" value="ÇANKIRI"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="24"/>
+            <column name="NAME" value="ÇORUM"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="25"/>
+            <column name="NAME" value="DENİZLİ"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="26"/>
+            <column name="NAME" value="DİYARBAKIR"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="27"/>
+            <column name="NAME" value="DÜZCE"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="28"/>
+            <column name="NAME" value="EDİRNE"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="29"/>
+            <column name="NAME" value="ELAZIĞ"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="30"/>
+            <column name="NAME" value="ERZİNCAN"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="31"/>
+            <column name="NAME" value="ERZURUM"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="32"/>
+            <column name="NAME" value="ESKİŞEHİR"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="33"/>
+            <column name="NAME" value="GAZİANTEP"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="34"/>
+            <column name="NAME" value="GİRESUN"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="35"/>
+            <column name="NAME" value="GÜMÜŞHANE"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="36"/>
+            <column name="NAME" value="HAKKARİ"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="37"/>
+            <column name="NAME" value="HATAY"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="38"/>
+            <column name="NAME" value="IĞDIR"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="39"/>
+            <column name="NAME" value="ISPARTA"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="40"/>
+            <column name="NAME" value="İSTANBUL"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="41"/>
+            <column name="NAME" value="İZMİR"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="42"/>
+            <column name="NAME" value="KAHRAMANMARAŞ"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="43"/>
+            <column name="NAME" value="KARABÜK"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="44"/>
+            <column name="NAME" value="KARAMAN"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="45"/>
+            <column name="NAME" value="KARS"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="46"/>
+            <column name="NAME" value="KASTAMONU"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="47"/>
+            <column name="NAME" value="KAYSERİ"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="48"/>
+            <column name="NAME" value="KIRIKKALE"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="49"/>
+            <column name="NAME" value="KIRKLARELİ"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="50"/>
+            <column name="NAME" value="KIRŞEHİR"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="51"/>
+            <column name="NAME" value="KİLİS"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="52"/>
+            <column name="NAME" value="KOCAELİ"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="53"/>
+            <column name="NAME" value="KONYA"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="54"/>
+            <column name="NAME" value="KÜTAHYA"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="55"/>
+            <column name="NAME" value="MALATYA"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="56"/>
+            <column name="NAME" value="MANİSA"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="57"/>
+            <column name="NAME" value="MARDİN"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="58"/>
+            <column name="NAME" value="MERSİN"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="59"/>
+            <column name="NAME" value="MUĞLA"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="60"/>
+            <column name="NAME" value="MUŞ"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="61"/>
+            <column name="NAME" value="NEVŞEHİR"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="62"/>
+            <column name="NAME" value="NİĞDE"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="63"/>
+            <column name="NAME" value="ORDU"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="64"/>
+            <column name="NAME" value="OSMANİYE"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="65"/>
+            <column name="NAME" value="RİZE"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="66"/>
+            <column name="NAME" value="SAKARYA"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="67"/>
+            <column name="NAME" value="SAMSUN"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="68"/>
+            <column name="NAME" value="SİİRT"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="69"/>
+            <column name="NAME" value="SİNOP"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="70"/>
+            <column name="NAME" value="SİVAS"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="71"/>
+            <column name="NAME" value="ŞANLIURFA"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="72"/>
+            <column name="NAME" value="ŞIRNAK"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="73"/>
+            <column name="NAME" value="TEKİRDAĞ"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="74"/>
+            <column name="NAME" value="TOKAT"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="75"/>
+            <column name="NAME" value="TRABZON"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="76"/>
+            <column name="NAME" value="TUNCELİ"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="77"/>
+            <column name="NAME" value="UŞAK"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="78"/>
+            <column name="NAME" value="VAN"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="79"/>
+            <column name="NAME" value="YALOVA"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="80"/>
+            <column name="NAME" value="YOZGAT"/>
+        </insert>
+        <insert tableName="CITY">
+            <column name="ID" value="81"/>
+            <column name="NAME" value="ZONGULDAK"/>
+        </insert>
+
+    </changeSet>
+</databaseChangeLog>
