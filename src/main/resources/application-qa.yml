@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://${connection:localhost}:5432/common-qa
+    username: dbuser
+    password: 12345
+  jpa:
+    show-sql: true
+liquibase:
+  drop-first: true
+  contexts: qa
+logging:
+  level:
+    org.springframework.web: INFO
+    com.teammental: INFO
+security.ignored: /**
