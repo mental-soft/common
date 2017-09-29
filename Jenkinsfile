@@ -1,10 +1,15 @@
 pipeline {
-    agent { docker 'gradle' }
+    agent any
     stages {
-        stage('build') {
+        stage('Test') {
             steps {
-                sh './gradlew build'
+                sh './gradlew check'
             }
+        }
+    }
+    post {
+        always {
+            junit 'build/reports/**/*.xml'
         }
     }
 }
