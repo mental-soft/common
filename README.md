@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/mental-soft/common.svg?branch=master)](https://travis-ci.org/mental-soft/common)
+[![Build Status](http://ci.teammental.com/buildStatus/icon?job=common-multipipeline/master)](http://ci.teammental.com/job/common-multipipeline/job/master/)
 
 # Mental Team - Common
 
