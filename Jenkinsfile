@@ -1,13 +1,9 @@
 pipeline {
-    agent any
+    agent { docker 'gradle' }
     stages {
-        stage('Build') {
+        stage('build') {
             steps {
-                sh 'echo "Hello Worlddddd"'
-                sh '''
-                    echo "Multiline shell steps works too"
-                    ls -lah
-                '''
+                sh 'gradle -version'
             }
         }
     }
