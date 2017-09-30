@@ -32,7 +32,7 @@ pipeline {
                  body: "Something is happen with ${env.BUILD_URL}"
         }
         success {
-            archive 'build/libs/**/*.jar'
+            archive 'build/libs/tests/**/*.jar'
             deleteDir()
         }
     }
