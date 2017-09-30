@@ -26,7 +26,7 @@ pipeline {
     }
     post {
         success {
-            archive 'build/libs/tests/**/*.jar'
+            archive 'build/libs/**/*.jar'
             deleteDir()
         }
         always {
