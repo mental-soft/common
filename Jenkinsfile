@@ -25,15 +25,15 @@ pipeline {
         }
     }
     post {
-        always {
-            junit 'build/reports/tests/**/*.html'
-            mail to: 'coskundeniz1989@gmail.com',
-                 subject: "Pipeline: ${currentBuild.fullDisplayName}",
-                 body: "Something is happen with ${env.BUILD_URL}"
-        }
         success {
             archive 'build/libs/tests/**/*.jar'
             deleteDir()
+        }
+        always {
+            mail to: 'coskundeniz1989@gmail.com',
+                 subject: "Pipeline: ${currentBuild.fullDisplayName}",
+                 body: "Something is happen with ${env.BUILD_URL}"
+            junit 'build/reports/tests/**/*.html'
         }
     }
 }
