@@ -33,7 +33,7 @@ pipeline {
             mail to: 'coskundeniz1989@gmail.com',
                  subject: "Pipeline: ${currentBuild.fullDisplayName}",
                  body: "Something is happen with ${env.BUILD_URL}"
-            junit 'test-results/**/*.xml'
+            junit 'build/reports/**/*.html'
         }
     }
 }
